@@ -1,4 +1,4 @@
-package com.cos.daangnapp;
+package com.cos.agora;
 
 import org.junit.Test;
 

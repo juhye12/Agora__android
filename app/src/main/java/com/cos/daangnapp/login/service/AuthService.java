@@ -15,7 +15,6 @@ import retrofit2.http.Query;
 
 public interface AuthService {
 
-
     @GET("auth")
     Call<CMRespDto<AuthRespDto>> authCodeSearch(@Query("phoneNumber")String phoneNumber);
 

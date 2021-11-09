@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cos.daangnapp.CMRespDto;
-import com.cos.daangnapp.main.MainActivity;
 import com.cos.daangnapp.R;
 import com.cos.daangnapp.login.model.UserRespDto;
 import com.cos.daangnapp.login.model.UserSaveReqDto;
@@ -64,7 +63,7 @@ public class NicknameActivity extends AppCompatActivity {
                 if(userRespDto == null){
                     save(userSaveReqDto);
                     Intent intent = new Intent(NicknameActivity.this, JoinActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     NicknameActivity.this.finish();
                 }else {
