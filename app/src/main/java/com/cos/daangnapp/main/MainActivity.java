@@ -15,9 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.cos.daangnapp.R;
-import com.cos.daangnapp.main.chat.ChatFragment;
-import com.cos.daangnapp.main.home.HomeFragment;
-import com.cos.daangnapp.main.profile.ProfileFragment;
+//import com.cos.daangnapp.main.chat.ChatFragment;
+//import com.cos.daangnapp.main.home.HomeFragment;
+//import com.cos.daangnapp.main.profile.ProfileFragment;
 import com.cos.daangnapp.writing.WritingActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     private Animation fab_open, fab_close;
     private Boolean isFabOpen = false;
     private FloatingActionButton fabAdd, fabJoongo, fabDongne;
-    private HomeFragment mHomeFragment;
-    private ProfileFragment mProfileFragment;
-    private ChatFragment mChatFragment;
+    //private HomeFragment mHomeFragment;
+    //private ProfileFragment mProfileFragment;
+    //private ChatFragment mChatFragment;
     String[] permission_list = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
     };
@@ -44,46 +44,46 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         initSetting();
         checkPermission();
 
-        mHomeFragment = new HomeFragment();
-        mProfileFragment = new ProfileFragment();
-        mChatFragment = new ChatFragment();
-        moveHome();
+       // mHomeFragment = new HomeFragment();
+        //mProfileFragment = new ProfileFragment();
+       // mChatFragment = new ChatFragment();
+        //moveHome();
     }
 
 
-    public void fragmentOnClick(View view) {
-        switch (view.getId()) {
-            case R.id.main_btn_home:
-                moveHome();
-                fabAdd.setVisibility(View.VISIBLE);
-                break;
-            case R.id.main_btn_category:
-            //    moveCategory();
-                break;
-            case R.id.main_btn_writing:
-            //    moveWriting();
-                break;
-            case R.id.main_btn_chat:
-                moveChat();
-                break;
-            case R.id.main_btn_profile:
-                 moveProfile();
-                fabAdd.setVisibility(View.INVISIBLE);
-                break;
-            default:
-                break;
-        }
-    }
-    public void moveHome() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, mHomeFragment).commit();
-    }
-    public void moveProfile() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,mProfileFragment).commit();
-    }
+//    public void fragmentOnClick(View view) {
+//        switch (view.getId()) {
+//            case R.id.main_btn_home:
+//                moveHome();
+//                fabAdd.setVisibility(View.VISIBLE);
+//                break;
+//            case R.id.main_btn_category:
+//            //    moveCategory();
+//                break;
+//            case R.id.main_btn_writing:
+//            //    moveWriting();
+//                break;
+//            case R.id.main_btn_chat:
+//                moveChat();
+//                break;
+//            case R.id.main_btn_profile:
+//                 moveProfile();
+//                fabAdd.setVisibility(View.INVISIBLE);
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+    //public void moveHome() {
+     //   getSupportFragmentManager().beginTransaction().replace(R.id.container, mHomeFragment).commit();
+   // }
+   // public void moveProfile() {
+   //     getSupportFragmentManager().beginTransaction().replace(R.id.container,mProfileFragment).commit();
+    //}
 
-    public void moveChat() {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, mChatFragment).commit();
-    }
+   // public void moveChat() {
+    //        getSupportFragmentManager().beginTransaction().replace(R.id.container, mChatFragment).commit();
+   // }
 
     public void checkPermission(){
         //현재 안드로이드 버전이 6.0미만이면 메서드를 종료한다.

@@ -8,15 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.cos.daangnapp.CMRespDto;
-import com.cos.daangnapp.main.MainActivity;
 import com.cos.daangnapp.R;
 import com.cos.daangnapp.login.model.UserRespDto;
 import com.cos.daangnapp.login.model.UserSaveReqDto;
 import com.cos.daangnapp.login.service.UserService;
+import com.cos.daangnapp.main.MainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
