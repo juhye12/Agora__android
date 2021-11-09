@@ -32,6 +32,7 @@
         <activity android:name=".location.LocationActivity" />
         <activity android:name=".splash.StartActivity" />
         <activity android:name=".main.MainActivity" />
+        <activity android:name=".login.JoinActivity" />
             <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

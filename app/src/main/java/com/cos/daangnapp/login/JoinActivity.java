@@ -1,25 +1,27 @@
 package com.cos.daangnapp.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 //import android.support.annotation.Nullable;
 //import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
-import com.cos.daangnapp.login.model.JoinData;
-import com.cos.daangnapp.login.model.JoinResponse;
+import com.cos.daangnapp.login.model.JoinReqDto;
+import com.cos.daangnapp.login.model.JoinRespDto;
+import com.cos.daangnapp.login.model.UserRespDto;
 import com.cos.daangnapp.login.network.RetrofitClient;
-import com.cos.daangnapp.login.network.ServiceApi;
+import com.cos.daangnapp.login.network.JoinService;
+import com.cos.daangnapp.login.service.UserService;
 import com.cos.daangnapp.main.MainActivity;
 
 import retrofit2.Call;
@@ -28,12 +30,14 @@ import retrofit2.Response;
 
 public class JoinActivity extends AppCompatActivity {
 
+    private static final String TAG = "JoinActivity";
     private EditText mAssociation;
     private EditText mAge;
     private EditText mSex;
     private EditText mFavorite;
     private Button mJoinButton;
-    private ServiceApi service;
+    private com.cos.daangnapp.retrofitURL retrofitURL;
+    private JoinService joinService = retrofitURL.retrofit.create(JoinService .class);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,8 +49,6 @@ public class JoinActivity extends AppCompatActivity {
         mSex = (EditText) findViewById(R.id.join_sex);
         mFavorite = (EditText) findViewById(R.id.join_favorite);
         mJoinButton = (Button) findViewById(R.id.join_button);
-
-        service = RetrofitClient.getClient().create(ServiceApi.class);
 
         mJoinButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +63,7 @@ public class JoinActivity extends AppCompatActivity {
         String association = mAssociation.getText().toString();
         String age = mAge.getText().toString();
         String sex = mSex.getText().toString();
-        String favorite = mFavorite.getText().toString();
+        String interest = mFavorite.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -69,31 +71,34 @@ public class JoinActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startJoin(new JoinData(association,age,sex,favorite));
+            startJoin(new JoinReqDto(association,age,sex,interest));
         }
     }
 
-    private void startJoin(JoinData data) {
-        service.userJoin(data).enqueue(new Callback<JoinResponse>() {
+    private void startJoin(JoinReqDto joinReqDto) {
+        Call<CMRespDto<JoinRespDto>> call = joinService.userJoin(joinReqDto);
+        call.enqueue(new Callback<CMRespDto<JoinRespDto>>() {
             @Override
-            public void onResponse(Call<JoinResponse> call, Response<JoinResponse> response) {
-                JoinResponse result = response.body();
-                Toast.makeText(JoinActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),"회원가입이 완료되었습니다.",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(JoinActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                JoinActivity.this.finish();
-               // if (result.getCode() == 200) {
-               //     finish();
-               // }
+            public void onResponse(Call<CMRespDto<JoinRespDto>> call, Response<CMRespDto<JoinRespDto>> response) {
+                CMRespDto<JoinRespDto> cmRespDto = response.body();
+                JoinRespDto joinRespDto = cmRespDto.getData();
+                Log.d(TAG, "onResponse: save성공!!!");
+                SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("association",joinRespDto.getAssociation());
+                editor.putString("age",joinRespDto.getAge());
+                editor.putString("sex",joinRespDto.getSex());
+                editor.putString("interest",joinRespDto.getInterest());
+                editor.commit();
             }
+
             @Override
-            public void onFailure(Call<JoinResponse> call, Throwable t) {
+            public void onFailure(Call<CMRespDto<JoinRespDto>> call, Throwable t) {
                 Toast.makeText(JoinActivity.this, "회원가입 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("회원가입 에러 발생", t.getMessage());
             }
         });
     }
+
 
 }
