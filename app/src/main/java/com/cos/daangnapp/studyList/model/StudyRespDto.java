@@ -23,7 +23,7 @@ public class StudyRespDto {
     private String interest;
     private String studyname;
     private Double distance;
-    private Date madeDate;
+    private Date creatDate;
     private Integer maxMember;
     private Integer curMember;
     private String lineup;

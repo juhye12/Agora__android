@@ -11,8 +11,11 @@ import retrofit2.http.Query;
 
 public interface StudyListService {
 
-    @GET("study/interest/lineup")
-    Call<CMRespDto<List<StudyRespDto>>> getstudies(@Query("interest") String interest, String lineup);
+    @GET("study/filter")
+    Call<CMRespDto<List<StudyRespDto>>> getstudies(@Query("interest") String interest, @Query("lineup") String lineup);
+
+//    @GET("/study")
+//    Call<CMRespDto<List<StudyRespDto>>> studyList(@Body StudyReqDto studyReqDto);
 
 //    @GET("post/gu/keyword")
 //    Call<CMRespDto<List<StudyRespDto>>> searchposts(@Query("gu") String gu, @Query("keyword") String keyword);
