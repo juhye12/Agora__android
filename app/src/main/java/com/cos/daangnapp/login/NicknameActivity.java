@@ -35,9 +35,9 @@ public class NicknameActivity extends AppCompatActivity {
 
         init();
         btnStart.setOnClickListener(v -> {
-            if(etNickName.getText().toString().equals("")){
+            if(etNickName.getText().toString().equals("")){ // 닉네임이 비어있다면 입력받기
                 Toast.makeText(getApplicationContext(),"닉네임을 입력해주세요.",Toast.LENGTH_SHORT).show();
-            }else {
+            }else { // 닉네임을 적었다면 다음 메서드를 실행
                 NickNameCheck(etNickName.getText().toString());
             }
         });
@@ -50,8 +50,9 @@ public class NicknameActivity extends AppCompatActivity {
         String phone_Number = intent.getStringExtra("phoneNumber");
         phoneNumber.setText(phone_Number);
     }
-
-    public void NickNameCheck(String nickName){
+    
+    // NicknameActivity의 main method
+    public void NickNameCheck(String nickName){ // 입력받은 메서드를 넣음
         Call<CMRespDto<UserRespDto>> call = userService.NickNameSearch(nickName);
         call.enqueue(new Callback<CMRespDto<UserRespDto>>() {
             @Override
@@ -59,13 +60,14 @@ public class NicknameActivity extends AppCompatActivity {
                 UserSaveReqDto userSaveReqDto = new UserSaveReqDto(phoneNumber.getText().toString(),etNickName.getText().toString());
                 CMRespDto<UserRespDto> cmRespDto = response.body();
                 UserRespDto userRespDto = cmRespDto.getData();
-                if(userRespDto == null){
+                if(userRespDto == null){ // DB안에 nickname이 없으면 회원가입
                     save(userSaveReqDto);
                     Intent intent = new Intent(NicknameActivity.this, JoinActivity.class);
+                    intent.putExtra("phoneNumber",phoneNumber.getText().toString());
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     NicknameActivity.this.finish();
-                }else {
+                }else { // DB안에 nickname이 있으면 중복됨
                     Toast.makeText(getApplicationContext(),"닉네임이 중복됩니다.\n다른 닉네임을 입력해주세요 !!",Toast.LENGTH_SHORT).show();
                 }
             }

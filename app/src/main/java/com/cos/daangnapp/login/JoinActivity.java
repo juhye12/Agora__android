@@ -1,10 +1,9 @@
 package com.cos.daangnapp.login;
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-//import android.support.annotation.Nullable;
-//import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,10 +17,7 @@ import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
 import com.cos.daangnapp.login.model.JoinReqDto;
 import com.cos.daangnapp.login.model.JoinRespDto;
-import com.cos.daangnapp.login.model.UserRespDto;
-import com.cos.daangnapp.login.network.RetrofitClient;
 import com.cos.daangnapp.login.network.JoinService;
-import com.cos.daangnapp.login.service.UserService;
 import com.cos.daangnapp.main.MainActivity;
 
 import retrofit2.Call;
@@ -34,8 +30,10 @@ public class JoinActivity extends AppCompatActivity {
     private EditText mAssociation;
     private EditText mAge;
     private EditText mSex;
-    private EditText mFavorite;
+    private EditText mInterest;
     private Button mJoinButton;
+    private String phoneNumber; // 이전 activity에서 작성된 phoneNumber를 가져옴
+
     private com.cos.daangnapp.retrofitURL retrofitURL;
     private JoinService joinService = retrofitURL.retrofit.create(JoinService .class);
 
@@ -44,11 +42,13 @@ public class JoinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
-        mAssociation = (EditText) findViewById(R.id.join_association);
-        mAge = (EditText) findViewById(R.id.join_age);
-        mSex = (EditText) findViewById(R.id.join_sex);
-        mFavorite = (EditText) findViewById(R.id.join_favorite);
-        mJoinButton = (Button) findViewById(R.id.join_button);
+        init();
+
+//        mAssociation = (EditText) findViewById(R.id.join_association);
+//        mAge = (EditText) findViewById(R.id.join_age);
+//        mSex = (EditText) findViewById(R.id.join_sex);
+//        mInterest = (EditText) findViewById(R.id.join_interest);
+//        mJoinButton = (Button) findViewById(R.id.join_button);
 
         mJoinButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,21 +58,39 @@ public class JoinActivity extends AppCompatActivity {
         });
     }
 
-    private void attemptJoin() {
+    public void init(){
+        mAssociation = findViewById(R.id.join_association);
+        mAge= findViewById(R.id.join_age);
+        mSex = findViewById(R.id.join_sex);
+        mInterest = findViewById(R.id.join_interest);
+        mJoinButton = findViewById(R.id.join_button);
 
+        Intent intent = getIntent();
+        phoneNumber = intent.getStringExtra("phoneNumber");
+    }
+
+    //JoinActivity의 main method
+    private void attemptJoin() { // 입력된 데이터를 저장하고 MainActivity로 넘겨야 함
         String association = mAssociation.getText().toString();
         String age = mAge.getText().toString();
         String sex = mSex.getText().toString();
-        String interest = mFavorite.getText().toString();
+        String interest = mInterest.getText().toString();
 
-        boolean cancel = false;
-        View focusView = null;
+        startJoin(new JoinReqDto(phoneNumber,association,age,sex,interest));// Req객체 생성
+        
+        Intent intent = new Intent(JoinActivity.this, MainActivity.class);
+        startActivity(intent);
+        JoinActivity.this.finish();
 
-        if (cancel) {
-            focusView.requestFocus();
-        } else {
-            startJoin(new JoinReqDto(association,age,sex,interest));
-        }
+//        boolean cancel = false;
+//        View focusView = null;
+//
+////        if (cancel) {
+////            focusView.requestFocus();
+////        } else {
+////            startJoin(new JoinReqDto(phoneNumber,association,age,sex,interest));
+////
+////        }
     }
 
     private void startJoin(JoinReqDto joinReqDto) {
@@ -85,20 +103,19 @@ public class JoinActivity extends AppCompatActivity {
                 Log.d(TAG, "onResponse: save성공!!!");
                 SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
+                editor.putString("phoneNumber",joinRespDto.getPhoneNumber());
                 editor.putString("association",joinRespDto.getAssociation());
                 editor.putString("age",joinRespDto.getAge());
                 editor.putString("sex",joinRespDto.getSex());
                 editor.putString("interest",joinRespDto.getInterest());
                 editor.commit();
             }
-
             @Override
             public void onFailure(Call<CMRespDto<JoinRespDto>> call, Throwable t) {
-                Toast.makeText(JoinActivity.this, "회원가입 에러 발생", Toast.LENGTH_SHORT).show();
-                Log.e("회원가입 에러 발생", t.getMessage());
+//                Toast.makeText(JoinActivity.this, "회원가입 에러 발생", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "회원가입 에러 발생");
+//                Log.e("회원가입 에러 발생", t.getMessage());
             }
         });
     }
-
-
 }

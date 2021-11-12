@@ -6,9 +6,9 @@ import com.cos.daangnapp.login.model.JoinRespDto;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface JoinService {
-    @POST("user/registry")
+    @PUT("user/registry")
     Call<CMRespDto<JoinRespDto>> userJoin(@Body JoinReqDto joinReqDto);
 }

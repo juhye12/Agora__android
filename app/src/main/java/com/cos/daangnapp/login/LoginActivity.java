@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         init();
 
         backBtn.setOnClickListener(v -> {
@@ -73,14 +72,10 @@ public class LoginActivity extends AppCompatActivity  {
 
         etAuthCode.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -93,7 +88,6 @@ public class LoginActivity extends AppCompatActivity  {
         });
 
     }
-
 
     @Override
     public void onBackPressed() {
@@ -126,7 +120,6 @@ public class LoginActivity extends AppCompatActivity  {
         }
         return numStr;
     }
-
 
     public void CodeVerify(String phoneNumber,String authCode){
         Call<CMRespDto<AuthRespDto>> call = authService.authCodeSearch(phoneNumber);
@@ -211,7 +204,6 @@ public class LoginActivity extends AppCompatActivity  {
             }
         });
     }
-
     
     public void AuthCodeDelete(int id){
         new Thread(new Runnable() {
@@ -235,8 +227,9 @@ public class LoginActivity extends AppCompatActivity  {
                 }
             }
         }).start();
-            }
-//
+    }
+
+    // LoginActivity의 main method
     public void Login(String phoneNumber){
         Call<CMRespDto<UserRespDto>> call = authService.UserSearch(phoneNumber);
         call.enqueue(new Callback<CMRespDto<UserRespDto>>() {
