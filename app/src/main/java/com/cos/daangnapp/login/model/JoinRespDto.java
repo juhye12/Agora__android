@@ -9,7 +9,7 @@ public class JoinRespDto {
 //
 //    @SerializedName("message")
 //    private String message;
-
+    private String phoneNumber;
     private String association;
     private String age;
     private String sex;

@@ -40,7 +40,6 @@ public class AuthActivity extends AppCompatActivity {
 
         init();
 
-
         backBtn.setOnClickListener(v -> {
             onBackPressed();
         });
