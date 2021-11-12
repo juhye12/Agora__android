@@ -18,7 +18,7 @@ import com.cos.daangnapp.R;
 //import com.cos.daangnapp.main.chat.ChatFragment;
 //import com.cos.daangnapp.main.home.HomeFragment;
 //import com.cos.daangnapp.main.profile.ProfileFragment;
-import com.cos.daangnapp.writing.WritingActivity;
+//import com.cos.daangnapp.writing.WritingActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import info.androidhive.fontawesome.FontDrawable;
@@ -150,11 +150,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             case R.id.fab_add:
                 anim();
                 break;
-            case R.id.fab_joongo:
-                anim();
-                Intent intent = new Intent(MainActivity.this, WritingActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.fab_joongo:
+//                anim();
+//                Intent intent = new Intent(MainActivity.this, WritingActivity.class);
+//                startActivity(intent);
+//                break;
             case R.id.fab_dongne:
                 anim();
                 Toast.makeText(this, "동네홍보 글쓰기", Toast.LENGTH_SHORT).show();

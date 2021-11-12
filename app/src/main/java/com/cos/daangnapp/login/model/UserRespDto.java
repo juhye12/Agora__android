@@ -1,6 +1,6 @@
 package com.cos.daangnapp.login.model;
 
-import com.cos.daangnapp.main.home.model.PostRespDto;
+//import com.cos.daangnapp.main.home.model.PostRespDto;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -13,6 +13,6 @@ public class UserRespDto {
     private String phoneNumber;
     private String nickName;
     private String photo;
-    private List<PostRespDto> posts;
+    //private List<PostRespDto> posts;
     private Timestamp createDate;
 }

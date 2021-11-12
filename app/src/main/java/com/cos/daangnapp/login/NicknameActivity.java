@@ -62,7 +62,7 @@ public class NicknameActivity extends AppCompatActivity {
                 if(userRespDto == null){
                     save(userSaveReqDto);
                     Intent intent = new Intent(NicknameActivity.this, JoinActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     NicknameActivity.this.finish();
                 }else {

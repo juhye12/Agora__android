@@ -20,7 +20,7 @@ import com.cos.daangnapp.login.model.AuthRespDto;
 import com.cos.daangnapp.login.service.AuthService;
 
 import java.util.Random;
-
+import com.cos.daangnapp.retrofitURL;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,7 +31,7 @@ public class AuthActivity extends AppCompatActivity {
     private EditText etPhoneNumber;
     private Button BtnAuthCodeSend;
     private ImageButton backBtn;
-    private com.cos.daangnapp.retrofitURL retrofitURL;
+    private retrofitURL retrofitURL;
     private AuthService authService= retrofitURL.retrofit.create(AuthService .class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
