@@ -19,7 +19,7 @@ public class JoinReqDto {
 //
 //    @SerializedName("userFavorite")
 //    private String userFavorite;
-
+    private String phoneNumber; // 회원가입된 회원의 핸드폰번호를 통해 entity를 매핑시켜줘야함
     private String association;
     private String age;
     private String Sex;
