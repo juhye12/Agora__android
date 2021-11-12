@@ -25,9 +25,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
 
     private static final String TAG = "StudyListAdapter";
     private List<StudyRespDto> mItemsList;
-    private LayoutInflater mInflater;
     private Context mContext;
-    private StudyListActivity homeFragment;
 
     public StudyListAdapter(List<StudyRespDto> mItemsList, Context mContext) {
         this.mItemsList = mItemsList;
@@ -56,7 +54,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         //private ImageView photo;
-        private TextView interest,studyname,distance,madeDate,maxMember,curMember;
+        private TextView interest,studyname,distance,createDate,maxMember,curMember;
         private LinearLayout studyItem;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,14 +63,13 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
             interest =itemView.findViewById(R.id.study_interest);
             studyname =itemView.findViewById(R.id.study_name);
             distance =itemView.findViewById(R.id.study_distance);
-            madeDate = itemView.findViewById(R.id.study_made_date);
+            createDate = itemView.findViewById(R.id.study_made_date);
             maxMember = itemView.findViewById(R.id.study_maxmember);
             curMember = itemView.findViewById(R.id.study_curmember);
             studyItem= itemView.findViewById(R.id.study_item);
 
          /*   photo.setColorFilter(Color.parseColor("#FF3E3B3B"), PorterDuff.Mode.MULTIPLY);
-            productItem.setBackgroundColor(Color.parseColor("#FF3E3B3B"));
-*/
+            productItem.setBackgroundColor(Color.parseColor("#FF3E3B3B"));*/
         }
         public void setItem(Context mContext, StudyRespDto studyRespDto){
 //            try {
@@ -97,7 +94,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
 //                }else{
 //                    tvPrice.setText(tmp+"원");
 //                }
-                madeDate.setText(studyRespDto.getMadeDate()+"");
+                createDate.setText(studyRespDto.getCreatDate()+"");
                 maxMember.setText(studyRespDto.getMaxMember()+"");
                 curMember.setText(studyRespDto.getCurMember()+"");
                 studyItem.setOnClickListener(v -> {

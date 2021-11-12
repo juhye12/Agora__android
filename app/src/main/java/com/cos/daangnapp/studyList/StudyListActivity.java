@@ -65,14 +65,15 @@ public class StudyListActivity extends AppCompatActivity {
     String[] interestList = {"전체","어학","프로그래밍","게임","취직","주식","운동","와인","여행"};
     String[] lineupList = {"최신순","거리순","추천순"};
 
+    @Nullable
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studylist);
 
-//interest별 필터링
+        //interest별 필터링
         spinner_interest = findViewById(R.id.spinner_interest);
-        ArrayAdapter<String> adapter_interest = new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_item, interestList);
+        ArrayAdapter<String> adapter_interest = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, interestList);
         adapter_interest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_interest.setAdapter(adapter_interest);
         spinner_interest.setSelection(0);
@@ -89,17 +90,17 @@ public class StudyListActivity extends AppCompatActivity {
             }
         });
 
-//정렬 부분
+        //정렬 부분
         spinner_lineup = findViewById(R.id.spinner_lineup);
-        ArrayAdapter<String> adapter_lineup = new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_item, lineupList);
-        adapter_interest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_lineup.setAdapter(adapter_interest);
+        ArrayAdapter<String> adapter_lineup = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lineupList);
+        adapter_lineup.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_lineup.setAdapter(adapter_lineup);
         spinner_lineup.setSelection(0);
 
         spinner_lineup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                interest = spinner_lineup.getSelectedItem().toString();
+                lineup = spinner_lineup.getSelectedItem().toString();
             }
 
             @Override
