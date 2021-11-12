@@ -76,7 +76,6 @@ public class JoinActivity extends AppCompatActivity {
         String sex = mSex.getText().toString();
         String interest = mInterest.getText().toString();
 
-
         startJoin(new JoinReqDto(phoneNumber,association,age,sex,interest));// Req객체 생성
         
         Intent intent = new Intent(JoinActivity.this, MainActivity.class);
