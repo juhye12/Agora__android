@@ -1,4 +1,4 @@
-package com.cos.daangnapp.studyList;
+package com.cos.daangnapp.study.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,17 +6,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.cos.daangnapp.R;
 //import com.cos.daangnapp.home.detail.DetailActivity;
-import com.cos.daangnapp.studyList.model.StudyRespDto;
+import com.cos.daangnapp.study.DetailActivity;
+import com.cos.daangnapp.study.model.StudyRespDto;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -59,7 +58,6 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //photo= itemView.findViewById(R.id.home_iv_product_pic);
             interest =itemView.findViewById(R.id.study_interest);
             studyname =itemView.findViewById(R.id.study_name);
             distance =itemView.findViewById(R.id.study_distance);
@@ -68,32 +66,13 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
             curMember = itemView.findViewById(R.id.study_curmember);
             studyItem= itemView.findViewById(R.id.study_item);
 
-         /*   photo.setColorFilter(Color.parseColor("#FF3E3B3B"), PorterDuff.Mode.MULTIPLY);
-            productItem.setBackgroundColor(Color.parseColor("#FF3E3B3B"));*/
         }
         public void setItem(Context mContext, StudyRespDto studyRespDto){
-//            try {
-//                String tmp;
-//                if(postRespDto.getPrice().equals("무료나눔")){
-//                    tmp ="무료나눔";
-//                }else {
-//                    tmp = moneyFormatToWon(Integer.parseInt(postRespDto.getPrice()));
-//                }
-
-//               Glide.with(mContext).load(postRespDto.getImages().get(0).getUri()).into(photo);
-//                photo.setClipToOutline(true);
-//                photo.setScaleType(ImageView.ScaleType.FIT_XY);
-
 
             try {
                 interest.setText(studyRespDto.getInterest());
                 studyname.setText(studyRespDto.getStudyname());
                 distance.setText(studyRespDto.getDistance().toString());
-//                if(tmp.equals("무료나눔")){
-//                    tvPrice.setText(tmp);
-//                }else{
-//                    tvPrice.setText(tmp+"원");
-//                }
                 createDate.setText(studyRespDto.getCreatDate()+"");
                 maxMember.setText(studyRespDto.getMaxMember()+"");
                 curMember.setText(studyRespDto.getCurMember()+"");

@@ -43,6 +43,8 @@ public class LocationActivity extends AppCompatActivity {
     private RecyclerView rvLocationList;
     private LocationAdapter locationAdapter;
     private EditText SearchLocation;
+    private static double Clongitude;
+    private static double Clatitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +96,9 @@ public class LocationActivity extends AppCompatActivity {
             double longitude = location.getLongitude();
             double latitude = location.getLatitude();
             double altitude = location.getAltitude();
+
+            Clongitude = longitude;
+            Clatitude = latitude;//맨 아래 get함수들을 통해 adapter로 넘겨주고 거기서 intent를 통해 값을 다음 액티비티로 넘겨주기
 
             Log.d(TAG, "onLocationChanged: "+"위치정보 : " + provider + "\n" +
                     "위도 : " + latitude + "\n" +
@@ -173,8 +178,12 @@ public class LocationActivity extends AppCompatActivity {
         });
 
     }
-
-
+    public static double getLongitude(){
+        return Clongitude;
+    }
+    public static double getLatitude(){
+        return Clatitude;
+    }
 }
 
 

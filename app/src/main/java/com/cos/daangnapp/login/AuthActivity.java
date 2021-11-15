@@ -2,6 +2,7 @@ package com.cos.daangnapp.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
+import com.cos.daangnapp.location.model.LocationReqDto;
 import com.cos.daangnapp.login.model.AuthReqDto;
 import com.cos.daangnapp.login.model.AuthRespDto;
 import com.cos.daangnapp.login.service.AuthService;
@@ -33,6 +35,8 @@ public class AuthActivity extends AppCompatActivity {
     private ImageButton backBtn;
     private retrofitURL retrofitURL;
     private AuthService authService= retrofitURL.retrofit.create(AuthService .class);
+    private LocationReqDto locationReqDto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +56,11 @@ public class AuthActivity extends AppCompatActivity {
                 String phoneNumber = gubun[0]+gubun[1]+gubun[2];
                 AuthCodeSearch(phoneNumber);
                 Intent intent = new Intent(AuthActivity.this, LoginActivity.class);
+
+                //다음 activity로 값 넘기기 위함
                 intent.putExtra("phoneNumber", phoneNumber);
+                intent.putExtra("location", (Parcelable) locationReqDto);
+
                 startActivity(intent);     // intent 타입을 넣어야함  !!
                 AuthActivity.this.finish();
             }
@@ -65,6 +73,10 @@ public class AuthActivity extends AppCompatActivity {
         etPhoneNumber = findViewById(R.id.auth_et_phoneNumber);
         BtnAuthCodeSend =findViewById(R.id.auth_btn_send);
         etPhoneNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
+        Intent intent = getIntent();
+        locationReqDto = intent.getParcelableExtra("location");
+
         etPhoneNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

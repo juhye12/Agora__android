@@ -12,5 +12,3 @@ public class AuthRespDto {
     private String phoneNumber;
     private String authCode;
 }
-//https://github.com/juhye12/Agora_android.git
-//https://github.com/changbumL/Agora_android.git

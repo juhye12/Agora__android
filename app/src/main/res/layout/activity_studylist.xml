@@ -42,19 +42,10 @@
             android:textColor="@android:color/white"
             android:textSize="14sp"
             android:textStyle="bold"
-
             app:layout_constraintBottom_toBottomOf="parent"
-<<<<<<< HEAD
-            app:layout_constraintEnd_toStartOf="@+id/spinner_lineup"
-            app:layout_constraintHorizontal_bias="0.654"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.555"
-=======
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
->>>>>>> 59083b0982d91beebbf189f0266f85eb55438dcc
             tools:ignore="MissingConstraints" />
 
         <Spinner

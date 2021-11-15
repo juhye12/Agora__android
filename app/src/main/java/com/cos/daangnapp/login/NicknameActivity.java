@@ -3,6 +3,7 @@ package com.cos.daangnapp.login;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
+import com.cos.daangnapp.location.model.LocationReqDto;
 import com.cos.daangnapp.login.model.UserRespDto;
 import com.cos.daangnapp.login.model.UserSaveReqDto;
 import com.cos.daangnapp.login.service.UserService;
@@ -28,6 +30,8 @@ public class NicknameActivity extends AppCompatActivity {
     private Button btnStart;
     private com.cos.daangnapp.retrofitURL retrofitURL;
     private UserService userService= retrofitURL.retrofit.create(UserService .class);
+    private LocationReqDto locationReqDto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +50,11 @@ public class NicknameActivity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.nickname_tv_phone_number);
         etNickName= findViewById(R.id.nickname_et_nickname);
         btnStart = findViewById(R.id.nickname_btn_start);
+
         Intent intent = getIntent();
         String phone_Number = intent.getStringExtra("phoneNumber");
+        locationReqDto = intent.getParcelableExtra("location");
+
         phoneNumber.setText(phone_Number);
     }
     
@@ -62,9 +69,12 @@ public class NicknameActivity extends AppCompatActivity {
                 UserRespDto userRespDto = cmRespDto.getData();
                 if(userRespDto == null){ // DB안에 nickname이 없으면 회원가입
                     save(userSaveReqDto);
+
                     Intent intent = new Intent(NicknameActivity.this, JoinActivity.class);
                     intent.putExtra("phoneNumber",phoneNumber.getText().toString());
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("location", (Parcelable) locationReqDto);
+
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     NicknameActivity.this.finish();
                 }else { // DB안에 nickname이 있으면 중복됨

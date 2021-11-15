@@ -376,7 +376,7 @@
                 android:layout_margin="20dp"
                 android:background="@null"
                 android:scaleType="fitXY"/>
-                //android:src="@drawable/ic_feed_interest_outline_18" />
+<!--                android:src="@drawable/ic_feed_interest_outline_18" />-->
 
             <View
                 android:layout_width="1dp"
