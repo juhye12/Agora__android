@@ -4,6 +4,7 @@ package com.cos.daangnapp.login;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
+import com.cos.daangnapp.location.model.LocationReqDto;
 import com.cos.daangnapp.login.model.JoinReqDto;
 import com.cos.daangnapp.login.model.JoinRespDto;
+
 import com.cos.daangnapp.login.service.JoinService;
 import com.cos.daangnapp.studyList.StudyListActivity;
+
+import com.cos.daangnapp.study.StudyListActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +37,7 @@ public class JoinActivity extends AppCompatActivity {
     private EditText mInterest;
     private Button mJoinButton;
     private String phoneNumber; // 이전 activity에서 작성된 phoneNumber를 가져옴
+    private LocationReqDto locationReqDto;
 
     private com.cos.daangnapp.retrofitURL retrofitURL;
     private JoinService joinService = retrofitURL.retrofit.create(JoinService .class);
@@ -66,6 +72,7 @@ public class JoinActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         phoneNumber = intent.getStringExtra("phoneNumber");
+        locationReqDto = intent.getParcelableExtra("location");
     }
 
     //JoinActivity의 main method
@@ -75,9 +82,11 @@ public class JoinActivity extends AppCompatActivity {
         String sex = mSex.getText().toString();
         String interest = mInterest.getText().toString();
 
-        startJoin(new JoinReqDto(phoneNumber,association,age,sex,interest));// Req객체 생성
+        startJoin(new JoinReqDto(phoneNumber,association,age,sex,interest,locationReqDto));// Req객체 생성
         
         Intent intent = new Intent(JoinActivity.this, StudyListActivity.class);
+        intent.putExtra("phoneNumber",phoneNumber);
+        intent.putExtra("location", (Parcelable) locationReqDto);
         startActivity(intent);
         JoinActivity.this.finish();
 
