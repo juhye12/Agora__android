@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +17,7 @@ import com.cos.daangnapp.R;
 import com.cos.daangnapp.login.model.JoinReqDto;
 import com.cos.daangnapp.login.model.JoinRespDto;
 import com.cos.daangnapp.login.network.JoinService;
-import com.cos.daangnapp.main.MainActivity;
+import com.cos.daangnapp.studyList.StudyListActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,7 +77,7 @@ public class JoinActivity extends AppCompatActivity {
 
         startJoin(new JoinReqDto(phoneNumber,association,age,sex,interest));// Req객체 생성
         
-        Intent intent = new Intent(JoinActivity.this, MainActivity.class);
+        Intent intent = new Intent(JoinActivity.this, StudyListActivity.class);
         startActivity(intent);
         JoinActivity.this.finish();
 

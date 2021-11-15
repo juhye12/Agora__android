@@ -14,7 +14,7 @@
     />
     <Spinner
         android:id="@+id/spinner_interest"
-        android:layout_width="97dp"
+        android:layout_width="135dp"
         android:layout_height="29dp"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
@@ -22,6 +22,7 @@
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:hint="asd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,27 +33,33 @@
 
         <Button
             android:id="@+id/btn_study_create"
-            android:layout_width="100dp"
-            android:layout_height="23dp"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
             android:background="@drawable/button_background"
             android:gravity="center"
             android:onClick="createOnClick"
             android:text="스터디 생성"
             android:textColor="@android:color/white"
-            android:textSize="10sp"
+            android:textSize="14sp"
             android:textStyle="bold"
 
             app:layout_constraintBottom_toBottomOf="parent"
+<<<<<<< HEAD
             app:layout_constraintEnd_toStartOf="@+id/spinner_lineup"
             app:layout_constraintHorizontal_bias="0.654"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.555"
+=======
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+>>>>>>> 59083b0982d91beebbf189f0266f85eb55438dcc
             tools:ignore="MissingConstraints" />
 
         <Spinner
             android:id="@+id/spinner_lineup"
-            android:layout_width="77dp"
+            android:layout_width="90dp"
             android:layout_height="29dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"

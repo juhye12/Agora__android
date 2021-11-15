@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 requestPermissions(permission_list,0);
             }
         }
-
     }
 
     @Override
