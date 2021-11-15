@@ -18,7 +18,10 @@ import com.cos.daangnapp.R;
 import com.cos.daangnapp.location.model.LocationReqDto;
 import com.cos.daangnapp.login.model.JoinReqDto;
 import com.cos.daangnapp.login.model.JoinRespDto;
-import com.cos.daangnapp.login.network.JoinService;
+
+import com.cos.daangnapp.login.service.JoinService;
+import com.cos.daangnapp.studyList.StudyListActivity;
+
 import com.cos.daangnapp.study.StudyListActivity;
 
 import retrofit2.Call;

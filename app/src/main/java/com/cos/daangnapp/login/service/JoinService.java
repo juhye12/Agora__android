@@ -1,4 +1,4 @@
-package com.cos.daangnapp.login.network;
+package com.cos.daangnapp.login.service;
 
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.login.model.JoinReqDto;
