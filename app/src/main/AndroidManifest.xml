@@ -33,7 +33,7 @@
         <activity android:name=".splash.StartActivity" />
         <activity android:name=".main.MainActivity" />
         <activity android:name=".login.JoinActivity" />
-        <activity android:name=".studyList.StudyListActivity" />
+        <activity android:name=".study.StudyListActivity" />
             <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

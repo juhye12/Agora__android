@@ -3,6 +3,7 @@ package com.cos.daangnapp.login;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cos.daangnapp.CMRespDto;
+import com.cos.daangnapp.location.model.LocationReqDto;
 import com.cos.daangnapp.main.MainActivity;
 import com.cos.daangnapp.R;
 import com.cos.daangnapp.login.model.AuthReqDto;
@@ -37,6 +39,10 @@ public class LoginActivity extends AppCompatActivity  {
     private static final String TAG = "LoginActivity";
     private retrofitURL retrofitURL;
     private AuthService authService= retrofitURL.retrofit.create(AuthService .class);
+//    private LocationReqDto locationReqDto;
+    private Double latitude;
+    private Double longitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +72,13 @@ public class LoginActivity extends AppCompatActivity  {
         authcodeResend =findViewById(R.id.btn_authcode_resend);
         etAuthCode = findViewById(R.id.et_authcode);
         btnLogin = findViewById(R.id.btn_login);
+
         Intent intent = getIntent();
         String phoneNumber = intent.getStringExtra("phoneNumber");
         tvphoneNumber.setText(phoneNumber);
+//        locationReqDto = intent.getParcelableExtra("location");
+        latitude = intent.getDoubleExtra("latitude",0);
+        longitude = intent.getDoubleExtra("longitude",0);
 
         etAuthCode.addTextChangedListener(new TextWatcher() {
             @Override
@@ -241,10 +251,17 @@ public class LoginActivity extends AppCompatActivity  {
                     Toast.makeText(getApplicationContext(),"인증코드가 일치합니다. \n닉네임을 입력해주세요",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, NicknameActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                    //다음 activity로 값 넘기기 위함
                     intent.putExtra("phoneNumber",tvphoneNumber.getText().toString());
+//                    intent.putExtra("location", (Parcelable) locationReqDto);
+                    intent.putExtra("latitude",latitude);
+                    intent.putExtra("longitude",longitude);
+
                     startActivity(intent);
                     LoginActivity.this.finish();
-                }else {
+                }
+                else {
                     SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putInt("userId", userRespDto.getId());

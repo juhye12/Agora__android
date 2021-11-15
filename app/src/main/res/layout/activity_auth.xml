@@ -22,7 +22,7 @@
             android:contentDescription="@string/app_name"
             android:scaleType="fitXY"
             android:onClick="loginOnClick"
-            android:src="@drawable/home_as_up" />
+            android:src="@drawable/home_as_up"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,6 +84,6 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:onClick="loginOnClick"
-        android:textStyle="bold"></Button>
+        android:textStyle="bold"/>
 
 </LinearLayout>

@@ -1,17 +1,17 @@
 package com.cos.daangnapp.login.model;
 
+import com.cos.daangnapp.location.model.LocationReqDto;
+
 import lombok.Data;
 
 @Data
 public class JoinRespDto {
-//    @SerializedName("code")
-//    private int code;
-//
-//    @SerializedName("message")
-//    private String message;
     private String phoneNumber;
     private String association;
     private String age;
     private String sex;
     private String interest;
+//    private LocationReqDto locationReqDto;
+    private Double latitude;
+    private Double longitude;
 }
