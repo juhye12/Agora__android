@@ -93,13 +93,13 @@ public class StudyListActivity extends AppCompatActivity {
         spinner_lineup = findViewById(R.id.spinner_lineup);
         ArrayAdapter<String> adapter_lineup = new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_item, lineupList);
         adapter_interest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_lineup.setAdapter(adapter_interest);
+        spinner_lineup.setAdapter(adapter_lineup);
         spinner_lineup.setSelection(0);
 
         spinner_lineup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                interest = spinner_lineup.getSelectedItem().toString();
+                lineup = spinner_lineup.getSelectedItem().toString();
             }
 
             @Override
@@ -203,22 +203,4 @@ public class StudyListActivity extends AppCompatActivity {
             }
         });
     }
-
-//    public void searchPosts(String gu,String keyword){
-//        Call<CMRespDto<List<StudyRespDto>>> call =homeService.searchposts(gu,keyword);
-//        call.enqueue(new Callback<CMRespDto<List<StudyRespDto>>>() {
-//            @Override
-//            public void onResponse(Call<CMRespDto<List<StudyRespDto>>> call, Response<CMRespDto<List<StudyRespDto>>> response) {
-//                CMRespDto<List<StudyRespDto>> cmRespDto = response.body();
-//                List<StudyRespDto> posts = cmRespDto.getData();
-//                Log.d(TAG, "posts: " +posts);
-//                studylistAdapter = new StudyListAdapter(posts,activity);
-//                studyList.setAdapter(studylistAdapter);
-//            }
-//            @Override
-//            public void onFailure(Call<CMRespDto<List<StudyRespDto>>> call, Throwable t) {
-//                Log.d(TAG, "onFailure: search 실패 !!");
-//            }
-//        });
-//    }
 }
