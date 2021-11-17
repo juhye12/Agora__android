@@ -19,10 +19,6 @@ import com.cos.daangnapp.login.model.JoinReqDto;
 import com.cos.daangnapp.login.model.JoinRespDto;
 
 import com.cos.daangnapp.login.service.JoinService;
-<<<<<<< HEAD
-=======
-import com.cos.daangnapp.studyList.StudyListActivity;
->>>>>>> 4a59c64ac5400e9154b1ab874b14f883a780f932
 
 import com.cos.daangnapp.study.StudyListActivity;
 

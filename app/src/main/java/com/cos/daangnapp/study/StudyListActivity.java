@@ -115,7 +115,6 @@ public class StudyListActivity extends AppCompatActivity {
                     startActivity(intent);     // intent 타입을 넣어야함  !!
                     StudyListActivity.this.finish();
                 });
-
         getStudyList(phoneNumber, interest, lineup);
 
     }

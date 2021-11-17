@@ -18,6 +18,7 @@ import com.cos.daangnapp.study.DetailActivity;
 import com.cos.daangnapp.study.model.StudyListRespDto;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyViewHolder>{
@@ -82,7 +83,9 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
                                           studyRespDto.getLatitude(),
                                           studyRespDto.getLongitude()));
 
-                createDate.setText(studyRespDto.getCreateDate().toString()+"");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+                createDate.setText(format.format(studyRespDto.getCreateDate())+"");
                 limit.setText(studyRespDto.getLimit()+"");
                 current.setText(studyRespDto.getCurrent()+"");
                 studyItem.setOnClickListener(v -> {
@@ -114,7 +117,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
         dist = dist * 1.609344; // 최종
         dist = Math.round(dist * 10)/10.0; // 소수점 첫째자리까지만 나타냄
 
-        if(dist<0.5) dist = 0.5; // 너무 가까운 거리면 500미터 안에 있다고 가정
+        if(dist<0.2) dist = 0.2; // 너무 가까운 거리면 200미터 안에 있다고 가정
 
         return new Double(dist).toString();
     }
