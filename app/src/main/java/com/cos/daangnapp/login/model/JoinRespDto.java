@@ -1,7 +1,5 @@
 package com.cos.daangnapp.login.model;
 
-import com.cos.daangnapp.location.model.LocationReqDto;
-
 import lombok.Data;
 
 @Data

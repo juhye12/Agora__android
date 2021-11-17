@@ -18,10 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
+import com.cos.daangnapp.global.User;
 import com.cos.daangnapp.location.model.LocationReqDto;
 import com.cos.daangnapp.main.MainActivity;
 import com.cos.daangnapp.study.adapter.StudyListAdapter;
-import com.cos.daangnapp.study.model.StudyRespDto;
+import com.cos.daangnapp.study.model.StudyListRespDto;
 import com.cos.daangnapp.retrofitURL;
 
 import java.util.ArrayList;
@@ -38,15 +39,18 @@ public class StudyListActivity extends AppCompatActivity {
     private StudyListAdapter studylistAdapter;
     private Spinner spinner_interest;
     private Spinner spinner_lineup;
-    private String interest;
-    private String lineup;
-    private String phoneNumber;
-    private LocationReqDto locationReqDto;
+    private String interest;        // 관심분야
+    private String lineup;          // 정렬방법
+    private String phoneNumber;     // 사용자 핸드폰
+//    private LocationReqDto locationReqDto;
 //    private Spinner spinner;
-    private ArrayList<StudyRespDto> studyRespDtos = new ArrayList<>();
+    private ArrayList<StudyListRespDto> studyRespDtos = new ArrayList<>();
     private retrofitURL retrofitURL;
     //private ImageView btnSearch,IvSearch,IvFilter,IvNotice;
-    private EditText etSearch;
+
+    private static double Ulatitude;
+    private static double Ulongitude;
+
     private StudyListService studyListService= retrofitURL.retrofit.create(StudyListService.class);
     private Button CreateStudyBtn;
 
@@ -108,42 +112,44 @@ public class StudyListActivity extends AppCompatActivity {
         //스터디 생성 버튼 클릭 시
         CreateStudyBtn.setOnClickListener(v -> {
                     Intent intent = new Intent(StudyListActivity.this, CreateStudyActivity.class);
-                    //다음 activity로 값 넘기기 위함
-                    intent.putExtra("phoneNumber", phoneNumber);
-                    intent.putExtra("location", (Parcelable) locationReqDto);
-
                     startActivity(intent);     // intent 타입을 넣어야함  !!
                     StudyListActivity.this.finish();
                 });
 
-        getStudies(phoneNumber,interest, lineup);
+        getStudyList(phoneNumber, interest, lineup);
 
     }
     public void init() {
         CreateStudyBtn = findViewById(R.id.btn_study_create);
         //이전 Activity에서 phoneNumber값 받아오기. 정렬에서 거리 계산을 위해 현재 사용자가 어떤 사용자인지 알아야해서!
         Intent intent = getIntent();
-        phoneNumber = intent.getStringExtra("phoneNumber");
-        locationReqDto = intent.getParcelableExtra("location");
+//        phoneNumber = intent.getStringExtra("phoneNumber");
+//        locationReqDto = intent.getParcelableExtra("location");
+
+        phoneNumber = ((User)getApplication()).getPhoneNumber();
     }
 
-    public void getStudies(String phoneNumber,String interest, String lineup){
-        Call<CMRespDto<List<StudyRespDto>>> call = studyListService.getstudies(phoneNumber,interest,lineup);
-        call.enqueue(new Callback<CMRespDto<List<StudyRespDto>>>() {
+    public void getStudyList(String phoneNumber,String interest, String lineup){
+        Call<CMRespDto<List<StudyListRespDto>>> call = studyListService.getStudyList(phoneNumber,interest,lineup);
+
+        Ulatitude = ((User)getApplication()).getLatitude();  // 사용자 위도
+        Ulongitude = ((User)getApplication()).getLongitude();// 사용자 경도
+
+        call.enqueue(new Callback<CMRespDto<List<StudyListRespDto>>>() {
             @Override
-            public void onResponse(Call<CMRespDto<List<StudyRespDto>>> call, Response<CMRespDto<List<StudyRespDto>>> response) {
+            public void onResponse(Call<CMRespDto<List<StudyListRespDto>>> call, Response<CMRespDto<List<StudyListRespDto>>> response) {
                 try {
-                    CMRespDto<List<StudyRespDto>> cmRespDto = response.body();
-                    List<StudyRespDto> studies = cmRespDto.getData();
+                    CMRespDto<List<StudyListRespDto>> cmRespDto = response.body();
+                    List<StudyListRespDto> studies = cmRespDto.getData();
                     Log.d(TAG, "studies: " +studies);
-                    studylistAdapter = new StudyListAdapter(studies,activity);
+                    studylistAdapter = new StudyListAdapter(studies,activity,Ulatitude,Ulongitude); // 사용자의 위도,경도
                     studyList.setAdapter(studylistAdapter);
                 } catch (Exception e) {
                     Log.d(TAG, "null");
                 }
             }
             @Override
-            public void onFailure(Call<CMRespDto<List<StudyRespDto>>> call, Throwable t) {
+            public void onFailure(Call<CMRespDto<List<StudyListRespDto>>> call, Throwable t) {
                 Log.d(TAG, "onFailure: 게시물목록보기 실패 !!");
             }
         });

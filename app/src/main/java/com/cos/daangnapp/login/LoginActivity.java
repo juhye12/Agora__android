@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cos.daangnapp.CMRespDto;
+import com.cos.daangnapp.global.User;
 import com.cos.daangnapp.location.model.LocationReqDto;
 import com.cos.daangnapp.main.MainActivity;
 import com.cos.daangnapp.R;
@@ -24,6 +25,7 @@ import com.cos.daangnapp.login.model.AuthRespDto;
 import com.cos.daangnapp.login.model.UserRespDto;
 import com.cos.daangnapp.login.service.AuthService;
 import com.cos.daangnapp.retrofitURL;
+import com.cos.daangnapp.study.StudyListActivity;
 
 import java.util.Random;
 
@@ -40,8 +42,8 @@ public class LoginActivity extends AppCompatActivity  {
     private retrofitURL retrofitURL;
     private AuthService authService= retrofitURL.retrofit.create(AuthService .class);
 //    private LocationReqDto locationReqDto;
-    private Double latitude;
-    private Double longitude;
+//    private Double latitude;
+//    private Double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +76,12 @@ public class LoginActivity extends AppCompatActivity  {
         btnLogin = findViewById(R.id.btn_login);
 
         Intent intent = getIntent();
-        String phoneNumber = intent.getStringExtra("phoneNumber");
+//        String phoneNumber = intent.getStringExtra("phoneNumber");
+        String phoneNumber = ((User)getApplication()).getPhoneNumber();
         tvphoneNumber.setText(phoneNumber);
 //        locationReqDto = intent.getParcelableExtra("location");
-        latitude = intent.getDoubleExtra("latitude",0);
-        longitude = intent.getDoubleExtra("longitude",0);
+//        latitude = ((User)getApplication()).getLatitude();
+//        longitude = ((User)getApplication()).getLongitude();
 
         etAuthCode.addTextChangedListener(new TextWatcher() {
             @Override
@@ -253,11 +256,11 @@ public class LoginActivity extends AppCompatActivity  {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     //다음 activity로 값 넘기기 위함
-                    intent.putExtra("phoneNumber",tvphoneNumber.getText().toString());
+                    ((User)getApplication()).setPhoneNumber(tvphoneNumber.getText().toString());
+//                    intent.putExtra("phoneNumber",tvphoneNumber.getText().toString());
 //                    intent.putExtra("location", (Parcelable) locationReqDto);
-                    intent.putExtra("latitude",latitude);
-                    intent.putExtra("longitude",longitude);
-
+//                    intent.putExtra("latitude",latitude);
+//                    intent.putExtra("longitude",longitude);
                     startActivity(intent);
                     LoginActivity.this.finish();
                 }
@@ -267,7 +270,7 @@ public class LoginActivity extends AppCompatActivity  {
                     editor.putInt("userId", userRespDto.getId());
                     editor.putString("myNick", userRespDto.getNickName());
                     editor.commit();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, StudyListActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     LoginActivity.this.finish();

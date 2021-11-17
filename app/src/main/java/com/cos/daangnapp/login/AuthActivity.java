@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
+import com.cos.daangnapp.global.User;
 import com.cos.daangnapp.location.model.LocationReqDto;
 import com.cos.daangnapp.login.model.AuthReqDto;
 import com.cos.daangnapp.login.model.AuthRespDto;
@@ -36,8 +37,8 @@ public class AuthActivity extends AppCompatActivity {
     private retrofitURL retrofitURL;
     private AuthService authService= retrofitURL.retrofit.create(AuthService .class);
 //    private LocationReqDto locationReqDto;
-    private Double latitude;
-    private Double longitude;
+//    private Double latitude;
+//    private Double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +58,15 @@ public class AuthActivity extends AppCompatActivity {
                 String gubun[] = str.split("-");
                 String phoneNumber = gubun[0]+gubun[1]+gubun[2];
                 AuthCodeSearch(phoneNumber);
+
                 Intent intent = new Intent(AuthActivity.this, LoginActivity.class);
 
                 //다음 activity로 값 넘기기 위함
-                intent.putExtra("phoneNumber", phoneNumber);
-//                intent.putExtra("location", (Parcelable) locationReqDto);
-                intent.putExtra("latitude",latitude);
-                intent.putExtra("longitude",longitude);
+//                intent.putExtra("phoneNumber", phoneNumber);
+                ((User)getApplication()).setPhoneNumber(phoneNumber);
+////                intent.putExtra("location", (Parcelable) locationReqDto);
+//                intent.putExtra("latitude",latitude);
+//                intent.putExtra("longitude",longitude);
 
                 startActivity(intent);     // intent 타입을 넣어야함  !!
                 AuthActivity.this.finish();
@@ -80,8 +83,11 @@ public class AuthActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 //        locationReqDto = intent.getParcelableExtra("location");
-        latitude = intent.getDoubleExtra("latitude",0);
-        longitude = intent.getDoubleExtra("longitude",0);
+
+        ((User)getApplication()).setLongitude(intent.getDoubleExtra("longitude",0));
+        ((User)getApplication()).setLatitude(intent.getDoubleExtra("latitude",0));
+//        latitude = intent.getDoubleExtra("latitude",0);
+//        longitude = intent.getDoubleExtra("longitude",0);
 
         etPhoneNumber.addTextChangedListener(new TextWatcher() {
             @Override

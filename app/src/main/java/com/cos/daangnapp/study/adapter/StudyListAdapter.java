@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cos.daangnapp.R;
 //import com.cos.daangnapp.home.detail.DetailActivity;
 import com.cos.daangnapp.study.DetailActivity;
-import com.cos.daangnapp.study.model.StudyRespDto;
+import com.cos.daangnapp.study.model.StudyListRespDto;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -23,13 +23,18 @@ import java.util.List;
 public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyViewHolder>{
 
     private static final String TAG = "StudyListAdapter";
-    private List<StudyRespDto> mItemsList;
+    private List<StudyListRespDto> mItemsList;
     private Context mContext;
+    private static double latitude; // 사용자 위도
+    private static double longitude;
 
-    public StudyListAdapter(List<StudyRespDto> mItemsList, Context mContext) {
+    public StudyListAdapter(List<StudyListRespDto> mItemsList, Context mContext, double latitude, double longitude) {
         this.mItemsList = mItemsList;
 //        this.mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.mContext = mContext;
+
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     @NonNull
@@ -43,7 +48,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.setItem(mContext,mItemsList.get(position));
+        holder.setItem(mItemsList.get(position));
     }
 
     @Override
@@ -53,29 +58,33 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         //private ImageView photo;
-        private TextView interest,studyname,distance,createDate,maxMember,curMember;
+        private TextView interest,title,distance,createDate,limit,current;
         private LinearLayout studyItem;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             interest =itemView.findViewById(R.id.study_interest);
-            studyname =itemView.findViewById(R.id.study_name);
+            title =itemView.findViewById(R.id.study_title);
             distance =itemView.findViewById(R.id.study_distance);
-            createDate = itemView.findViewById(R.id.study_made_date);
-            maxMember = itemView.findViewById(R.id.study_maxmember);
-            curMember = itemView.findViewById(R.id.study_curmember);
+            createDate = itemView.findViewById(R.id.study_create_date);
+            limit = itemView.findViewById(R.id.study_limit);
+            current = itemView.findViewById(R.id.study_current);
             studyItem= itemView.findViewById(R.id.study_item);
 
         }
-        public void setItem(Context mContext, StudyRespDto studyRespDto){
-
+        public void setItem(StudyListRespDto studyRespDto){
             try {
                 interest.setText(studyRespDto.getInterest());
-                studyname.setText(studyRespDto.getStudyname());
-                distance.setText(studyRespDto.getDistance().toString());
-                createDate.setText(studyRespDto.getCreatDate()+"");
-                maxMember.setText(studyRespDto.getMaxMember()+"");
-                curMember.setText(studyRespDto.getCurMember()+"");
+                title.setText(studyRespDto.getTitle());
+
+                distance.setText(distance(latitude,
+                                          longitude,
+                                          studyRespDto.getLatitude(),
+                                          studyRespDto.getLongitude()));
+
+                createDate.setText(studyRespDto.getCreateDate()+"");
+                limit.setText(studyRespDto.getLimit()+"");
+                current.setText(studyRespDto.getCurrent()+"");
                 studyItem.setOnClickListener(v -> {
                     Intent intent = new Intent(v.getContext(), DetailActivity.class);
                     intent.putExtra("studyId", studyRespDto.getId());
@@ -84,13 +93,40 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
             } catch (Exception e) {
                 Log.d(TAG, "null");
             }
-
         }
 
         public static String moneyFormatToWon(int inputMoney) {
             DecimalFormat decimalFormat = new DecimalFormat("#,##0");
             return decimalFormat.format(inputMoney);
         }
+    }
+
+    // 사용되는 위도와 경도는 WGS84 type
+    public static String distance(double lat1, double long1, double lat2, double long2){
+        double theta = long1 - long2;
+        double dist = Math.sin(deg2rad(lat1))*Math.sin(deg2rad(lat2)) +
+                Math.cos(deg2rad(lat1))*Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+
+        dist = dist * 1.609344; // 최종
+        dist = Math.round(dist * 10)/10.0; // 소수점 첫째자리까지만 나타냄
+
+        if(dist<0.5) dist = 0.5; // 너무 가까운 거리면 500미터 안에 있다고 가정
+
+        return new Double(dist).toString();
+    }
+
+    // This function converts decimal degrees to radians
+    private static double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+
+    // This function converts radians to decimal degrees
+    private static double rad2deg(double rad) {
+        return (rad * 180 / Math.PI);
     }
 }
 

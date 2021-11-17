@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
+import com.cos.daangnapp.global.User;
 import com.cos.daangnapp.location.adapter.LocationAdapter;
 import com.cos.daangnapp.location.model.LocationReqDto;
 import com.cos.daangnapp.location.model.LocationRespDto;
@@ -97,13 +98,15 @@ public class LocationActivity extends AppCompatActivity {
             double latitude = location.getLatitude();
             double altitude = location.getAltitude();
 
+//            ((User)getApplication()).setLongitude(latitude);
+//            ((User)getApplication()).setLongitude(longitude);
             Clongitude = longitude;
             Clatitude = latitude;//맨 아래 get함수들을 통해 adapter로 넘겨주고 거기서 intent를 통해 값을 다음 액티비티로 넘겨주기
 
             Log.d(TAG, "onLocationChanged: "+"위치정보 : " + provider + "\n" +
                     "위도 : " + latitude + "\n" +
                  "경도 : " + longitude + "\n" +
-                   "고도  : " + altitude);
+                   "고도 : " + altitude);
 
             LocationReqDto locationReqDto = new LocationReqDto(longitude,latitude);
 
@@ -141,7 +144,6 @@ public class LocationActivity extends AppCompatActivity {
         }
     }
 
-
     public void CurrentLocation(LocationReqDto locationReqDto){
         Call<CMRespDto<List<LocationRespDto>>> call = locationService.getLocations(locationReqDto);
         call.enqueue(new Callback<CMRespDto<List<LocationRespDto>>>() {
@@ -178,6 +180,7 @@ public class LocationActivity extends AppCompatActivity {
         });
 
     }
+
     public static double getLongitude(){
         return Clongitude;
     }

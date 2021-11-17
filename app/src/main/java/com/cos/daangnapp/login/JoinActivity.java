@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
+import com.cos.daangnapp.global.User;
 import com.cos.daangnapp.login.model.JoinReqDto;
 import com.cos.daangnapp.login.model.JoinRespDto;
 
@@ -70,10 +71,15 @@ public class JoinActivity extends AppCompatActivity {
         mJoinButton = findViewById(R.id.join_button);
 
         Intent intent = getIntent();
-        phoneNumber = intent.getStringExtra("phoneNumber");
-//        locationReqDto = intent.getParcelableExtra("location"); // 이전 Activity의 latitude/longitude를 가진 객체
-        latitude = intent.getDoubleExtra("latitude",0);
-        longitude = intent.getDoubleExtra("longitude",0);
+        phoneNumber = ((User)getApplication()).getPhoneNumber();
+////        locationReqDto = intent.getParcelableExtra("location"); // 이전 Activity의 latitude/longitude를 가진 객체
+//        latitude = intent.getDoubleExtra("latitude",0);
+//        longitude = intent.getDoubleExtra("longitude",0);
+
+        latitude = ((User)getApplication()).getLatitude();
+        longitude = ((User)getApplication()).getLongitude();
+        
+        // 밑은 글로벌 변수로 사용자의 핸드폰번호, 위도, 경도를 담고 있음
 
     }
 
