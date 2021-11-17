@@ -82,7 +82,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
                                           studyRespDto.getLatitude(),
                                           studyRespDto.getLongitude()));
 
-                createDate.setText(studyRespDto.getCreateDate()+"");
+                createDate.setText(studyRespDto.getCreateDate().toString()+"");
                 limit.setText(studyRespDto.getLimit()+"");
                 current.setText(studyRespDto.getCurrent()+"");
                 studyItem.setOnClickListener(v -> {
