@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
+import com.cos.daangnapp.global.User;
 import com.cos.daangnapp.location.model.LocationReqDto;
 import com.cos.daangnapp.login.model.UserRespDto;
 import com.cos.daangnapp.login.model.UserSaveReqDto;
@@ -31,6 +32,8 @@ public class NicknameActivity extends AppCompatActivity {
     private com.cos.daangnapp.retrofitURL retrofitURL;
     private UserService userService= retrofitURL.retrofit.create(UserService .class);
     private LocationReqDto locationReqDto;
+    private Double latitude;
+    private Double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +55,13 @@ public class NicknameActivity extends AppCompatActivity {
         btnStart = findViewById(R.id.nickname_btn_start);
 
         Intent intent = getIntent();
-        String phone_Number = intent.getStringExtra("phoneNumber");
-        locationReqDto = intent.getParcelableExtra("location");
+
+//        latitude = intent.getDoubleExtra("latitude",0);
+//        longitude = intent.getDoubleExtra("longitude",0);
+
+        String phone_Number = ((User)getApplication()).getPhoneNumber();
+//        latitude = ((User)getApplication()).getLatitude();
+//        longitude = ((User)getApplication()).getLongitude();
 
         phoneNumber.setText(phone_Number);
     }
@@ -71,8 +79,10 @@ public class NicknameActivity extends AppCompatActivity {
                     save(userSaveReqDto);
 
                     Intent intent = new Intent(NicknameActivity.this, JoinActivity.class);
-                    intent.putExtra("phoneNumber",phoneNumber.getText().toString());
-                    intent.putExtra("location", (Parcelable) locationReqDto);
+//                    intent.putExtra("phoneNumber",phoneNumber.getText().toString());
+//                    intent.putExtra("location", (Parcelable) locationReqDto);
+//                    intent.putExtra("latitude",latitude);
+//                    intent.putExtra("longitude",longitude);
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);

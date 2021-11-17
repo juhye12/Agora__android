@@ -1,7 +1,5 @@
 package com.cos.daangnapp.login.model;
 
-import com.cos.daangnapp.location.model.LocationReqDto;
-
 import lombok.Data;
 
 @Data
@@ -11,5 +9,7 @@ public class JoinRespDto {
     private String age;
     private String sex;
     private String interest;
-    private LocationReqDto locationReqDto;
+//    private LocationReqDto locationReqDto;
+    private Double latitude;
+    private Double longitude;
 }

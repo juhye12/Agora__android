@@ -4,7 +4,6 @@ package com.cos.daangnapp.login;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,12 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
-import com.cos.daangnapp.location.model.LocationReqDto;
+import com.cos.daangnapp.global.User;
 import com.cos.daangnapp.login.model.JoinReqDto;
 import com.cos.daangnapp.login.model.JoinRespDto;
 
 import com.cos.daangnapp.login.service.JoinService;
+<<<<<<< HEAD
+=======
 import com.cos.daangnapp.studyList.StudyListActivity;
+>>>>>>> 4a59c64ac5400e9154b1ab874b14f883a780f932
 
 import com.cos.daangnapp.study.StudyListActivity;
 
@@ -37,7 +39,9 @@ public class JoinActivity extends AppCompatActivity {
     private EditText mInterest;
     private Button mJoinButton;
     private String phoneNumber; // 이전 activity에서 작성된 phoneNumber를 가져옴
-    private LocationReqDto locationReqDto;
+//    private LocationReqDto locationReqDto;
+    private Double latitude;
+    private Double longitude;
 
     private com.cos.daangnapp.retrofitURL retrofitURL;
     private JoinService joinService = retrofitURL.retrofit.create(JoinService .class);
@@ -71,8 +75,16 @@ public class JoinActivity extends AppCompatActivity {
         mJoinButton = findViewById(R.id.join_button);
 
         Intent intent = getIntent();
-        phoneNumber = intent.getStringExtra("phoneNumber");
-        locationReqDto = intent.getParcelableExtra("location");
+        phoneNumber = ((User)getApplication()).getPhoneNumber();
+////        locationReqDto = intent.getParcelableExtra("location"); // 이전 Activity의 latitude/longitude를 가진 객체
+//        latitude = intent.getDoubleExtra("latitude",0);
+//        longitude = intent.getDoubleExtra("longitude",0);
+
+        latitude = ((User)getApplication()).getLatitude();
+        longitude = ((User)getApplication()).getLongitude();
+        
+        // 밑은 글로벌 변수로 사용자의 핸드폰번호, 위도, 경도를 담고 있음
+
     }
 
     //JoinActivity의 main method
@@ -82,11 +94,13 @@ public class JoinActivity extends AppCompatActivity {
         String sex = mSex.getText().toString();
         String interest = mInterest.getText().toString();
 
-        startJoin(new JoinReqDto(phoneNumber,association,age,sex,interest,locationReqDto));// Req객체 생성
+        startJoin(new JoinReqDto(phoneNumber,association,age,sex,interest,latitude,longitude));// Req객체 생성
         
         Intent intent = new Intent(JoinActivity.this, StudyListActivity.class);
         intent.putExtra("phoneNumber",phoneNumber);
-        intent.putExtra("location", (Parcelable) locationReqDto);
+//        intent.putExtra("location", (Parcelable) locationReqDto);
+        intent.putExtra("latitude",latitude);
+        intent.putExtra("longitude",longitude);
         startActivity(intent);
         JoinActivity.this.finish();
 
@@ -109,6 +123,7 @@ public class JoinActivity extends AppCompatActivity {
                 CMRespDto<JoinRespDto> cmRespDto = response.body();
                 JoinRespDto joinRespDto = cmRespDto.getData();
                 Log.d(TAG, "onResponse: save성공!!!");
+
                 SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("phoneNumber",joinRespDto.getPhoneNumber());
