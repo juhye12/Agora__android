@@ -9,10 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
 import com.cos.daangnapp.location.model.LocationReqDto;
@@ -20,7 +18,6 @@ import com.cos.daangnapp.login.model.JoinReqDto;
 import com.cos.daangnapp.login.model.JoinRespDto;
 import com.cos.daangnapp.login.service.JoinService;
 import com.cos.daangnapp.study.StudyListActivity;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
