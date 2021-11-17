@@ -26,7 +26,6 @@ import java.util.List;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyViewHolder> {
 
-
     private List<LocationRespDto> locations;
     private LocationActivity laContext;
     private double longitude;
@@ -34,10 +33,9 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
     private LocationReqDto locationReqDto;
     private static final String TAG = "LocationAdapter";
 
-    public  LocationAdapter(LocationActivity laContext) {
+    public LocationAdapter(LocationActivity laContext) {
         this.laContext= laContext;
         this.locations=new ArrayList<>();
-
     }
 
     public void setLocations(List<LocationRespDto> locations){
@@ -64,12 +62,15 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
             //LocationActivity에서 위치 받아오기
             longitude = laContext.getLongitude();
             latitude = laContext.getLatitude();
+
             locationReqDto = new LocationReqDto(longitude,latitude);
 
             int userId = pref.getInt("userId",0);
             if(userId == 0) {
                 Intent intent = new Intent(laContext, AuthActivity.class);
-                intent.putExtra("location", (Parcelable) locationReqDto);
+//                intent.putExtra("location", (Parcelable) locationReqDto);
+                intent.putExtra("latitude", latitude);
+                intent.putExtra("longitude", longitude);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 laContext.startActivity(intent);
                 laContext.finish();

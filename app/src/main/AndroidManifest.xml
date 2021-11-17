@@ -12,11 +12,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/splash_symbol"
+        android:icon="@drawable/agora_logo2"
         android:label="Agora"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Daangnapp"
+        android:name = ".global.User"
         android:usesCleartextTraffic="true">
 <!--        <activity android:name=".main.chat.ChatActivity"/>-->
 <!--        <activity android:name=".sale.SalesActivity" />-->
@@ -34,13 +35,15 @@
         <activity android:name=".main.MainActivity" />
         <activity android:name=".login.JoinActivity" />
         <activity android:name=".study.StudyListActivity" />
-            <activity android:name=".splash.SplashActivity">
+        <activity android:name=".study.CreateStudyActivity" />
+
+        <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
