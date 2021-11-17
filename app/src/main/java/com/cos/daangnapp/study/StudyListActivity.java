@@ -2,13 +2,11 @@ package com.cos.daangnapp.study;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
@@ -19,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cos.daangnapp.CMRespDto;
 import com.cos.daangnapp.R;
 import com.cos.daangnapp.global.User;
-import com.cos.daangnapp.location.model.LocationReqDto;
 import com.cos.daangnapp.main.MainActivity;
 import com.cos.daangnapp.study.adapter.StudyListAdapter;
 import com.cos.daangnapp.study.model.StudyListRespDto;
@@ -51,7 +48,7 @@ public class StudyListActivity extends AppCompatActivity {
     private static double Ulatitude;
     private static double Ulongitude;
 
-    private StudyListService studyListService= retrofitURL.retrofit.create(StudyListService.class);
+    private StudyService studyListService= retrofitURL.retrofit.create(StudyService.class);
     private Button CreateStudyBtn;
 
 
