@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.cos.daangnapp"
+        applicationId "com.cos.Agora"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1

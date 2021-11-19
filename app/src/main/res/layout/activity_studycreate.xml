@@ -31,7 +31,6 @@
         android:textSize="15dp" />
 
     <TextView
-        android:id="@+id/btn_create_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -43,6 +42,7 @@
         android:textStyle="bold" />
 
     <Button
+        android:id="@+id/btn_create_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -128,7 +128,7 @@
             android:textSize="16dp"
             />
         <Spinner
-            android:id="@+id/spinner_create_num"
+            android:id="@+id/spinner_create_frequency"
             android:layout_width="50dp"
             android:layout_height="29dp"
             android:layout_gravity="center"
@@ -169,7 +169,7 @@
             android:textSize="16dp"
             />
         <EditText
-            android:id="@+id/edit_create_poeple"
+            android:id="@+id/edit_create_MemNum"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="205dp"
@@ -223,7 +223,7 @@
         android:background="@color/colorGray" />
 
     <EditText
-        android:id="@+id/edit_create_context"
+        android:id="@+id/edit_create_description"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textStyle="bold"

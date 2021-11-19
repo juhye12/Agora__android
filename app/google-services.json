@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "1079058749089",
-    "project_id": "daangnappchat",
-    "storage_bucket": "daangnappchat.appspot.com"
+    "project_id": "agorachat",
+    "storage_bucket": "agorachat.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:1079058749089:android:a6da6db5f19e4bc0ac02e0",
         "android_client_info": {
-          "package_name": "com.cos.daangnapp"
+          "package_name": "com.cos.Agora"
         }
       },
       "oauth_client": [
