@@ -14,10 +14,16 @@ import retrofit2.http.Query;
 
 public interface StudyService {
     //사용자 분별위해 phoneNumber도 같이 보내주기!
+//    @GET("study/list")
+//    Call<CMRespDto<List<StudyListRespDto>>> getStudyList(@Query("phoneNumber") String phoneNumber,
+//                                                         @Query("interest") String interest,
+//                                                         @Query("lineup") String lineup);
     @GET("study/list")
-    Call<CMRespDto<List<StudyListRespDto>>> getStudyList(@Query("phoneNumber") String phoneNumber,
+    Call<CMRespDto<List<StudyListRespDto>>> getStudyList(@Query("latitude") Double latitude,
+                                                         @Query("longitude") Double longitude,
                                                          @Query("interest") String interest,
                                                          @Query("lineup") String lineup);
+
     @POST("study/create")
     Call<CMRespDto<StudyCreateRespDto>> createStudy(StudyCreateReqDto studyCreateReqDto);
 
