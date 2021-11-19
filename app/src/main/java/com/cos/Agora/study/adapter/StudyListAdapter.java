@@ -77,7 +77,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
                 interest.setText(studyRespDto.getInterest());
                 title.setText(studyRespDto.getTitle());
 
-                distance.setText(new Double(Math.ceil((studyRespDto.getDistance())*100/1000.00)).toString());
+                distance.setText(new Double((studyRespDto.getDistance()*100/100.0)/1000).toString());
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
