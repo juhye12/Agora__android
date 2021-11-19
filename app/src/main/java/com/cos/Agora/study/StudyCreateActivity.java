@@ -98,8 +98,6 @@ public class StudyCreateActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(StudyCreateActivity.this, PlaceSetActivity.class);//place설정하는 Activity로 이동
                 startActivity(intent);
-
-
             }
         });
 
@@ -129,20 +127,23 @@ public class StudyCreateActivity extends AppCompatActivity {
         PlaceButton = findViewById(R.id.btn_creat_place);
     }
 
-
     //StudyCreateActivity의 main method
     private void completeCreate() {
         String studyname = studyName.getText().toString();
         String studydescription = studyDescription.getText().toString();
         Integer studymemnum = Integer.parseInt(studyMemNum.getText().toString());
 
+        //PlaceSetActivity로 부터 전달 받은 위도 경도를 저장
+        Intent intent = getIntent();
+        studyLongitude = intent.getDoubleExtra("latitude",0);
+        studyLatitude = intent.getDoubleExtra("longitude",0);
+
         //Dto 객체 생성하고 startStudyCreate 실행
         startStudyCreate(new StudyCreateReqDto(studyname,studyInterest,studyFrequency,studymemnum,studyLongitude,studyLatitude,studydescription));// Req객체 생성
 
-        Intent intent = new Intent(StudyCreateActivity.this, StudyListActivity.class);
-        startActivity(intent);
+        Intent intent2 = new Intent(StudyCreateActivity.this, StudyListActivity.class);
+        startActivity(intent2);
         StudyCreateActivity.this.finish();
-
     }
 
     private void startStudyCreate(StudyCreateReqDto studyCreateReqDto) {

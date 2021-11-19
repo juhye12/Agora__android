@@ -7,8 +7,11 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.cos.Agora.global.User;
@@ -22,7 +25,11 @@ import com.cos.Agora.R;
 
 public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    private Button placeCompleteButton;
     private GoogleMap googleMap;
+    private Double studyLongitude;
+    private Double studyLatitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +38,19 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        //장소 설정 완료 버튼 누를 경우 만들기
+        placeCompleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //place 설정했으니, 다시 studycreate Activity로 이동
+                Intent intent = new Intent(PlaceSetActivity.this, StudyCreateActivity.class);
+                intent.putExtra("latitude",studyLatitude);
+                intent.putExtra("longitude",studyLongitude);
+                startActivity(intent);
+                PlaceSetActivity.this.finish();
+            }
+        });
     }
 
     @Override
@@ -50,8 +70,11 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
                 mOptions.snippet(latitude.toString() + ", " + longitude.toString());
                 // LatLng: 위도 경도 쌍을 나타냄
                 mOptions.position(new LatLng(latitude, longitude));
-                // 마커(핀) 추가
+                // 마커 추가
                 googleMap.addMarker(mOptions);
+                // studycreateActivity로 넘겨주기 위한 위도, 경도
+                studyLongitude = longitude;
+                studyLatitude = latitude;
             }
         });
 
@@ -75,7 +98,7 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
     //위치 권한 허용 안했을 시 처리
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
-    private void checkLocationPermissionWithRationale() {
+    private void checkLocationPermissionWithRationale(){
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                 new AlertDialog.Builder(this)
