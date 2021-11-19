@@ -67,18 +67,6 @@ public class StudyListActivity extends AppCompatActivity {
         spinner_interest.setAdapter(adapter_interest);
         spinner_interest.setSelection(0);
 
-        spinner_interest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                interest = spinner_interest.getSelectedItem().toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
         //정렬 부분
         spinner_lineup = findViewById(R.id.spinner_lineup);
 
@@ -87,10 +75,25 @@ public class StudyListActivity extends AppCompatActivity {
         spinner_lineup.setAdapter(adapter_lineup);
         spinner_lineup.setSelection(0);
 
+        //interest 선택시
+        spinner_interest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                interest = spinner_interest.getSelectedItem().toString();
+                getStudyList(phoneNumber, interest, lineup);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //lineup 선택시
         spinner_lineup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 lineup = spinner_lineup.getSelectedItem().toString();
+                getStudyList(phoneNumber, interest, lineup);
             }
 
             @Override
@@ -109,7 +112,6 @@ public class StudyListActivity extends AppCompatActivity {
             startActivity(intent);     // intent 타입을 넣어야함  !!
             //StudyListActivity.this.finish(); //생성하고 돌아왔을때도 스터디 목록은 그대로여야하니까 finish하면 안됨
         });
-        getStudyList(phoneNumber, interest, lineup);
 
     }
     public void init() {
