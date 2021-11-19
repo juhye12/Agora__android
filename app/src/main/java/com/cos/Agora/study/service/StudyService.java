@@ -22,7 +22,7 @@ public interface StudyService {
     Call<CMRespDto<StudyCreateRespDto>> createStudy(StudyCreateReqDto studyCreateReqDto);
 
     @GET("study/detail")
-    Call<CMRespDto<List<StudyListRespDto>>> getStudyDetail();
+    Call<CMRespDto<List<StudyListRespDto>>> getStudyDetail(@Query("id") int id);
 
 
 
