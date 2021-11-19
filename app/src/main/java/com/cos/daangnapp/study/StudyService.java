@@ -23,6 +23,4 @@ public interface StudyService {
     Call<CMRespDto<List<StudyListRespDto>>> getStudyDetail();
 
 
-
-
 }

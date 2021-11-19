@@ -51,7 +51,6 @@ public class StudyListActivity extends AppCompatActivity {
     private StudyService studyListService= retrofitURL.retrofit.create(StudyService.class);
     private Button CreateStudyBtn;
 
-
     String[] interestList = {"전체","어학","프로그래밍","게임","취직","주식","운동","와인","여행"};
     String[] lineupList = {"최신순","거리순","추천순"};
 

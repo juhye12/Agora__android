@@ -15,6 +15,5 @@ public class StudyListRespDto {
     private int limit;          // 수용인원
     private double latitude;    // 사용자 위도
     private double longitude;    // 사용자 경도
-
     private int current;        // 현재인원
 }
