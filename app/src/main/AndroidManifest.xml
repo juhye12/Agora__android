@@ -1,42 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.cos.Agora">
+    package="com.cos.Agora" >
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".global.User"
         android:allowBackup="true"
         android:icon="@drawable/agora_logo2"
         android:label="Agora"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Daangnapp"
-        android:name = "com.cos.Agora.global.User"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/Theme.Agora"
+        android:usesCleartextTraffic="true" >
 
-        <activity android:name="com.cos.Agora.login.AuthActivity" />
-        <activity android:name="com.cos.Agora.login.NicknameActivity" />
-        <activity android:name="com.cos.Agora.login.LoginActivity" />
-        <activity android:name="com.cos.Agora.location.LocationActivity" />
-        <activity android:name="com.cos.Agora.splash.StartActivity" />
-        <activity android:name="com.cos.Agora.main.MainActivity" />
-        <activity android:name="com.cos.Agora.login.JoinActivity" />
-        <activity android:name="com.cos.Agora.study.StudyListActivity" />
-        <activity android:name="com.cos.Agora.study.StudyCreateActivity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAlcUuRra38jxbOGb8y_5OQuyODmGbZHHo" />
 
-        <activity android:name="com.cos.Agora.splash.SplashActivity">
+        <activity android:name=".study.PlaceSetActivity" />
+        <activity android:name=".login.AuthActivity" />
+        <activity android:name=".login.NicknameActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".location.LocationActivity" />
+        <activity android:name=".splash.StartActivity" />
+        <activity android:name=".main.MainActivity" />
+        <activity android:name=".login.JoinActivity" />
+        <activity android:name=".study.StudyListActivity" />
+        <activity android:name=".study.StudyCreateActivity" />
+        <activity android:name=".splash.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

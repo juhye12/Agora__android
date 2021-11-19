@@ -21,10 +21,7 @@ public interface StudyService {
     @POST("study/create")
     Call<CMRespDto<StudyCreateRespDto>> createStudy(StudyCreateReqDto studyCreateReqDto);
 
-    @GET("study/detail")
-    Call<CMRespDto<List<StudyListRespDto>>> getStudyDetail();
-
-
-
+    @GET("study/detail/{studyId}")
+    Call<CMRespDto<List<StudyListRespDto>>> getStudyDetail(long studyId);
 
 }
