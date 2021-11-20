@@ -191,15 +191,14 @@
         android:layout_height="3dp"
         android:background="@color/colorGray" />
 
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@color/colorGray" />
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <EditText
         android:id="@+id/edit_create_description"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="match_parent"
         android:hint="스터디 진행에 필요한 게시글 내용을 작성해주세요.\n(스터디 모집 기준, 스터디 참여 방법, 스터디 목적 등)"
         android:paddingBottom="250dp"
         android:textSize="16dp"
@@ -215,5 +214,5 @@
         android:textSize="20dp"
         android:textStyle="bold"
         />
-
+      </LinearLayout>
 </LinearLayout>
