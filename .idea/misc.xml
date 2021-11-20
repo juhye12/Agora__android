@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_login.xml" value="0.17346014492753623" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_nickname.xml" value="0.175" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_placeset.xml" value="0.1625" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_placeset2.xml" value="0.175" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_studycreate.xml" value="0.2" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_studycreate2.xml" value="0.152" />
         <entry key="..\:/Users/your/AndroidStudioProject/daangnapp-master/app/src/main/res/drawable/ic_study_people.xml" value="0.146875" />

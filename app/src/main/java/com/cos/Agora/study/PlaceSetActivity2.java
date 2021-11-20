@@ -1,10 +1,5 @@
 package com.cos.Agora.study;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+
+import com.cos.Agora.R;
 import com.cos.Agora.global.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,22 +22,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.cos.Agora.R;
 
-public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCallback {
+public class PlaceSetActivity2 extends FragmentActivity implements OnMapReadyCallback {
 
     private Button placeCompleteButton;
     private GoogleMap googleMap;
     private Double studyLongitude;
     private Double studyLatitude;
     private String studyName;
-    private String studyInterest;
-    private int studyFrequency;
-    private int studyMemNum;
-    private String studyDescription;
-    private int choiceInterest;
-    private int choiceFrequency;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,35 +40,16 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        Intent intent = getIntent();
-        studyName = intent.getStringExtra("studyName");
-        studyInterest = intent.getStringExtra("studyInterest");
-        studyFrequency = intent.getIntExtra("studyFrequency",0);
-        studyMemNum = intent.getIntExtra("studyMemNum",0);
-        studyDescription = intent.getStringExtra("studyDescription");
-        choiceFrequency = intent.getIntExtra("FrequencyChoice",0);
-        choiceInterest = intent.getIntExtra("InterestChoice",0);
-
         //장소 설정 완료 버튼 누를 경우 만들기
         placeCompleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //place 설정했으니, 다시 studycreate Activity로 이동
-                Intent intent = new Intent(PlaceSetActivity.this, StudyCreateActivity.class);
-
+                Intent intent = new Intent(PlaceSetActivity2.this, StudyCreateActivity.class);
                 intent.putExtra("latitude",studyLatitude);
                 intent.putExtra("longitude",studyLongitude);
-                intent.putExtra("placeSet",true);//장소 설정에서 스터디 생성페이지로 넘어갔음을 나타내는 용도
-                intent.putExtra("studyName",studyName);
-                intent.putExtra("studyInterest",studyInterest);
-                intent.putExtra("studyFrequency",studyFrequency);
-                intent.putExtra("studyMemNum",studyMemNum);
-                intent.putExtra("studyDescription",studyDescription);
-                intent.putExtra("FrequencyChoice",choiceFrequency);
-                intent.putExtra("InterestChoice",choiceInterest);
-
                 startActivity(intent);
-                PlaceSetActivity.this.finish();
+                PlaceSetActivity2.this.finish();
             }
         });
     }
@@ -134,7 +108,7 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                ActivityCompat.requestPermissions(PlaceSetActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
+                                ActivityCompat.requestPermissions(PlaceSetActivity2.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
                             }
                         }).create().show();
             } else {
