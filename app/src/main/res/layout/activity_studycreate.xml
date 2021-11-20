@@ -41,18 +41,18 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btn_create_complete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="70dp"
-        android:background="@color/white"
-        android:outlineSpotShadowColor="@color/white"
-        android:text="완료"
-        android:textColor="#938C8C"
-        android:textSize="15dp" />
+<!--    <Button-->
+<!--        android:id="@+id/btn_create_complete"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="3dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:background="@color/white"-->
+<!--        android:outlineSpotShadowColor="@color/white"-->
+<!--        android:text="완료"-->
+<!--        android:textColor="#938C8C"-->
+<!--        android:textSize="15dp" />-->
 
 </LinearLayout>
 
@@ -191,32 +191,6 @@
         android:layout_height="3dp"
         android:background="@color/colorGray" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:text="스터디 장소"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            />
-
-        <ImageButton
-            android:id="@+id/btn_creat_place"
-            android:layout_width="38dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="240dp"
-            android:background="@color/white"
-            android:src="@drawable/ic_place" />
-    </LinearLayout>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
@@ -225,11 +199,21 @@
     <EditText
         android:id="@+id/edit_create_description"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="360dp"
         android:hint="스터디 진행에 필요한 게시글 내용을 작성해주세요.\n(스터디 모집 기준, 스터디 참여 방법, 스터디 목적 등)"
-        android:layout_marginTop="20dp"
-        android:paddingBottom="260dp"
+        android:paddingBottom="250dp"
         android:textSize="16dp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_set_place"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="스터디 장소 설정"
+        android:background="@color/purple_200"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
 
 </LinearLayout>
