@@ -1,29 +1,18 @@
 package com.cos.Agora.study;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
-import com.cos.Agora.study.model.StudyCreateReqDto;
-import com.cos.Agora.study.model.StudyCreateRespDto;
-import com.cos.Agora.study.service.StudyService;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class StudyCreateActivity extends AppCompatActivity {
 
@@ -32,17 +21,11 @@ public class StudyCreateActivity extends AppCompatActivity {
     private Spinner s_studyInterest;
     private Spinner s_studyFrequency;
     private String studyInterest;
-    private Integer studyFrequency;
+    private int studyFrequency;
     private EditText studyMemNum;
     private EditText studyDescription;
-    private Button CompleteButton;
     private Button CloseButton;
-    private ImageButton PlaceButton;
-    private Double studyLongitude;
-    private Double studyLatitude;
-
-    private com.cos.Agora.retrofitURL retrofitURL;
-    private StudyService studyCreateService = retrofitURL.retrofit.create(StudyService .class);
+    private Button PlaceButton;
 
     String[] interestList = {"전체","어학","프로그래밍","게임","취직","주식","운동","와인","여행"};
     String[] frequencyList = {"1","2","3","4","5","6","7"};
@@ -97,18 +80,15 @@ public class StudyCreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudyCreateActivity.this, PlaceSetActivity.class);//place설정하는 Activity로 이동
+                intent.putExtra("studyName",studyName.getText().toString());
+                intent.putExtra("studyInterest",studyInterest);
+                intent.putExtra("studyFrequency",studyFrequency);
+                intent.putExtra("studyMemNum",studyMemNum.getText().toString());
+                intent.putExtra("studyDescription",studyDescription.getText().toString());
                 startActivity(intent);
-
-
             }
         });
 
-        CompleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                completeCreate();//스터디 생성하는 method
-            }
-        });
         CloseButton.setOnClickListener(new View.OnClickListener(){ //'닫기'누르면 다시 목록 화면으로 돌아감
             @Override
             public void onClick(View view) {
@@ -124,54 +104,7 @@ public class StudyCreateActivity extends AppCompatActivity {
         studyName = findViewById(R.id.edit_create_name);
         studyMemNum = findViewById(R.id.edit_create_MemNum);
         studyDescription = findViewById(R.id.edit_create_description);
-        CompleteButton = findViewById(R.id.btn_create_complete);
         CloseButton = findViewById(R.id.btn_create_close);
-        PlaceButton = findViewById(R.id.btn_creat_place);
-    }
-
-
-    //StudyCreateActivity의 main method
-    private void completeCreate() {
-        String studyname = studyName.getText().toString();
-        String studydescription = studyDescription.getText().toString();
-        Integer studymemnum = Integer.parseInt(studyMemNum.getText().toString());
-
-        //Dto 객체 생성하고 startStudyCreate 실행
-        startStudyCreate(new StudyCreateReqDto(studyname,studyInterest,studyFrequency,studymemnum,studyLongitude,studyLatitude,studydescription));// Req객체 생성
-
-        Intent intent = new Intent(StudyCreateActivity.this, StudyListActivity.class);
-        startActivity(intent);
-        StudyCreateActivity.this.finish();
-
-    }
-
-    private void startStudyCreate(StudyCreateReqDto studyCreateReqDto) {
-        Call<CMRespDto<StudyCreateRespDto>> call = studyCreateService.createStudy(studyCreateReqDto);
-        call.enqueue(new Callback<CMRespDto<StudyCreateRespDto>>() {
-            @Override
-            public void onResponse(Call<CMRespDto<StudyCreateRespDto>> call, Response<CMRespDto<StudyCreateRespDto>> response) {
-                CMRespDto<StudyCreateRespDto> cmRespDto = response.body();
-                StudyCreateRespDto studyCreateRespDto = cmRespDto.getData();
-                Log.d(TAG, "onResponse: 스터디 생성 성공!!!");
-
-                SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putInt("userId", studyCreateRespDto.getId());
-                editor.putString("studyName",studyCreateRespDto.getStudyName());
-                editor.putString("studyInterest",studyCreateRespDto.getStudyInterest());
-                editor.putInt("studyFrequency",studyCreateRespDto.getStudyFrequency());
-                editor.putInt("studyMemNum",studyCreateRespDto.getStudyMemNum());
-                editor.putString("studyDescription",studyCreateRespDto.getStudyDescription());
-                editor.putFloat("studyLongitude",studyCreateRespDto.getStudyLongitude().floatValue());//float로 변환. (editor에서 double안됨)
-                editor.putFloat("studyLatitude",studyCreateRespDto.getStudyLatitude().floatValue());
-                editor.commit();
-            }
-            @Override
-            public void onFailure(Call<CMRespDto<StudyCreateRespDto>> call, Throwable t) {
-//                Toast.makeText(StudyCreateActivity.this, "스터디 생성 에러 발생", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "스터디 생성 에러 발생");
-//                Log.e("스터디 생성 에러 발생", t.getMessage());
-            }
-        });
+        PlaceButton = findViewById(R.id.btn_set_place);
     }
 }

@@ -3,20 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
-        <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/activity_auth.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/activity_calendar.xml" value="0.22" />
         <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/activity_detail.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/activity_join.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/activity_location.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/activity_login.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/activity_studycreate.xml" value="0.22" />
-        <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/activity_studylist.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/study_item.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/studymember_item.xml" value="0.17916666666666667" />
-=======
+    
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_login.xml" value="0.17346014492753623" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_nickname.xml" value="0.175" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_placeset.xml" value="0.1625" />
->>>>>>> 24ad93e5586a74952f9ffd579f5ad8057487d899
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_placeset2.xml" value="0.175" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_studycreate.xml" value="0.2" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_studycreate2.xml" value="0.152" />
         <entry key="..\:/Users/your/AndroidStudioProject/daangnapp-master/app/src/main/res/drawable/ic_study_people.xml" value="0.146875" />
         <entry key="..\:/Users/your/AndroidStudioProject/daangnapp-master/app/src/main/res/layout/activity_auth.xml" value="0.1296875" />
         <entry key="..\:/Users/your/AndroidStudioProject/daangnapp-master/app/src/main/res/layout/activity_chat.xml" value="0.1296875" />
