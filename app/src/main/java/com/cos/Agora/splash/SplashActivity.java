@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cos.Agora.R;
 import com.cos.Agora.main.MainActivity;
+import com.cos.Agora.study.StudyListActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class SplashActivity extends AppCompatActivity {
                        SplashActivity.this.finish();
                    }
                    else{
-                           Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                           Intent intent = new Intent(SplashActivity.this, StudyListActivity.class);
                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                            startActivity(intent);
                            SplashActivity.this.finish();

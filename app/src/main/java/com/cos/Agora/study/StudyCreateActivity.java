@@ -2,6 +2,7 @@ package com.cos.Agora.study;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,7 @@ public class StudyCreateActivity extends AppCompatActivity {
     private EditText studyName;
     private Spinner s_studyInterest;
     private Spinner s_studyFrequency;
+
     private String studyInterest;
     private int studyFrequency;
     private EditText studyMemNum;
@@ -43,6 +45,7 @@ public class StudyCreateActivity extends AppCompatActivity {
         adapter_studyinterest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s_studyInterest.setAdapter(adapter_studyinterest);
         s_studyInterest.setSelection(0);
+
 
         s_studyInterest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -99,12 +102,15 @@ public class StudyCreateActivity extends AppCompatActivity {
         });
     }
 
+
     //입력받은 값들 저장
     public void init(){
         studyName = findViewById(R.id.edit_create_name);
         studyMemNum = findViewById(R.id.edit_create_MemNum);
         studyDescription = findViewById(R.id.edit_create_description);
         CloseButton = findViewById(R.id.btn_create_close);
-        PlaceButton = findViewById(R.id.btn_set_place);
+
+        PlaceButton = findViewById(R.id.btn_set_place); //지우기 금지
     }
+
 }

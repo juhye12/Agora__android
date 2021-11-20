@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
 import com.cos.Agora.global.User;
-import com.cos.Agora.location.model.LocationReqDto;
 import com.cos.Agora.login.model.UserRespDto;
 import com.cos.Agora.login.model.UserSaveReqDto;
 import com.cos.Agora.login.service.UserService;
@@ -29,9 +28,6 @@ public class NicknameActivity extends AppCompatActivity {
     private Button btnStart;
     private com.cos.Agora.retrofitURL retrofitURL;
     private UserService userService= retrofitURL.retrofit.create(UserService .class);
-    private LocationReqDto locationReqDto;
-    private Double latitude;
-    private Double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +59,7 @@ public class NicknameActivity extends AppCompatActivity {
 
         phoneNumber.setText(phone_Number);
     }
-    
+
     // NicknameActivity의 main method
     public void NickNameCheck(String nickName){ // 입력받은 메서드를 넣음
         Call<CMRespDto<UserRespDto>> call = userService.NickNameSearch(nickName);
