@@ -8,7 +8,7 @@ import lombok.Data;
 public class StudyListRespDto {
     // server로부터 받을 데이터
 
-    private int id;            // id
+    private long id;            // id
     private String title;       // 스터디제목
     private String interest;    // 관심분야
     private Date createDate;    // 생성날짜

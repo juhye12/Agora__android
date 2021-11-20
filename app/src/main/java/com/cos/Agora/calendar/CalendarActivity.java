@@ -1,12 +1,14 @@
 package com.cos.Agora.calendar;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -72,7 +74,18 @@ public class CalendarActivity extends AppCompatActivity
 
             }
         });
+
     }
+
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        stopPlay(); //이 액티비티에서 종료되어야 하는 활동 종료시켜주는 함수
+//        Toast.makeText(WebViewPlayer.this, "방송 시청이 종료되었습니다.", Toast.LENGTH_SHORT).show();   //토스트 메시지
+//        Intent intent = new Intent(WebViewPlayer.this, MainActivity.class); //지금 액티비티에서 다른 액티비티로 이동하는 인텐트 설정
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);    //인텐트 플래그 설정
+//        startActivity(intent);  //인텐트 이동
+//        finish();   //현재 액티비티 종료
+//    }
 
     public void checkDay(int cYear, int cMonth, int cDay)
     {

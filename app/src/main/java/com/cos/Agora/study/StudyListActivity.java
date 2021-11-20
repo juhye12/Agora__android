@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
+import com.cos.Agora.calendar.CalendarActivity;
 import com.cos.Agora.global.User;
 import com.cos.Agora.main.MainActivity;
 import com.cos.Agora.study.adapter.StudyListAdapter;
@@ -32,7 +33,7 @@ import retrofit2.Response;
 
 public class StudyListActivity extends AppCompatActivity {
     private static final String TAG = "StudyList";
-    private  MainActivity activity;
+    private MainActivity activity;
     private RecyclerView studyList;
     private StudyListAdapter studylistAdapter;
     private Spinner spinner_interest;
@@ -48,6 +49,7 @@ public class StudyListActivity extends AppCompatActivity {
 
     private StudyService studyListService= retrofitURL.retrofit.create(StudyService.class);
     private Button CreateStudyBtn;
+    private Button StudyCalendar; // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
 
     String[] interestList = {"전체","어학","프로그래밍","게임","취직","주식","운동","와인","여행"};
     String[] lineupList = {"최신순","거리순","추천순"};
@@ -111,9 +113,21 @@ public class StudyListActivity extends AppCompatActivity {
         });
         getStudyList(phoneNumber, interest, lineup);
 
+
+        // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
+        StudyCalendar.setOnClickListener(v -> {
+            Intent intent = new Intent(StudyListActivity.this, CalendarActivity.class);
+            startActivity(intent);     // intent 타입을 넣어야함  !!
+        });
+
     }
+
+
+
+
     public void init() {
         CreateStudyBtn = findViewById(R.id.btn_study_create);
+        StudyCalendar = findViewById(R.id.btn_study_calendar); // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
         //이전 Activity에서 phoneNumber값 받아오기. 정렬에서 거리 계산을 위해 현재 사용자가 어떤 사용자인지 알아야해서!
         Intent intent = getIntent();
 //        phoneNumber = intent.getStringExtra("phoneNumber");
