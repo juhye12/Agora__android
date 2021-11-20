@@ -47,6 +47,8 @@
         <activity android:name=".login.JoinActivity" />
         <activity android:name=".study.StudyListActivity" />
         <activity android:name=".study.StudyCreateActivity" />
+        <activity android:name=".study.CalendarActivity"
+            android:parentActivityName=".study.StudyListActivity"/>
         <activity android:name=".splash.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

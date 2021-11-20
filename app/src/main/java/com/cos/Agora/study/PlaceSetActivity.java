@@ -39,6 +39,8 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        placeCompleteButton = findViewById(R.id.btn_placeset);
+
         //장소 설정 완료 버튼 누를 경우 만들기
         placeCompleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

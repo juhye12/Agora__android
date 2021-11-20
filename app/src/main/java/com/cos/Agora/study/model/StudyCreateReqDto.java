@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class StudyCreateReqDto {
-    private String studyName;//스터디 이름
-    private String studyInterest;//스터디 관심분야
-    private Integer studyFrequency;//스터디 횟수
-    private Integer studyMemNum;//스터디 모집 인원
-    private Double studyLongitude;
-    private Double studyLatitude;
-    private String studyDescription;//스터디 설명
+    private String title;//스터디 이름
+    private String interest;//스터디 관심분야
+    private String limit;//스터디 모집 인원
+    private int count;//스터디 횟수
+    private Double longitude;
+    private Double latitude;
+    private String description;//스터디 설명
 
 }

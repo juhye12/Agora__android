@@ -32,7 +32,7 @@ public class StudyCreateActivity extends AppCompatActivity {
     private Spinner s_studyInterest;
     private Spinner s_studyFrequency;
     private String studyInterest;
-    private Integer studyFrequency;
+    private int studyFrequency;
     private EditText studyMemNum;
     private EditText studyDescription;
     private Button CompleteButton;
@@ -131,7 +131,8 @@ public class StudyCreateActivity extends AppCompatActivity {
     private void completeCreate() {
         String studyname = studyName.getText().toString();
         String studydescription = studyDescription.getText().toString();
-        Integer studymemnum = Integer.parseInt(studyMemNum.getText().toString());
+        String studymemnum = studyMemNum.getText().toString();
+
 
         //PlaceSetActivity로 부터 전달 받은 위도 경도를 저장
         Intent intent = getIntent();
@@ -139,7 +140,7 @@ public class StudyCreateActivity extends AppCompatActivity {
         studyLatitude = intent.getDoubleExtra("longitude",0);
 
         //Dto 객체 생성하고 startStudyCreate 실행
-        startStudyCreate(new StudyCreateReqDto(studyname,studyInterest,studyFrequency,studymemnum,studyLongitude,studyLatitude,studydescription));// Req객체 생성
+        startStudyCreate(new StudyCreateReqDto(studyname,studyInterest,studymemnum,studyFrequency,studyLongitude,studyLatitude,studydescription));// Req객체 생성
 
         Intent intent2 = new Intent(StudyCreateActivity.this, StudyListActivity.class);
         startActivity(intent2);
@@ -158,13 +159,13 @@ public class StudyCreateActivity extends AppCompatActivity {
                 SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("userId", studyCreateRespDto.getId());
-                editor.putString("studyName",studyCreateRespDto.getStudyName());
-                editor.putString("studyInterest",studyCreateRespDto.getStudyInterest());
-                editor.putInt("studyFrequency",studyCreateRespDto.getStudyFrequency());
-                editor.putInt("studyMemNum",studyCreateRespDto.getStudyMemNum());
-                editor.putString("studyDescription",studyCreateRespDto.getStudyDescription());
-                editor.putFloat("studyLongitude",studyCreateRespDto.getStudyLongitude().floatValue());//float로 변환. (editor에서 double안됨)
-                editor.putFloat("studyLatitude",studyCreateRespDto.getStudyLatitude().floatValue());
+                editor.putString("studyName",studyCreateRespDto.getTitle());
+                editor.putString("studyInterest",studyCreateRespDto.getInterest());
+                editor.putInt("studyFrequency",studyCreateRespDto.getCount());
+                editor.putString("studyMemNum",studyCreateRespDto.getLimit());
+                editor.putString("studyDescription",studyCreateRespDto.getDescription());
+                editor.putFloat("studyLongitude",studyCreateRespDto.getLongitude().floatValue());//float로 변환. (editor에서 double안됨)
+                editor.putFloat("studyLatitude",studyCreateRespDto.getLatitude().floatValue());
                 editor.commit();
             }
             @Override

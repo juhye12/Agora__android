@@ -41,7 +41,7 @@ public class StudyListActivity extends AppCompatActivity {
     private String lineup;          // 정렬방법
     private String phoneNumber;     // 사용자 핸드폰
     private ArrayList<StudyListRespDto> studyRespDtos = new ArrayList<>();
-    private retrofitURL retrofitURL;
+    private Button StudyCalendar; // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
 
     private static double Ulatitude;
     private static double Ulongitude;
@@ -112,7 +112,11 @@ public class StudyListActivity extends AppCompatActivity {
             //StudyListActivity.this.finish(); //생성하고 돌아왔을때도 스터디 목록은 그대로여야하니까 finish하면 안됨
         });
 
-
+        // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
+        StudyCalendar.setOnClickListener(v -> {
+            Intent intent = new Intent(StudyListActivity.this, CalendarActivity.class);
+            startActivity(intent);     // intent 타입을 넣어야함  !!
+        });
     }
     public void init() {
         CreateStudyBtn = findViewById(R.id.btn_study_create);
@@ -122,6 +126,7 @@ public class StudyListActivity extends AppCompatActivity {
 //        locationReqDto = intent.getParcelableExtra("location");
 
         phoneNumber = ((User)getApplication()).getPhoneNumber();
+        StudyCalendar = findViewById(R.id.btn_study_calendar); // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
     }
 
     public void getStudyList(String phoneNumber,String interest, String lineup){
