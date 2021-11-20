@@ -3,8 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+        <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/activity_detail.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/drawable/ic_study_people.xml" value="0.22870370370370371" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_auth.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_chat.xml" value="0.36614583333333334" />
@@ -18,11 +18,11 @@
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_studylist.xml" value="0.5" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/fragment_home.xml" value="0.1890625" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/study_item.xml" value="0.33" />
-=======
-=======
+
+
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_login.xml" value="0.17346014492753623" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_nickname.xml" value="0.175" />
->>>>>>> 185451be15f61a2eb902bd673892a01848d90e85
+
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_placeset.xml" value="0.1625" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_placeset2.xml" value="0.175" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_studycreate.xml" value="0.2" />
@@ -64,7 +64,7 @@
         <entry key="..\:/Users/your/AndroidStudioProject/daangnapp-master/app/src/main/res/layout/update_image.xml" value="0.13385416666666666" />
         <entry key="..\:/Users/your/AndroidStudioProject/daangnapp-master/app/src/main/res/layout/upload_image.xml" value="0.13385416666666666" />
         <entry key="..\:/Users/your/AndroidStudioProject/daangnapp-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.146875" />
->>>>>>> 24ad93e5586a74952f9ffd579f5ad8057487d899
+
       </map>
     </option>
   </component>

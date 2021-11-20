@@ -31,6 +31,24 @@
         android:layout_height="50dp"
         >
 
+<!--        밑의 버튼 : 일정 관리 레이아웃 확인 후 삭제 예정-->
+
+        <Button
+            android:id="@+id/btn_study_calendar"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button_background"
+            android:gravity="center"
+            android:text="일정 관리"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"/>
+
         <Button
             android:id="@+id/btn_study_calendar"
             android:layout_width="110dp"
