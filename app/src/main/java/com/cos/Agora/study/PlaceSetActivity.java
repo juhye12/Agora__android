@@ -1,83 +1,122 @@
 package com.cos.Agora.study;
 
+import android.Manifest;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import android.Manifest;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
+import com.cos.Agora.CMRespDto;
+import com.cos.Agora.R;
 import com.cos.Agora.global.User;
+import com.cos.Agora.study.model.StudyCreateReqDto;
+import com.cos.Agora.study.model.StudyCreateRespDto;
+import com.cos.Agora.study.service.StudyService;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.cos.Agora.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private Button placeCompleteButton;
+    private static final String TAG = "PlaceSetActivity";
     private GoogleMap googleMap;
-    private Double studyLongitude;
-    private Double studyLatitude;
-    private String studyName;
-    private String studyInterest;
-    private int studyFrequency;
-    private int studyMemNum;
-    private String studyDescription;
-    private int choiceInterest;
-    private int choiceFrequency;
+    private Button CompleteButton;
 
+    private String mstudyName;
+    private String mstudyInterest;
+    private int mstudyFrequency;
+    private int mstudyMemNum;
+    private double mstudyLongitude;
+    private double mstudyLatitude;
+    private String mstudydescription;
+    
+    private com.cos.Agora.retrofitURL retrofitURL;
+    private StudyService studyCreateService = retrofitURL.retrofit.create(StudyService .class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_placeset);
 
+        init();
+        
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        Intent intent = getIntent();
-        studyName = intent.getStringExtra("studyName");
-        studyInterest = intent.getStringExtra("studyInterest");
-        studyFrequency = intent.getIntExtra("studyFrequency",0);
-        studyMemNum = intent.getIntExtra("studyMemNum",0);
-        studyDescription = intent.getStringExtra("studyDescription");
-        choiceFrequency = intent.getIntExtra("FrequencyChoice",0);
-        choiceInterest = intent.getIntExtra("InterestChoice",0);
 
-        placeCompleteButton = findViewById(R.id.btn_placeset); // 지우지 말기!!!!
+        CompleteButton = findViewById(R.id.btn_create_complete);
 
-        //장소 설정 완료 버튼 누를 경우 만들기
-        placeCompleteButton.setOnClickListener(new View.OnClickListener() {
+        CompleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //place 설정했으니, 다시 studycreate Activity로 이동
-                Intent intent = new Intent(PlaceSetActivity.this, StudyCreateActivity.class);
 
-                intent.putExtra("latitude",studyLatitude);
-                intent.putExtra("longitude",studyLongitude);
-                intent.putExtra("placeSet",true);//장소 설정에서 스터디 생성페이지로 넘어갔음을 나타내는 용도
-                intent.putExtra("studyName",studyName);
-                intent.putExtra("studyInterest",studyInterest);
-                intent.putExtra("studyFrequency",studyFrequency);
-                intent.putExtra("studyMemNum",studyMemNum);
-                intent.putExtra("studyDescription",studyDescription);
-                intent.putExtra("FrequencyChoice",choiceFrequency);
-                intent.putExtra("InterestChoice",choiceInterest);
+                completeCreate();//스터디 생성하는 method
+            }
+        });
+    }
 
-                startActivity(intent);
-                PlaceSetActivity.this.finish();
+    private void init() {
+        Intent intent = getIntent();
+        mstudyName = intent.getStringExtra("studyName");
+        mstudyInterest = intent.getStringExtra("studyInterest");
+        mstudyFrequency = intent.getIntExtra("studyFrequency",0);
+        mstudyMemNum =  intent.getIntExtra("studyMemNum",0);
+        mstudydescription = intent.getStringExtra("studyDescription");
+    }
+
+    private void completeCreate() {
+        //Dto 객체 생성하고 startStudyCreate 실행
+        startStudyCreate(new StudyCreateReqDto(mstudyName,mstudyInterest,mstudyFrequency,mstudyMemNum,mstudyLongitude,mstudyLatitude,mstudydescription));// Req객체 생성
+
+        Intent intent = new Intent(PlaceSetActivity.this, StudyListActivity.class);
+        startActivity(intent);
+        PlaceSetActivity.this.finish();
+    }
+
+    private void startStudyCreate(StudyCreateReqDto studyCreateReqDto) {
+        Call<CMRespDto<StudyCreateRespDto>> call = studyCreateService.createStudy(studyCreateReqDto);
+        call.enqueue(new Callback<CMRespDto<StudyCreateRespDto>>() {
+            @Override
+            public void onResponse(Call<CMRespDto<StudyCreateRespDto>> call, Response<CMRespDto<StudyCreateRespDto>> response) {
+                CMRespDto<StudyCreateRespDto> cmRespDto = response.body();
+                StudyCreateRespDto studyCreateRespDto = cmRespDto.getData();
+                Log.d(TAG, "onResponse: 스터디 생성 성공!!!");
+
+                SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putInt("userId", studyCreateRespDto.getId());
+                editor.putString("studyName",studyCreateRespDto.getTitle());
+                editor.putString("studyInterest",studyCreateRespDto.getInterest());
+                editor.putInt("studyFrequency",studyCreateRespDto.getCount());
+                editor.putInt("studyMemNum",studyCreateRespDto.getLimit());
+                editor.putString("studyDescription",studyCreateRespDto.getDescription());
+                editor.putFloat("studyLongitude",studyCreateRespDto.getLongitude().floatValue());//float로 변환. (editor에서 double안됨)
+                editor.putFloat("studyLatitude",studyCreateRespDto.getLatitude().floatValue());
+                editor.commit();
+            }
+            @Override
+            public void onFailure(Call<CMRespDto<StudyCreateRespDto>> call, Throwable t) {
+//                Toast.makeText(StudyCreateActivity.this, "스터디 생성 에러 발생", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "스터디 생성 에러 발생");
+//                Log.e("스터디 생성 에러 발생", t.getMessage());
             }
         });
     }
@@ -101,9 +140,10 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
                 mOptions.position(new LatLng(latitude, longitude));
                 // 마커 추가
                 googleMap.addMarker(mOptions);
-                // studycreateActivity로 넘겨주기 위한 위도, 경도
-                studyLongitude = longitude;
-                studyLatitude = latitude;
+                
+                //스터디 위도 경도 설정
+                mstudyLongitude = longitude;
+                mstudyLatitude = latitude;
             }
         });
 

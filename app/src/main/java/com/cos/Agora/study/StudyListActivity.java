@@ -108,7 +108,6 @@ public class StudyListActivity extends AppCompatActivity {
         //스터디 생성 버튼 클릭 시
         CreateStudyBtn.setOnClickListener(v -> {
             Intent intent = new Intent(StudyListActivity.this, StudyCreateActivity.class);
-            intent.putExtra("placeSet",false);//studylist에서 생성 페이지로 넘어갔음을 나타내는 용도
             startActivity(intent);     // intent 타입을 넣어야함  !!
             //StudyListActivity.this.finish(); //생성하고 돌아왔을때도 스터디 목록은 그대로여야하니까 finish하면 안됨
         });
