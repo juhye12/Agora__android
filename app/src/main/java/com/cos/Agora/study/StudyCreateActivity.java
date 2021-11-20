@@ -1,31 +1,20 @@
 package com.cos.Agora.study;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
-import com.cos.Agora.study.model.StudyCreateReqDto;
-import com.cos.Agora.study.model.StudyCreateRespDto;
-import com.cos.Agora.study.service.StudyService;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class StudyCreateActivity2 extends AppCompatActivity {
+public class StudyCreateActivity extends AppCompatActivity {
 
     private static final String TAG = "CreateStudyActivity";
     private EditText studyName;
@@ -90,7 +79,7 @@ public class StudyCreateActivity2 extends AppCompatActivity {
         PlaceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudyCreateActivity2.this, PlaceSetActivity.class);//place설정하는 Activity로 이동
+                Intent intent = new Intent(StudyCreateActivity.this, PlaceSetActivity.class);//place설정하는 Activity로 이동
                 intent.putExtra("studyName",studyName.getText().toString());
                 intent.putExtra("studyInterest",studyInterest);
                 intent.putExtra("studyFrequency",studyFrequency);
@@ -103,9 +92,9 @@ public class StudyCreateActivity2 extends AppCompatActivity {
         CloseButton.setOnClickListener(new View.OnClickListener(){ //'닫기'누르면 다시 목록 화면으로 돌아감
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudyCreateActivity2.this, StudyListActivity.class);
+                Intent intent = new Intent(StudyCreateActivity.this, StudyListActivity.class);
                 startActivity(intent);
-                StudyCreateActivity2.this.finish();
+                StudyCreateActivity.this.finish();
             }
         });
     }
