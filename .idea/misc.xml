@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/drawable/ic_study_people.xml" value="0.22870370370370371" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_auth.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_chat.xml" value="0.36614583333333334" />
@@ -18,7 +19,12 @@
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/fragment_home.xml" value="0.1890625" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/study_item.xml" value="0.33" />
 =======
+=======
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_login.xml" value="0.17346014492753623" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_nickname.xml" value="0.175" />
+>>>>>>> 185451be15f61a2eb902bd673892a01848d90e85
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_placeset.xml" value="0.1625" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_placeset2.xml" value="0.175" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_studycreate.xml" value="0.2" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_studycreate2.xml" value="0.152" />
         <entry key="..\:/Users/your/AndroidStudioProject/daangnapp-master/app/src/main/res/drawable/ic_study_people.xml" value="0.146875" />

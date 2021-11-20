@@ -29,6 +29,14 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
     private GoogleMap googleMap;
     private Double studyLongitude;
     private Double studyLatitude;
+    private String studyName;
+    private String studyInterest;
+    private int studyFrequency;
+    private int studyMemNum;
+    private String studyDescription;
+    private int choiceInterest;
+    private int choiceFrequency;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +47,16 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        placeCompleteButton = findViewById(R.id.btn_placeset);
+        Intent intent = getIntent();
+        studyName = intent.getStringExtra("studyName");
+        studyInterest = intent.getStringExtra("studyInterest");
+        studyFrequency = intent.getIntExtra("studyFrequency",0);
+        studyMemNum = intent.getIntExtra("studyMemNum",0);
+        studyDescription = intent.getStringExtra("studyDescription");
+        choiceFrequency = intent.getIntExtra("FrequencyChoice",0);
+        choiceInterest = intent.getIntExtra("InterestChoice",0);
+
+        placeCompleteButton = findViewById(R.id.btn_placeset); // 지우지 말기!!!!
 
         //장소 설정 완료 버튼 누를 경우 만들기
         placeCompleteButton.setOnClickListener(new View.OnClickListener() {
@@ -47,8 +64,18 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
             public void onClick(View view) {
                 //place 설정했으니, 다시 studycreate Activity로 이동
                 Intent intent = new Intent(PlaceSetActivity.this, StudyCreateActivity.class);
+
                 intent.putExtra("latitude",studyLatitude);
                 intent.putExtra("longitude",studyLongitude);
+                intent.putExtra("placeSet",true);//장소 설정에서 스터디 생성페이지로 넘어갔음을 나타내는 용도
+                intent.putExtra("studyName",studyName);
+                intent.putExtra("studyInterest",studyInterest);
+                intent.putExtra("studyFrequency",studyFrequency);
+                intent.putExtra("studyMemNum",studyMemNum);
+                intent.putExtra("studyDescription",studyDescription);
+                intent.putExtra("FrequencyChoice",choiceFrequency);
+                intent.putExtra("InterestChoice",choiceInterest);
+
                 startActivity(intent);
                 PlaceSetActivity.this.finish();
             }
