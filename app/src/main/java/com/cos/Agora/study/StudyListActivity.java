@@ -114,6 +114,8 @@ public class StudyListActivity extends AppCompatActivity {
             //StudyListActivity.this.finish(); //생성하고 돌아왔을때도 스터디 목록은 그대로여야하니까 finish하면 안됨
         });
 
+        getStudyList(phoneNumber, interest, lineup);
+
 
         // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
         StudyCalendar.setOnClickListener(v -> {

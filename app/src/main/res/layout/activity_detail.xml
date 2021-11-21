@@ -267,7 +267,7 @@
                     android:orientation="horizontal">
 
 
-                    <ImageView
+                    <ImageButton
                         android:id="@+id/iv_calendar"
                         android:layout_width="47dp"
                         android:layout_height="50dp"
@@ -275,7 +275,7 @@
                         android:onClick="show_Calendar"
                         android:src="@drawable/ic_baseline_calendar_today_24" />
 
-                    <ImageView
+                    <ImageButton
                         android:id="@+id/iv_notification"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -284,7 +284,7 @@
                         android:onClick="show_Notification"
                         />
 
-                    <ImageView
+                    <ImageButton
                         android:id="@+id/iv_place"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
