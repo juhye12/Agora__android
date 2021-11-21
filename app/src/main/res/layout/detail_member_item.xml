@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/layout_userprofile">
+
     <LinearLayout
-        android:id="@+id/layout_userprofile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -21,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/detail_nickname"
@@ -33,15 +34,25 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/detail_interest"
+                android:id="@+id/detail_role"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="관심 분야"
+                android:text="스터디 내 역할"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
+        <TextView
+            android:id="@+id/detail_association"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="스터디 내 소속"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,9 +60,11 @@
             android:layout_weight="1" />
 
         <ImageView
+            android:id="@+id/detail_manner"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
-            android:src="@drawable/icon_manner_03" />
+            android:src="@drawable/icon_ionic_md_bulb_1" />
     </LinearLayout>
+
 </LinearLayout>

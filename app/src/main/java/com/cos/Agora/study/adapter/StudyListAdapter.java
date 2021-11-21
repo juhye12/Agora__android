@@ -94,7 +94,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
                     intent.putExtra("studyLimit", studyRespDto.getLimit());
                     intent.putExtra("studyCurrent", studyRespDto.getCurrent());
                     intent.putExtra("studyDistance", studyRespDto.getDistance());
-                    // 여기까지가 추갸된 코드
+                    // 여기까지가 추가된 코드
 
                     v.getContext().startActivity(intent);
                 });
