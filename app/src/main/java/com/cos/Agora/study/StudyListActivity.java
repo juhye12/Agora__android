@@ -68,19 +68,6 @@ public class StudyListActivity extends AppCompatActivity {
         adapter_interest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_interest.setAdapter(adapter_interest);
         spinner_interest.setSelection(0);
-
-        spinner_interest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                interest = spinner_interest.getSelectedItem().toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
         //정렬 부분
         spinner_lineup = findViewById(R.id.spinner_lineup);
 
@@ -89,10 +76,12 @@ public class StudyListActivity extends AppCompatActivity {
         spinner_lineup.setAdapter(adapter_lineup);
         spinner_lineup.setSelection(0);
 
-        spinner_lineup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //필터링 선택시
+        spinner_interest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                lineup = spinner_lineup.getSelectedItem().toString();
+                interest = spinner_interest.getSelectedItem().toString();
+                getStudyList(phoneNumber, interest, lineup);
             }
 
             @Override
@@ -101,6 +90,19 @@ public class StudyListActivity extends AppCompatActivity {
             }
         });
 
+        //정렬 선택시
+        spinner_lineup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                lineup = spinner_lineup.getSelectedItem().toString();
+                getStudyList(phoneNumber, interest, lineup);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         studyList = findViewById(R.id.rv_studylist);
         LinearLayoutManager manager = new LinearLayoutManager(activity, RecyclerView.VERTICAL, false);
         studyList.setLayoutManager(manager);
@@ -113,7 +115,6 @@ public class StudyListActivity extends AppCompatActivity {
         });
 
         getStudyList(phoneNumber, interest, lineup);
-
 
         // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
         StudyCalendar.setOnClickListener(v -> {

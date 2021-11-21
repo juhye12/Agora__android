@@ -41,18 +41,18 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btn_create_complete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="70dp"
-        android:background="@color/white"
-        android:outlineSpotShadowColor="@color/white"
-        android:text="완료"
-        android:textColor="#938C8C"
-        android:textSize="15dp" />
+<!--    <Button-->
+<!--        android:id="@+id/btn_create_complete"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="3dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:background="@color/white"-->
+<!--        android:outlineSpotShadowColor="@color/white"-->
+<!--        android:text="완료"-->
+<!--        android:textColor="#938C8C"-->
+<!--        android:textSize="15dp" />-->
 
 </LinearLayout>
 
@@ -91,7 +91,7 @@
             android:layout_width="90dp"
             android:layout_height="29dp"
             android:layout_gravity="center"
-            android:layout_marginStart="230dp"
+            android:layout_marginStart="205dp"
             android:textColor="@android:color/black"
             android:textSize="16dp"
             android:textStyle="bold" />
@@ -120,7 +120,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="220dp"
+            android:layout_marginStart="195dp"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:text="주"
@@ -172,7 +172,7 @@
             android:id="@+id/edit_create_MemNum"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="205dp"
+            android:layout_marginStart="180dp"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -191,32 +191,6 @@
         android:layout_height="3dp"
         android:background="@color/colorGray" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:text="스터디 장소"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            />
-
-        <ImageButton
-            android:id="@+id/btn_creat_place"
-            android:layout_width="38dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="270dp"
-            android:background="@color/white"
-            android:src="@drawable/ic_place" />
-    </LinearLayout>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
@@ -225,11 +199,21 @@
     <EditText
         android:id="@+id/edit_create_description"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textStyle="bold"
+        android:layout_height="360dp"
         android:hint="스터디 진행에 필요한 게시글 내용을 작성해주세요.\n(스터디 모집 기준, 스터디 참여 방법, 스터디 목적 등)"
-        android:paddingBottom="330dp"
-        android:textSize="16dp" />
+        android:paddingBottom="250dp"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/btn_set_place"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="스터디 장소 설정"
+        android:background="@color/purple_200"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
 
 </LinearLayout>
