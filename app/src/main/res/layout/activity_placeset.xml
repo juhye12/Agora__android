@@ -28,7 +28,7 @@
         map:layout_constraintTop_toBottomOf="@+id/map">
 
         <Button
-            android:id="@+id/bte_create_complete"
+            android:id="@+id/btn_create_complete"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="스터디 생성 완료"

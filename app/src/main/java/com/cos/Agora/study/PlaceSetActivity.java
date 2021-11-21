@@ -61,6 +61,7 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
         CompleteButton = findViewById(R.id.btn_create_complete);
 
         CompleteButton.setOnClickListener(new View.OnClickListener() {
@@ -102,13 +103,13 @@ public class PlaceSetActivity extends FragmentActivity implements OnMapReadyCall
                 SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("userId", studyCreateRespDto.getId());
-                editor.putString("studyName",studyCreateRespDto.getStudyName());
-                editor.putString("studyInterest",studyCreateRespDto.getStudyInterest());
-                editor.putInt("studyFrequency",studyCreateRespDto.getStudyFrequency());
-                editor.putInt("studyMemNum",studyCreateRespDto.getStudyMemNum());
-                editor.putString("studyDescription",studyCreateRespDto.getStudyDescription());
-                editor.putFloat("studyLongitude",studyCreateRespDto.getStudyLongitude().floatValue());//float로 변환. (editor에서 double안됨)
-                editor.putFloat("studyLatitude",studyCreateRespDto.getStudyLatitude().floatValue());
+                editor.putString("studyName",studyCreateRespDto.getTitle());
+                editor.putString("studyInterest",studyCreateRespDto.getInterest());
+                editor.putInt("studyFrequency",studyCreateRespDto.getCount());
+                editor.putInt("studyMemNum",studyCreateRespDto.getLimit());
+                editor.putString("studyDescription",studyCreateRespDto.getDescription());
+                editor.putFloat("studyLongitude",studyCreateRespDto.getLongitude().floatValue());//float로 변환. (editor에서 double안됨)
+                editor.putFloat("studyLatitude",studyCreateRespDto.getLatitude().floatValue());
                 editor.commit();
             }
             @Override
