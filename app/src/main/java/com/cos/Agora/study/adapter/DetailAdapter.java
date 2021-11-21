@@ -1,97 +1,99 @@
-//package com.cos.Agora.study.adapter;
-//
-//import android.content.Context;
-//import android.content.Intent;
-//import android.util.Log;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.LinearLayout;
-//import android.widget.TextView;
-//
-//import androidx.annotation.NonNull;
-//import androidx.recyclerview.widget.RecyclerView;
-//
-//import com.cos.Agora.R;
-////import com.cos.daangnapp.home.detail.DetailActivity;
-//import com.cos.Agora.study.DetailActivity;
-//import com.cos.Agora.study.model.StudyListRespDto;
-//
-//import java.text.SimpleDateFormat;
-//import java.util.List;
-//
-//public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHolder>{
-//
-//    private static final String TAG = "DetailAdapter";
-//    private List<StudyListRespDto> mItemsList;
-//    private Context mContext;
+package com.cos.Agora.study.adapter;
+
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.cos.Agora.R;
+//import com.cos.daangnapp.home.detail.DetailActivity;
+import com.cos.Agora.study.DetailActivity;
+import com.cos.Agora.study.model.DetailRespDto;
+import com.cos.Agora.study.model.StudyListRespDto;
+
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHolder>{
+
+    private static final String TAG = "DetailAdapter";
+    private List<DetailRespDto> mUserList;
+    private Context dContext;
+    private long userId;
 //    private static double latitude; // 사용자 위도
 //    private static double longitude;
-//
-//    public DetailAdapter(List<StudyListRespDto> mItemsList, Context mContext, double latitude, double longitude) {
-//        this.mItemsList = mItemsList;
-////        this.mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        this.mContext = mContext;
-//
-//        this.latitude = latitude;
-//        this.longitude = longitude;
-//    }
-//
-//    @NonNull
-//    @Override
-//    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        Log.d(TAG, "onCreateViewHolder: ");
-//        LayoutInflater inflater =(LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);   // main엑티비티에 연결할 객체를 생성해주는 인플레이터
-//        View view = inflater.inflate(R.layout.study_item,parent,false);
-//        return new MyViewHolder(view);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-//        holder.setItem(mItemsList.get(position));
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return mItemsList.size();
-//    }
-//    public static class MyViewHolder extends RecyclerView.ViewHolder{
-//
-//        //private ImageView photo;
+
+    public DetailAdapter(List<DetailRespDto> mUserList, Context mContext, long userId) {
+        this.mUserList = mUserList;
+//        this.mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.dContext = dContext;
+        this.userId = userId;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d(TAG, "onCreateViewHolder: ");
+        LayoutInflater inflater =(LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);   // main엑티비티에 연결할 객체를 생성해주는 인플레이터
+        View view = inflater.inflate(R.layout.detail_member_item,parent,false);
+        return new MyViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        holder.setItem(mUserList.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return mUserList.size();
+    }
+
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+
+        //private ImageView photo;
 //        private TextView interest,title,distance,createDate,limit,current;
-//        private LinearLayout studyItem;
-//        public MyViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//
-//            interest =itemView.findViewById(R.id.study_interest);
-//            title =itemView.findViewById(R.id.study_title);
-//            distance =itemView.findViewById(R.id.study_distance);
+        private TextView nickname, role, manner, association;
+        private LinearLayout userProfile;
+        public MyViewHolder(@NonNull View detailView) {
+            super(detailView);
+
+            nickname =detailView.findViewById(R.id.detail_nickname);
+            role =detailView.findViewById(R.id.detail_role);
+            manner =detailView.findViewById(R.id.detail_manner);
+            association =detailView.findViewById(R.id.detail_association);
+            userProfile = detailView.findViewById(R.id.layout_userprofile);
+
 //            createDate = itemView.findViewById(R.id.study_create_date);
 //            limit = itemView.findViewById(R.id.study_limit);
 //            current = itemView.findViewById(R.id.study_current);
 //            studyItem= itemView.findViewById(R.id.study_item);
-//
-//        }
-//
-////        public void setItem(StudyListRespDto studyRespDto){
-////            try {
-////                interest.setText(studyRespDto.getInterest());
-////                title.setText(studyRespDto.getTitle());
-////                distance.setText((int) studyRespDto.getDistance());
-////
-////                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-////
-////                createDate.setText(format.format(studyRespDto.getCreateDate())+"");
-////                limit.setText(studyRespDto.getLimit()+"");
-////                current.setText(studyRespDto.getCurrent()+"");
-////                studyItem.setOnClickListener(v -> {
-////                    Intent intent = new Intent(v.getContext(), DetailActivity.class);
-////                    intent.putExtra("studyId", studyRespDto.getId());
-////                    v.getContext().startActivity(intent);
-////                });
-////            } catch (Exception e) {
-////                Log.d(TAG, "null");
-////            }
-////        }
-//    }
-//}
+        }
+
+        public void setItem(DetailRespDto detailRespDto){
+            try {
+                nickname.setText(detailRespDto.getNickname());
+                role.setText(detailRespDto.getRole());
+                manner.setText((int)detailRespDto.getManner());
+                association.setText(detailRespDto.getAssociation());
+
+                // 사용자 클릭했을 때 뜨는 인텐트 -> 일단은 다시 detail 액티비티로 오도록 함
+//                userProfile.setOnClickListener(v -> {
+//                    Intent intent = new Intent(v.getContext(), DetailActivity.class);
+//                    intent.putExtra("userId", detailRespDto.getUserId());
+//                    v.getContext().startActivity(intent);
+//                });
+            } catch (Exception e) {
+                Log.d(TAG, "null");
+            }
+        }
+    }
+}
