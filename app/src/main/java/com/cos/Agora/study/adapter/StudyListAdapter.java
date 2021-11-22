@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.Agora.R;
-//import com.cos.daangnapp.home.detail.DetailActivity;
 import com.cos.Agora.study.DetailActivity;
 import com.cos.Agora.study.model.StudyListRespDto;
 
@@ -55,6 +54,8 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
     public int getItemCount() {
         return mItemsList.size();
     }
+
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         //private ImageView photo;
@@ -73,29 +74,29 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
 
         }
 
-        public void setItem(StudyListRespDto studyRespDto){
+        public void setItem(StudyListRespDto studyListRespDto){
             try {
-                interest.setText(studyRespDto.getInterest());
-                title.setText(studyRespDto.getTitle());
+                interest.setText(studyListRespDto.getInterest());
+                title.setText(studyListRespDto.getTitle());
 
-                distance.setText(new Double((studyRespDto.getDistance()*100/100.0)/1000).toString());
+                distance.setText(new Double((studyListRespDto.getDistance()*100/100.0)/1000).toString());
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-                createDate.setText(format.format(studyRespDto.getCreateDate())+"");
-                limit.setText(studyRespDto.getLimit()+"");
-                current.setText(studyRespDto.getCurrent()+"");
+                createDate.setText(format.format(studyListRespDto.getCreateDate())+"");
+                limit.setText(studyListRespDto.getLimit()+"");
+                current.setText(studyListRespDto.getCurrent()+"");
                 studyItem.setOnClickListener(v -> {
                     Intent intent = new Intent(v.getContext(), DetailActivity.class);
-                    intent.putExtra("studyId", studyRespDto.getId());
+                    intent.putExtra("studyId", studyListRespDto.getId());
                     // 이 밑의 코드부터는 추가된 코드로써 클릭했을 때의 스터디의 데이터를 전달하는 역할을 한다.
-                    intent.putExtra("studyTitle", studyRespDto.getTitle());
-                    intent.putExtra("studyInterest", studyRespDto.getInterest());
-                    intent.putExtra("studyCreateDate", studyRespDto.getCreateDate()); // Date로 보냈음
-                    intent.putExtra("studyLimit", studyRespDto.getLimit());
-                    intent.putExtra("studyCurrent", studyRespDto.getCurrent());
-                    intent.putExtra("studyDistance", studyRespDto.getDistance());
-                    // 여기까지가 추갸된 코드
+                    intent.putExtra("studyTitle", studyListRespDto.getTitle());
+                    intent.putExtra("studyInterest", studyListRespDto.getInterest());
+                    intent.putExtra("studyCreateDate", studyListRespDto.getCreateDate()); // Date로 보냈음
+                    intent.putExtra("studyLimit", studyListRespDto.getLimit());
+                    intent.putExtra("studyCurrent", studyListRespDto.getCurrent());
+                    intent.putExtra("studyDistance", studyListRespDto.getDistance());
+                    // 여기까지가 추가된 코드
 
                     v.getContext().startActivity(intent);
                 });

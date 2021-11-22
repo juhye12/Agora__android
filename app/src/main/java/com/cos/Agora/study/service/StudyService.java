@@ -34,15 +34,15 @@ public interface StudyService {
     @POST("study/create")
     Call<CMRespDto<StudyCreateRespDto>> createStudy(@Body StudyCreateReqDto studyCreateReqDto);
 
+    @DELETE("study/list/{studyId}")
+    Call <CMRespDto<List<StudyListRespDto>>> removePost(@Path("studyId") int studyId);
 
-    @GET("study/detail")
-    Call<CMRespDto<List<StudyListRespDto>>> getStudyDetail(@Query("id") int id);
-
-    @DELETE("study/detail/{id}")
-    Call <CMRespDto<List<StudyListRespDto>>> removePost(@Path("id")int id);
+    @GET("study/detail/{studyId}")
+    Call<CMRespDto<List<DetailRespDto>>> getStudyDetail(@Path("studyId") int studyId);
 
 //    @GET("study/detail/{Id}")
 //    Call<CMRespDto<List<DetailRespDto>>> getStudyDetail(@Path("id") int id);
 
+    // 서버로 보낼 때 스터디 id를 보내줌으로써 해당 스터디 안에 있는 userId들과 나머지 정보들을 다시 받는 형식이 나으려나
 
 }

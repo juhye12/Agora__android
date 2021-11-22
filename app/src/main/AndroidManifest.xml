@@ -47,6 +47,8 @@
         <activity android:name=".login.JoinActivity" />
         <activity android:name=".study.StudyListActivity" />
         <activity android:name=".study.StudyCreateActivity" />
+        <activity android:name=".study.StudyApplicationActivity"
+            android:parentActivityName=".study.StudyListActivity"/>
         <activity android:name=".calendar.CalendarActivity"
             android:parentActivityName=".study.StudyListActivity"/>
         <activity android:name=".study.DetailActivity"
