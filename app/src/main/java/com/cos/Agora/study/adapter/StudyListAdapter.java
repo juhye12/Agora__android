@@ -72,11 +72,13 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
             studyItem= itemView.findViewById(R.id.study_item);
 
         }
+
         public void setItem(StudyListRespDto studyRespDto){
             try {
                 interest.setText(studyRespDto.getInterest());
                 title.setText(studyRespDto.getTitle());
-                distance.setText((int) studyRespDto.getDistance());
+
+                distance.setText(new Double((studyRespDto.getDistance()*100/100.0)/1000).toString());
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -86,6 +88,15 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
                 studyItem.setOnClickListener(v -> {
                     Intent intent = new Intent(v.getContext(), DetailActivity.class);
                     intent.putExtra("studyId", studyRespDto.getId());
+                    // 이 밑의 코드부터는 추가된 코드로써 클릭했을 때의 스터디의 데이터를 전달하는 역할을 한다.
+                    intent.putExtra("studyTitle", studyRespDto.getTitle());
+                    intent.putExtra("studyInterest", studyRespDto.getInterest());
+                    intent.putExtra("studyCreateDate", studyRespDto.getCreateDate());
+                    intent.putExtra("studyLimit", studyRespDto.getLimit());
+                    intent.putExtra("studyCurrent", studyRespDto.getCurrent());
+                    intent.putExtra("studyDistance", studyRespDto.getDistance());
+                    // 여기까지가 추갸된 코드
+
                     v.getContext().startActivity(intent);
                 });
             } catch (Exception e) {

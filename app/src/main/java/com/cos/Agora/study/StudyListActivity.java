@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
+import com.cos.Agora.calendar.CalendarActivity;
 import com.cos.Agora.global.User;
 import com.cos.Agora.main.MainActivity;
 import com.cos.Agora.study.adapter.StudyListAdapter;
@@ -32,7 +33,7 @@ import retrofit2.Response;
 
 public class StudyListActivity extends AppCompatActivity {
     private static final String TAG = "StudyList";
-    private  MainActivity activity;
+    private MainActivity activity;
     private RecyclerView studyList;
     private StudyListAdapter studylistAdapter;
     private Spinner spinner_interest;
@@ -41,7 +42,7 @@ public class StudyListActivity extends AppCompatActivity {
     private String lineup;          // 정렬방법
     private String phoneNumber;     // 사용자 핸드폰
     private ArrayList<StudyListRespDto> studyRespDtos = new ArrayList<>();
-    private retrofitURL retrofitURL;
+    private Button StudyCalendar; // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
 
     private static double Ulatitude;
     private static double Ulongitude;
@@ -113,9 +114,17 @@ public class StudyListActivity extends AppCompatActivity {
         });
 
 
+        // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
+        StudyCalendar.setOnClickListener(v -> {
+            Intent intent = new Intent(StudyListActivity.this, CalendarActivity.class);
+            startActivity(intent);     // intent 타입을 넣어야함  !!
+        });
+
     }
+
     public void init() {
         CreateStudyBtn = findViewById(R.id.btn_study_create);
+        StudyCalendar = findViewById(R.id.btn_study_calendar); // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
         //이전 Activity에서 phoneNumber값 받아오기. 정렬에서 거리 계산을 위해 현재 사용자가 어떤 사용자인지 알아야해서!
         Intent intent = getIntent();
 //        phoneNumber = intent.getStringExtra("phoneNumber");
@@ -125,10 +134,11 @@ public class StudyListActivity extends AppCompatActivity {
     }
 
     public void getStudyList(String phoneNumber,String interest, String lineup){
-        Call<CMRespDto<List<StudyListRespDto>>> call = studyListService.getStudyList(phoneNumber,interest,lineup);
-
         Ulatitude = ((User)getApplication()).getLatitude();  // 사용자 위도
         Ulongitude = ((User)getApplication()).getLongitude();// 사용자 경도
+
+//        Call<CMRespDto<List<StudyListRespDto>>> call = studyListService.getStudyList(phoneNumber,interest,lineup);
+        Call<CMRespDto<List<StudyListRespDto>>> call = studyListService.getStudyList(Ulatitude,Ulongitude,interest,lineup);
 
         call.enqueue(new Callback<CMRespDto<List<StudyListRespDto>>>() {
             @Override
