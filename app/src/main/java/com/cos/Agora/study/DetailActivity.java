@@ -32,9 +32,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
+import com.cos.Agora.calendar.CalendarActivity;
 import com.cos.Agora.global.User;
 import com.cos.Agora.main.MainActivity;
 import com.cos.Agora.study.adapter.StudyListAdapter;
+import com.cos.Agora.study.adapter.DetailAdapter;
 import com.cos.Agora.study.model.DetailRespDto;
 import com.cos.Agora.study.model.StudyListRespDto;
 import com.cos.Agora.retrofitURL;
@@ -59,6 +61,8 @@ public class DetailActivity extends AppCompatActivity {
     //private ViewPagerAdapter viewPagerAdapter;
     //private GridViewAdapter gridViewadapter;
     private ArrayList<String> mImageList;
+    private RecyclerView studyDetail;
+    private DetailAdapter detailAdapter;
     private int postId;
     private ImageButton mBack;
     private MainActivity activity;
@@ -68,14 +72,16 @@ public class DetailActivity extends AppCompatActivity {
     //private ImageView profile;
     private TextView tvTitle, tvCategori, tvDescrip;
     private TextView tvCurrent, tvLimit, tvCreateDate;
-    private ImageView ivCalendar, ivNotification, ivPlace;
+    private ImageButton ivCalendar, ivNotification, ivPlace;
     private RecyclerView rvStudyDetail;
+    private long Id;
     private ArrayList<StudyListRespDto> studyRespDtos = new ArrayList<>();
 
     //private TextView tvNickName,tvAddress,tvTitle,tvTime,tvContent,tvCategori,tvFavorite,tvViewCount,tvAnotherNick,tvPrice;
     private retrofitURL retrofitURL;
     private StudyService studyListService= retrofitURL.retrofit.create(StudyService .class);
-    private StudyService detailService = retrofitURL.retrofit.create(StudyService.class);
+//    private StudyService detailService = retrofitURL.retrofit.create(StudyService.class);
+
     //private DetailService detailService= retrofitURL.retrofit.create(DetailService .class);
     // 프로필 부분 필요 없을 것 같아서 주석 처리함
     //private ProfileService profileService= retrofitURL.retrofit.create(ProfileService .class);
@@ -109,16 +115,41 @@ public class DetailActivity extends AppCompatActivity {
         tvCreateDate = findViewById(R.id.detail_createDate);
 
         btn_study_join = findViewById(R.id.btn_study_join); // 가입신청
+
+//        ImageButton ib = (ImageButton)findViewById(R.id.ib);
+
         ivCalendar = findViewById(R.id.iv_calendar); // 일정관리 -> 근데 해당 스터디 안의 일정을 알기가 과정이 쉽지 않을듯
         ivNotification = findViewById(R.id.iv_notification); // 공지
         ivPlace = findViewById(R.id.iv_place); // 장소
+
         tvDescrip = findViewById(R.id.detail_description); // 상세정보
+
         rvStudyDetail = findViewById(R.id.rv_study_detail); // 사용자 리사이클러 뷰
         tvCurrent = findViewById(R.id.detail_current);
         tvLimit = findViewById(R.id.detail_limit);
 
         mBack = findViewById(R.id.product_information_iv_back);
 
+        // 가입 신청 버튼을 눌렀을 때 가입 신청 레이아웃으로 넘어간다.
+
+        btn_study_join.setOnClickListener(v -> {
+            Intent intent1 = new Intent(DetailActivity.this, StudyApplicationActivity.class);
+            startActivity(intent1);
+        });
+
+
+        // 일정 관리 이미지 버튼을 눌렀을 때 일정 관리 레이아웃으로 넘어간다.
+
+        ivCalendar.setOnClickListener(v -> {
+            Intent intent2 = new Intent(DetailActivity.this, CalendarActivity.class);
+            startActivity(intent2);
+        });
+
+
+
+        // 게시물을 클릭했을 때 해당 스터디 아이디를 서버로 보내서 그곳에 속해있는 유저 아이디 및 다른 정보들을
+        // 가져오게 해야 하는데 이게 맞나
+        getStudyDetail(Id);
 
         //profile = findViewById(R.id.detail_iv_profile);
         //tvNickName = findViewById(R.id.detail_nickname);
@@ -144,21 +175,22 @@ public class DetailActivity extends AppCompatActivity {
     public void initSetting(){
 
         Intent intent = getIntent();
+        long Id = intent.getLongExtra("studyId", 1); // id를 받아야 한다.
         String Title = intent.getStringExtra("studyTitle");
         String Category = intent.getStringExtra("studyInterest");
-        String CreateDate = intent.getStringExtra("studyCreateDate");
-        String Current = intent.getStringExtra("studyCurrent");
-        String Limit = intent.getStringExtra("studyLimit");
+//        Date CreateDate = intent.getStringExtra("studyCreateDate");
+        int Current = intent.getIntExtra("studyCurrent", 1);
+        int Limit = intent.getIntExtra("studyLimit", 1);
 
         tvTitle.setText(Title);
         tvCategori.setText(Category);
-//        tvCreateDate.setText(CreateDate);
-        tvCurrent.setText(Current);
-        tvLimit.setText(Limit);
+        tvCreateDate.setText(intent.getStringExtra("studyCreateDate"));
+        tvCurrent.setText(String.valueOf(Current));
+        tvLimit.setText(String.valueOf(Limit));
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-        tvCreateDate.setText(format.format(CreateDate+""));
+        // 이미 StudyListAdapter에서 받아왔기 형을 바꿨기 때문에 또 바꾸면 안된다.
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        tvCreateDate.setText(format.format(CreateDate+""));
 
 //        postId = intent.getIntExtra("postId", 1);
 //        getStudyDetail(postId);
@@ -175,6 +207,7 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    // 뒤로 가기 행동할 때의 함수
     public void productInformationOnClick(View view) {
         switch (view.getId()) {
             case R.id.product_information_iv_back:
@@ -183,6 +216,33 @@ public class DetailActivity extends AppCompatActivity {
             default:
                 break;
         }
+    }
+
+
+    public void getStudyDetail(long Id){
+        Call<CMRespDto<List<DetailRespDto>>> call = studyListService.getStudyDetail(Id);
+
+//        Ulatitude = ((User)getApplication()).getLatitude();  // 사용자 위도
+//        Ulongitude = ((User)getApplication()).getLongitude();// 사용자 경도
+
+        call.enqueue(new Callback<CMRespDto<List<DetailRespDto>>>() {
+            @Override
+            public void onResponse(Call<CMRespDto<List<DetailRespDto>>> call, Response<CMRespDto<List<DetailRespDto>>> response) {
+                try {
+                    CMRespDto<List<DetailRespDto>> cmRespDto = response.body();
+                    List<DetailRespDto> details = cmRespDto.getData();
+                    Log.d(TAG, "details: " + details);
+                    detailAdapter = new DetailAdapter(details, activity, Id);
+                    studyDetail.setAdapter(detailAdapter);
+                } catch (Exception e) {
+                    Log.d(TAG, "null");
+                }
+            }
+            @Override
+            public void onFailure(Call<CMRespDto<List<DetailRespDto>>> call, Throwable t) {
+                Log.d(TAG, "onFailure: 스터디 그룹원 정보 보기 실패 !!");
+            }
+        });
     }
 
 // 11.21 주석처리 함 : getStudyDetail -> 필요없을 것 같아서
@@ -363,9 +423,10 @@ public class DetailActivity extends AppCompatActivity {
 //    }
 
 
+
     // menu
-    public void removePost(int id){
-        Call<CMRespDto<List<StudyListRespDto>>> call = studyListService.removePost(id);
+    public void removePost(long Id){
+        Call<CMRespDto<List<StudyListRespDto>>> call = studyListService.removePost(Id);
         call.enqueue(new Callback<CMRespDto<List<StudyListRespDto>>>() {
             @Override
             public void onResponse(Call<CMRespDto<List<StudyListRespDto>>> call, Response<CMRespDto<List<StudyListRespDto>>> response) {
