@@ -49,7 +49,6 @@ public class StudyListActivity extends AppCompatActivity {
 
     private StudyService studyListService= retrofitURL.retrofit.create(StudyService.class);
     private Button CreateStudyBtn;
-    private Button StudyCalendar; // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
 
     String[] interestList = {"전체","어학","프로그래밍","게임","취직","주식","운동","와인","여행"};
     String[] lineupList = {"최신순","거리순","추천순"};
@@ -117,16 +116,12 @@ public class StudyListActivity extends AppCompatActivity {
         getStudyList(phoneNumber, interest, lineup);
 
 
-        // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
-        StudyCalendar.setOnClickListener(v -> {
-            Intent intent = new Intent(StudyListActivity.this, CalendarActivity.class);
-            startActivity(intent);     // intent 타입을 넣어야함  !!
-        });
-
+//        // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
+//        StudyCalendar.setOnClickListener(v -> {
+//            Intent intent = new Intent(StudyListActivity.this, CalendarActivity.class);
+//            startActivity(intent);     // intent 타입을 넣어야함  !!
+//        });
     }
-
-
-
 
     public void init() {
         CreateStudyBtn = findViewById(R.id.btn_study_create);
@@ -137,7 +132,6 @@ public class StudyListActivity extends AppCompatActivity {
 //        locationReqDto = intent.getParcelableExtra("location");
 
         phoneNumber = ((User)getApplication()).getPhoneNumber();
-        StudyCalendar = findViewById(R.id.btn_study_calendar); // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
     }
 
     public void getStudyList(String phoneNumber,String interest, String lineup){

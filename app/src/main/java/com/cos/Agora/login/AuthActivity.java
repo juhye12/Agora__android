@@ -140,7 +140,6 @@ public class AuthActivity extends AppCompatActivity {
         return numStr;
     }
 
-
     public void AuthCodeSearch(String phoneNumber){
         Call<CMRespDto<AuthRespDto>> call = authService.authCodeSearch(phoneNumber);
         call.enqueue(new Callback<CMRespDto<AuthRespDto>>() {
