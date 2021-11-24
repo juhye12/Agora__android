@@ -1,7 +1,6 @@
 package com.cos.Agora.study.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.Agora.R;
-//import com.cos.daangnapp.home.detail.DetailActivity;
-import com.cos.Agora.study.DetailActivity;
 import com.cos.Agora.study.model.DetailRespDto;
-import com.cos.Agora.study.model.StudyListRespDto;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHolder>{
@@ -27,14 +22,12 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHold
     private List<DetailRespDto> mUserList;
     private Context dContext;
     private long userId;
-//    private static double latitude; // 사용자 위도
-//    private static double longitude;
 
-    public DetailAdapter(List<DetailRespDto> mUserList, Context mContext, long userId) {
+    public DetailAdapter(List<DetailRespDto> mUserList, Context dContext) {
         this.mUserList = mUserList;
 //        this.mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.dContext = dContext;
-        this.userId = userId;
+//        this.userId = userId;
     }
 
     @NonNull
@@ -59,8 +52,6 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        //private ImageView photo;
-//        private TextView interest,title,distance,createDate,limit,current;
         private TextView nickname, role, manner, association;
         private LinearLayout userProfile;
         public MyViewHolder(@NonNull View detailView) {
@@ -80,9 +71,9 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHold
 
         public void setItem(DetailRespDto detailRespDto){
             try {
-                nickname.setText(detailRespDto.getNickname());
-                role.setText(detailRespDto.getRole());
-                manner.setText((int)detailRespDto.getManner());
+                nickname.setText(detailRespDto.getNickName());
+                role.setText(detailRespDto.getRole()+"");
+                manner.setText(detailRespDto.getManner()+"");
                 association.setText(detailRespDto.getAssociation());
 
                 // 사용자 클릭했을 때 뜨는 인텐트 -> 일단은 다시 detail 액티비티로 오도록 함

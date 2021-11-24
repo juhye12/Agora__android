@@ -44,13 +44,11 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"/>
 
         <Button
-            android:id="@+id/btn_study_calendar"
             android:layout_width="110dp"
             android:layout_height="30dp"
             android:background="@drawable/button_background"

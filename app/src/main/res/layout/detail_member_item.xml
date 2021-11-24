@@ -59,12 +59,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <ImageView
+        <TextView
             android:id="@+id/detail_manner"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:src="@drawable/icon_ionic_md_bulb_1" />
+            android:layout_gravity="center" />
+
     </LinearLayout>
 
 </LinearLayout>

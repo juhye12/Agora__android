@@ -116,12 +116,11 @@ public class StudyListActivity extends AppCompatActivity {
         getStudyList(phoneNumber, interest, lineup);
 
 
-        // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
-        StudyCalendar.setOnClickListener(v -> {
-            Intent intent = new Intent(StudyListActivity.this, CalendarActivity.class);
-            startActivity(intent);     // intent 타입을 넣어야함  !!
-        });
-
+//        // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
+//        StudyCalendar.setOnClickListener(v -> {
+//            Intent intent = new Intent(StudyListActivity.this, CalendarActivity.class);
+//            startActivity(intent);     // intent 타입을 넣어야함  !!
+//        });
     }
 
     public void init() {
