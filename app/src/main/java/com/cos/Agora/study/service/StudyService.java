@@ -34,11 +34,11 @@ public interface StudyService {
     @POST("study/create")
     Call<CMRespDto<StudyCreateRespDto>> createStudy(@Body StudyCreateReqDto studyCreateReqDto);
 
+    @GET("study/detail/")
+    Call<CMRespDto<List<DetailRespDto>>> getStudyDetail(@Query("studyId") int studyId);
+
     @DELETE("study/list/{studyId}")
     Call <CMRespDto<List<StudyListRespDto>>> removePost(@Path("studyId") int studyId);
-
-    @GET("study/detail/{studyId}")
-    Call<CMRespDto<List<DetailRespDto>>> getStudyDetail(@Path("studyId") int studyId);
 
 //    @GET("study/detail/{Id}")
 //    Call<CMRespDto<List<DetailRespDto>>> getStudyDetail(@Path("id") int id);
