@@ -1,4 +1,4 @@
-package com.cos.Agora.study;
+package com.cos.Agora.study.studyevaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,9 +18,9 @@ import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
 import com.cos.Agora.global.User;
 import com.cos.Agora.main.MainActivity;
+import com.cos.Agora.retrofitURL;
 import com.cos.Agora.study.adapter.StudyListAdapter;
 import com.cos.Agora.study.model.StudyListRespDto;
-import com.cos.Agora.retrofitURL;
 import com.cos.Agora.study.service.StudyService;
 import com.cos.Agora.study.studycreate.StudyCreateActivity;
 
@@ -31,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StudyListActivity extends AppCompatActivity {
+public class MoodEvaluateActivity extends AppCompatActivity {
     private static final String TAG = "StudyList";
     private MainActivity activity;
     private RecyclerView studyList;
@@ -108,7 +108,7 @@ public class StudyListActivity extends AppCompatActivity {
 
         //스터디 생성 버튼 클릭 시
         CreateStudyBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(StudyListActivity.this, StudyCreateActivity.class);
+            Intent intent = new Intent(MoodEvaluateActivity.this, StudyCreateActivity.class);
             startActivity(intent);     // intent 타입을 넣어야함  !!
             //StudyListActivity.this.finish(); //생성하고 돌아왔을때도 스터디 목록은 그대로여야하니까 finish하면 안됨
         });

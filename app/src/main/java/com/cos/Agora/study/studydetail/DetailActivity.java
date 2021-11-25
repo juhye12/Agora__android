@@ -1,4 +1,4 @@
-package com.cos.Agora.study;
+package com.cos.Agora.study.studydetail;
 
 
 import android.content.Context;
@@ -20,6 +20,7 @@ import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
 import com.cos.Agora.main.MainActivity;
 import com.cos.Agora.calendar.CalendarActivity;
+import com.cos.Agora.study.StudyApplicationActivity;
 import com.cos.Agora.study.adapter.DetailAdapter;
 import com.cos.Agora.study.model.DetailRespDto;
 import com.cos.Agora.study.model.StudyListRespDto;

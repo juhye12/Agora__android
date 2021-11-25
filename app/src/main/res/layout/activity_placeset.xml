@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".study.PlaceSetActivity" >
+    tools:context=".study.studycreate.PlaceSetActivity" >
 
     <fragment
         android:id="@+id/map"

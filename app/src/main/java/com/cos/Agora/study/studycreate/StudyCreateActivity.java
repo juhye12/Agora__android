@@ -1,4 +1,4 @@
-package com.cos.Agora.study;
+package com.cos.Agora.study.studycreate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cos.Agora.R;
+import com.cos.Agora.study.StudyListActivity;
 
 public class StudyCreateActivity extends AppCompatActivity {
 

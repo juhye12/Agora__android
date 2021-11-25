@@ -37,7 +37,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAlcUuRra38jxbOGb8y_5OQuyODmGbZHHo" />
 
-        <activity android:name=".study.PlaceSetActivity" />
+        <activity android:name=".study.studycreate.PlaceSetActivity" />
         <activity android:name=".login.AuthActivity" />
         <activity android:name=".login.NicknameActivity" />
         <activity android:name=".login.LoginActivity" />
@@ -46,12 +46,12 @@
         <activity android:name=".main.MainActivity" />
         <activity android:name=".login.JoinActivity" />
         <activity android:name=".study.StudyListActivity" />
-        <activity android:name=".study.StudyCreateActivity" />
+        <activity android:name=".study.studycreate.StudyCreateActivity" />
         <activity android:name=".study.StudyApplicationActivity"
             android:parentActivityName=".study.StudyListActivity"/>
         <activity android:name=".calendar.CalendarActivity"
             android:parentActivityName=".study.StudyListActivity"/>
-        <activity android:name=".study.DetailActivity"
+        <activity android:name=".study.studydetail.DetailActivity"
             android:parentActivityName=".study.StudyListActivity"/>
         />
 

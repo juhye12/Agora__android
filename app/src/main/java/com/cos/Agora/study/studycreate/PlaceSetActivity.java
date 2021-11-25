@@ -1,4 +1,4 @@
-package com.cos.Agora.study;
+package com.cos.Agora.study.studycreate;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
 import com.cos.Agora.global.User;
+import com.cos.Agora.study.StudyListActivity;
 import com.cos.Agora.study.model.StudyCreateReqDto;
 import com.cos.Agora.study.model.StudyCreateRespDto;
 import com.cos.Agora.study.service.StudyService;

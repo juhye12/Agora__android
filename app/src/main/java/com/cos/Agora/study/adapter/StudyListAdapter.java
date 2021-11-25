@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.Agora.R;
-import com.cos.Agora.study.DetailActivity;
+import com.cos.Agora.study.studydetail.DetailActivity;
 import com.cos.Agora.study.model.StudyListRespDto;
 
 import java.text.SimpleDateFormat;

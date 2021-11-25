@@ -69,6 +69,9 @@ public class NicknameActivity extends AppCompatActivity {
                 UserSaveReqDto userSaveReqDto = new UserSaveReqDto(phoneNumber.getText().toString(),etNickName.getText().toString());
                 CMRespDto<UserRespDto> cmRespDto = response.body();
                 UserRespDto userRespDto = cmRespDto.getData();
+
+                ((User)getApplication()).setUserId(userRespDto.getId());//global변수로 쓸 userID에 userId 저장
+
                 if(userRespDto == null){ // DB안에 nickname이 없으면 회원가입
                     save(userSaveReqDto);
 
