@@ -48,7 +48,7 @@ public class NicknameActivity extends AppCompatActivity {
         etNickName= findViewById(R.id.nickname_et_nickname);
         btnStart = findViewById(R.id.nickname_btn_start);
 
-        Intent intent = getIntent();
+//        Intent intent = getIntent();
 
 //        latitude = intent.getDoubleExtra("latitude",0);
 //        longitude = intent.getDoubleExtra("longitude",0);

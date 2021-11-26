@@ -31,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EvaluationListActivity extends AppCompatActivity {
+public class MannerEvalActivity extends AppCompatActivity {
     private static final String TAG = "StudyList";
     private MainActivity activity;
     private RecyclerView studyList;
@@ -108,7 +108,7 @@ public class EvaluationListActivity extends AppCompatActivity {
 
         //스터디 생성 버튼 클릭 시
         CreateStudyBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(EvaluationListActivity.this, StudyCreateActivity.class);
+            Intent intent = new Intent(MannerEvalActivity.this, StudyCreateActivity.class);
             startActivity(intent);     // intent 타입을 넣어야함  !!
             //StudyListActivity.this.finish(); //생성하고 돌아왔을때도 스터디 목록은 그대로여야하니까 finish하면 안됨
         });

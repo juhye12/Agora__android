@@ -43,7 +43,6 @@ public class DetailActivity extends AppCompatActivity {
     private ArrayList<String> mImageList;
     private RecyclerView studyDetail;
     private DetailAdapter detailAdapter;
-    private int postId;
     private ImageButton mBack;
     private TextView tvTitle, tvCategori, tvDescrip;
     private TextView tvCurrent, tvLimit, tvCreateDate;

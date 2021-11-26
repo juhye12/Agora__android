@@ -42,7 +42,6 @@ public class StudyListActivity extends AppCompatActivity {
     private String lineup;          // 정렬방법
     private String phoneNumber;     // 사용자 핸드폰
     private ArrayList<StudyListRespDto> studyRespDtos = new ArrayList<>();
-    private Button StudyCalendar; // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
 
     private static double Ulatitude;
     private static double Ulongitude;
@@ -125,9 +124,9 @@ public class StudyListActivity extends AppCompatActivity {
 
     public void init() {
         CreateStudyBtn = findViewById(R.id.btn_study_create);
-        StudyCalendar = findViewById(R.id.btn_study_calendar); // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
+
         //이전 Activity에서 phoneNumber값 받아오기. 정렬에서 거리 계산을 위해 현재 사용자가 어떤 사용자인지 알아야해서!
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
 //        phoneNumber = intent.getStringExtra("phoneNumber");
 //        locationReqDto = intent.getParcelableExtra("location");
 
