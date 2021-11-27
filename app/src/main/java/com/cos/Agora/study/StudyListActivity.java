@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
@@ -19,10 +20,14 @@ import com.cos.Agora.R;
 import com.cos.Agora.global.User;
 import com.cos.Agora.main.MainActivity;
 import com.cos.Agora.study.adapter.StudyListAdapter;
+import com.cos.Agora.study.alarm.AlarmActivity;
 import com.cos.Agora.study.model.StudyListRespDto;
 import com.cos.Agora.retrofitURL;
+import com.cos.Agora.study.profile.ProfileActivity;
 import com.cos.Agora.study.service.StudyService;
 import com.cos.Agora.study.studycreate.StudyCreateActivity;
+import com.cos.Agora.study.studydetail.DetailActivity;
+import com.cos.Agora.study.studyevaluate.EvalListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +43,7 @@ public class StudyListActivity extends AppCompatActivity {
     private StudyListAdapter studylistAdapter;
     private Spinner spinner_interest;
     private Spinner spinner_lineup;
+    private ImageButton ibstudylist, ibalarm, ibmystudy, ibassess, ibprofile;
     private String interest;        // 관심분야
     private String lineup;          // 정렬방법
     private String phoneNumber;     // 사용자 핸드폰
@@ -113,17 +119,42 @@ public class StudyListActivity extends AppCompatActivity {
         });
 
         getStudyList(phoneNumber, interest, lineup);
-
-
-//        // 단순 일정 관리 레이아웃 잘 나오는지 확인 11.20
-//        StudyCalendar.setOnClickListener(v -> {
-//            Intent intent = new Intent(StudyListActivity.this, CalendarActivity.class);
-//            startActivity(intent);     // intent 타입을 넣어야함  !!
-//        });
     }
 
     public void init() {
         CreateStudyBtn = findViewById(R.id.btn_study_create);
+
+        ibstudylist = findViewById(R.id.ib_studylist);
+        ibalarm = findViewById(R.id.ib_alarm);
+        ibmystudy = findViewById(R.id.ib_mystudy);
+        ibassess = findViewById(R.id.ib_assess);
+        ibprofile = findViewById(R.id.ib_profile);
+
+        ibstudylist.setOnClickListener(v -> {
+            Intent intent1 = new Intent(StudyListActivity.this, StudyListActivity.class);
+            startActivity(intent1);
+        });
+
+        ibalarm.setOnClickListener(v -> {
+            Intent intent1 = new Intent(StudyListActivity.this, AlarmActivity.class);
+            startActivity(intent1);
+        });
+
+        // 내 스터디 리스트를 보여줄 수 있는 액티비티를 만들어야 한다.
+        ibmystudy.setOnClickListener(v -> {
+            Intent intent1 = new Intent(StudyListActivity.this, AlarmActivity.class);
+            startActivity(intent1);
+        });
+
+        ibassess.setOnClickListener(v -> {
+            Intent intent1 = new Intent(StudyListActivity.this, EvalListActivity.class);
+            startActivity(intent1);
+        });
+
+        ibprofile.setOnClickListener(v -> {
+            Intent intent1 = new Intent(StudyListActivity.this, ProfileActivity.class);
+            startActivity(intent1);
+        });
 
         //이전 Activity에서 phoneNumber값 받아오기. 정렬에서 거리 계산을 위해 현재 사용자가 어떤 사용자인지 알아야해서!
         //Intent intent = getIntent();

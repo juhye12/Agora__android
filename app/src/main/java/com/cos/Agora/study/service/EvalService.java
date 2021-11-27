@@ -21,9 +21,10 @@ public interface EvalService {
     @POST("evaluate/mood")
     Call<CMRespDto<EvalRespDto>> moodEval(@Query("studyId") int studyId, double moodAvgScore );
 
+    // @Query("evaluatorId") int evaluatorId 이 부분은 위의 userId에서 처리되기 때문에 필요없지 않나 생각됩니다!
     @POST("evaluate/manner")
-    Call<CMRespDto<EvalRespDto>> mannerEval(@Query("evaluatorId") int evaluatorId,
-                                            @Query("evaluateeId") int evaluateeId,
+    Call<CMRespDto<EvalRespDto>> mannerEval(@Query("evaluateeId") int evaluateeId,
                                             double mannerAvgScore );
+
 
 }

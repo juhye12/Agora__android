@@ -79,18 +79,30 @@
             android:textSize="20sp"></EditText>
     </LinearLayout>
 
-    <EditText
+    <Spinner
         android:id="@+id/join_interest"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:background="@drawable/border_background"
         android:paddingStart="20dp"
-        android:hint="관심 분야"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:hint="관심분야" />
 
+<!--    <EditText-->
+<!--        android:id="@+id/join_interest"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:background="@drawable/border_background"-->
+<!--        android:paddingStart="20dp"-->
+<!--        android:hint="관심 분야"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold"/>-->
 
     <Button
         android:id="@+id/join_button"
