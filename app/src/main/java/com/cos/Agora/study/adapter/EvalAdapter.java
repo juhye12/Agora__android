@@ -92,6 +92,7 @@ public class EvalAdapter extends RecyclerView.Adapter<EvalAdapter.MyViewHolder>{
                             v.getContext().startActivity(intent);
                         });
                     }
+
                     //manner평가라면
                     else
                     {
@@ -103,7 +104,7 @@ public class EvalAdapter extends RecyclerView.Adapter<EvalAdapter.MyViewHolder>{
                             //MannerEvalActivity로 evaluateeId, title, nickName 넘겨주기
                             intent.putExtra("evaluateeId", evalRespDto.getEvaluateeId());
                             intent.putExtra("title", evalRespDto.getStudyTitle());
-                            intent.putExtra("evaluateeId", evalRespDto.getEvaluateeNickName());
+                            intent.putExtra("evaluateeNickName", evalRespDto.getEvaluateeNickName());
                             v.getContext().startActivity(intent);
                         });
                     }
