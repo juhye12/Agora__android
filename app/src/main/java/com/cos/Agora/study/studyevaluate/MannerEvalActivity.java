@@ -88,7 +88,7 @@ public class MannerEvalActivity extends AppCompatActivity {
 //        interest.setText(interest1);
 
         //스터디 별 평가 점수 보내기 위해 필요
-//        studyId = intent.getIntExtra("studyId",0);
+        studyId = intent.getIntExtra("studyId",0);
 
         // 유저 별 평가 점수 보내기 위해 필요
         evaluateeId = intent.getIntExtra("evaluateeId", 0);
@@ -103,7 +103,7 @@ public class MannerEvalActivity extends AppCompatActivity {
         mannerAvg = calMannerAvg();
         int evaluatorId = ((User)getApplication()).getUserId();
 
-        Call<CMRespDto<EvalRespDto>> call = evalService.mannerEval(evaluateeId, evaluatorId, mannerAvg);
+        Call<CMRespDto<EvalRespDto>> call = evalService.mannerEval(evaluateeId, evaluatorId,studyId, mannerAvg);
         call.enqueue(new Callback<CMRespDto<EvalRespDto>>() {
             @Override
             public void onResponse(Call<CMRespDto<EvalRespDto>> call, Response<CMRespDto<EvalRespDto>> response) {

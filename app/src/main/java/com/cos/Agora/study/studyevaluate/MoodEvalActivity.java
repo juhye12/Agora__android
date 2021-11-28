@@ -96,8 +96,9 @@ public class MoodEvalActivity extends AppCompatActivity {
     public void sendMoodAvg(int studyId){
         double moodAvg;
         moodAvg = calMoodAvg();
+        int userId = ((User)getApplication()).getUserId();
 
-        Call<CMRespDto<EvalRespDto>> call = evalService.moodEval(studyId,moodAvg);
+        Call<CMRespDto<EvalRespDto>> call = evalService.moodEval(studyId,userId,moodAvg);
         call.enqueue(new Callback<CMRespDto<EvalRespDto>>() {
             @Override
             public void onResponse(Call<CMRespDto<EvalRespDto>> call, Response<CMRespDto<EvalRespDto>> response) {
