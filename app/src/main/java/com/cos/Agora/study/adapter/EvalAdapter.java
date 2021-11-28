@@ -92,6 +92,7 @@ public class EvalAdapter extends RecyclerView.Adapter<EvalAdapter.MyViewHolder>{
                             v.getContext().startActivity(intent);
                         });
                     }
+
                     //manner평가라면
                     else
                     {

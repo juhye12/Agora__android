@@ -5,8 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.cos.Agora.CMRespDto;
@@ -27,11 +31,15 @@ public class JoinActivity extends AppCompatActivity {
     private EditText mAge;
     private EditText mSex;
     private EditText mInterest;
+    private Spinner sInterest;
+    private String interest;
     private Button mJoinButton;
     private String phoneNumber; // 이전 activity에서 작성된 phoneNumber를 가져옴
 //    private LocationReqDto locationReqDto;
     private Double latitude;
     private Double longitude;
+
+    String[] interestList = {"전체","어학","프로그래밍","게임","취직","주식","운동","와인","여행"};
 
     private com.cos.Agora.retrofitURL retrofitURL;
     private JoinService joinService = retrofitURL.retrofit.create(JoinService .class);
@@ -55,7 +63,7 @@ public class JoinActivity extends AppCompatActivity {
         mAssociation = findViewById(R.id.join_association);
         mAge= findViewById(R.id.join_age);
         mSex = findViewById(R.id.join_sex);
-        mInterest = findViewById(R.id.join_interest);
+        sInterest = findViewById(R.id.join_interest);
         mJoinButton = findViewById(R.id.join_button);
 
         // 밑은 글로벌 변수로 사용자의 핸드폰번호, 위도, 경도를 담고 있음
@@ -69,7 +77,25 @@ public class JoinActivity extends AppCompatActivity {
         String association = mAssociation.getText().toString();
         String age = mAge.getText().toString();
         String sex = mSex.getText().toString();
-        String interest = mInterest.getText().toString();
+
+        // join부분 관심분야 필터링
+        ArrayAdapter<String> adapter_sinterest = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, interestList);
+        adapter_sinterest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sInterest.setAdapter(adapter_sinterest);
+        sInterest.setSelection(0);
+
+        sInterest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                interest = sInterest.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         startJoin(new JoinReqDto(phoneNumber,association,age,sex,interest,latitude,longitude));// Req객체 생성
         
