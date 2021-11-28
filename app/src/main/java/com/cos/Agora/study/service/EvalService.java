@@ -27,5 +27,4 @@ public interface EvalService {
     @POST("evaluate/manner")
     Call<CMRespDto<EvalRespDto>> mannerEval(@Query("evaluatorId") int evaluatorId, @Query("evaluateeId") int evaluateeId, double mannerAvgScore);
 
-
 }
