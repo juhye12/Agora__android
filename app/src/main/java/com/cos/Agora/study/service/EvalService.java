@@ -24,6 +24,7 @@ public interface EvalService {
     // @Query("evaluatorId") int evaluatorId 이 부분은 위의 userId에서 처리되기 때문에 필요없지 않나 생각됩니다!
     @POST("evaluate/manner")
     Call<CMRespDto<EvalRespDto>> mannerEval(@Query("evaluateeId") int evaluateeId,
+                                            @Query("evaluatorId") int evaluatorId,
                                             double mannerAvgScore );
 
 
