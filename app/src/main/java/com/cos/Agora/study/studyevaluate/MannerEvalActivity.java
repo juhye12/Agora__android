@@ -101,9 +101,9 @@ public class MannerEvalActivity extends AppCompatActivity {
     public void sendMannerAvg(int evaluateeId){
         double mannerAvg;
         mannerAvg = calMannerAvg();
+        int evaluatorId = ((User)getApplication()).getUserId();
 
-
-        Call<CMRespDto<EvalRespDto>> call = evalService.mannerEval(evaluateeId, mannerAvg);
+        Call<CMRespDto<EvalRespDto>> call = evalService.mannerEval(evaluateeId, evaluatorId,studyId, mannerAvg);
         call.enqueue(new Callback<CMRespDto<EvalRespDto>>() {
             @Override
             public void onResponse(Call<CMRespDto<EvalRespDto>> call, Response<CMRespDto<EvalRespDto>> response) {
