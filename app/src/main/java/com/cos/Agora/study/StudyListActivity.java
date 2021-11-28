@@ -149,6 +149,7 @@ public class StudyListActivity extends AppCompatActivity {
         ibassess.setOnClickListener(v -> {
             Intent intent1 = new Intent(StudyListActivity.this, EvalListActivity.class);
             startActivity(intent1);
+            StudyListActivity.this.finish();//11-28 추가한 항목
         });
 
         ibprofile.setOnClickListener(v -> {

@@ -97,7 +97,6 @@ public class DetailActivity extends AppCompatActivity {
             startActivity(intent1);
         });
 
-
         // 일정 관리 이미지 버튼을 눌렀을 때 일정 관리 레이아웃으로 넘어간다.
 
         ivCalendar.setOnClickListener(v -> {

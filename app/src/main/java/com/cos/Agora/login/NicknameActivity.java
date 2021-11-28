@@ -70,8 +70,6 @@ public class NicknameActivity extends AppCompatActivity {
                 CMRespDto<UserRespDto> cmRespDto = response.body();
                 UserRespDto userRespDto = cmRespDto.getData();
 
-                ((User)getApplication()).setUserId(userRespDto.getId());//global변수로 쓸 userID에 userId 저장
-
                 if(userRespDto == null){ // DB안에 nickname이 없으면 회원가입
                     save(userSaveReqDto);
 
@@ -102,6 +100,9 @@ public class NicknameActivity extends AppCompatActivity {
             public void onResponse(Call<CMRespDto<UserRespDto>> call, Response<CMRespDto<UserRespDto>> response) {
                 CMRespDto<UserRespDto> cmRespDto = response.body();
                 UserRespDto userRespDto = cmRespDto.getData();
+
+                ((User)getApplication()).setUserId(userRespDto.getId());//global변수로 쓸 userID에 userId 저장
+
                 Log.d(TAG, "onResponse: save성공");
                 SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();

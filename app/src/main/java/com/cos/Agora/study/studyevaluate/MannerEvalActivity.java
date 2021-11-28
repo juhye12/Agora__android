@@ -33,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MannerEvalActivity extends AppCompatActivity {
-    private static final String TAG = "MoodEvalActivity";
+    private static final String TAG = "MannerEvalActivity";
 
     private TextView interest;
     private TextView studyTitle;
@@ -54,7 +54,7 @@ public class MannerEvalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_moodeval);
+        setContentView(R.layout.activity_mannereval);
 
         init();
 
@@ -103,7 +103,7 @@ public class MannerEvalActivity extends AppCompatActivity {
         mannerAvg = calMannerAvg();
         int evaluatorId = ((User)getApplication()).getUserId();
 
-        Call<CMRespDto<EvalRespDto>> call = evalService.mannerEval(evaluateeId, evaluatorId,studyId, mannerAvg);
+        Call<CMRespDto<EvalRespDto>> call = evalService.mannerEval(studyId, evaluatorId, evaluateeId, mannerAvg);
         call.enqueue(new Callback<CMRespDto<EvalRespDto>>() {
             @Override
             public void onResponse(Call<CMRespDto<EvalRespDto>> call, Response<CMRespDto<EvalRespDto>> response) {

@@ -51,6 +51,24 @@ public class JoinActivity extends AppCompatActivity {
 
         init();
 
+        // join부분 관심분야 필터링
+        ArrayAdapter<String> adapter_sinterest = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, interestList);
+        adapter_sinterest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sInterest.setAdapter(adapter_sinterest);
+        sInterest.setSelection(0);
+
+        sInterest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                interest = sInterest.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         mJoinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,25 +95,6 @@ public class JoinActivity extends AppCompatActivity {
         String association = mAssociation.getText().toString();
         String age = mAge.getText().toString();
         String sex = mSex.getText().toString();
-
-        // join부분 관심분야 필터링
-        ArrayAdapter<String> adapter_sinterest = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, interestList);
-        adapter_sinterest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sInterest.setAdapter(adapter_sinterest);
-        sInterest.setSelection(0);
-
-        sInterest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                interest = sInterest.getSelectedItem().toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
 
         startJoin(new JoinReqDto(phoneNumber,association,age,sex,interest,latitude,longitude));// Req객체 생성
         

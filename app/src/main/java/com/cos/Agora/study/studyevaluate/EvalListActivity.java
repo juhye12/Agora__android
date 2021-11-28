@@ -48,7 +48,6 @@ public class EvalListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_evallist);
 
         userId = ((User)getApplication()).getUserId();
-
         //뒤로가기 버튼
         backBtn = findViewById(R.id.btn_back);
         //뒤로가기 버튼을 누를경우 studylist화면으로 돌아감
@@ -75,7 +74,7 @@ public class EvalListActivity extends AppCompatActivity {
                 try {
                     CMRespDto<List<EvalRespDto>> cmRespDto = response.body();
                     List<EvalRespDto> evaluations = cmRespDto.getData();
-                    Log.d(TAG, "evaluations: " +evaluations);
+                    Log.d(TAG, "evaluations: "+evaluations);
                     evalAdapter = new EvalAdapter(evaluations,activity);
                     evalList.setAdapter(evalAdapter);
                 } catch (Exception e) {

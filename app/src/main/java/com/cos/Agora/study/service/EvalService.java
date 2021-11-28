@@ -21,13 +21,13 @@ public interface EvalService {
     @POST("evaluate/mood")
     Call<CMRespDto<EvalRespDto>> moodEval(@Query("studyId") int studyId,
                                           @Query("userId") int userId,
-                                          double moodAvgScore );
+                                          @Query("moodAvgScore") double moodAvgScore );
 
     @POST("evaluate/manner")
-    Call<CMRespDto<EvalRespDto>> mannerEval(@Query("evaluatorId") int evaluatorId,
+    Call<CMRespDto<EvalRespDto>> mannerEval(@Query("studyId") int studyId,
+                                            @Query("evaluatorId") int evaluatorId,
                                             @Query("evaluateeId") int evaluateeId,
-                                            @Query("studyId") int studyId,
-                                            double mannerAvgScore);
+                                            @Query("mannerAvgScore") double mannerAvgScore);
 
 
 }
