@@ -30,7 +30,8 @@ public interface StudyService {
                                                          @Query("longitude") Double longitude,
                                                          @Query("interest") String interest,
                                                          @Query("lineup") String lineup);
-
+    
+    // userId가 없음
     @POST("study/create")
     Call<CMRespDto<StudyCreateRespDto>> createStudy(@Body StudyCreateReqDto studyCreateReqDto);
 
