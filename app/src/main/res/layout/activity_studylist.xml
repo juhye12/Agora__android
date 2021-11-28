@@ -74,7 +74,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_studylist"
         android:layout_width="match_parent"
-        android:layout_height="546dp"
+        android:layout_height="468dp"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
