@@ -65,7 +65,6 @@ public class EvalListActivity extends AppCompatActivity {
         getEvalList(userId);
     }
 
-
     public void getEvalList(int userId){
 
         Call<CMRespDto<List<EvalRespDto>>> call = evalService.getEvalList(userId);

@@ -15,6 +15,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+<!--    <supports-screens android:largeScreens="true" android:anyDensity="true">-->
+
     <application
         android:name=".global.User"
         android:allowBackup="true"
@@ -47,6 +49,9 @@
         <activity android:name=".login.JoinActivity" />
         <activity android:name=".study.StudyListActivity" />
         <activity android:name=".study.studycreate.StudyCreateActivity" />
+        <activity android:name=".study.studyevaluate.EvalListActivity" />
+        <activity android:name=".study.studyevaluate.MannerEvalActivity" />
+        <activity android:name=".study.studyevaluate.MoodEvalActivity" />
         <activity android:name=".study.StudyApplicationActivity"
             android:parentActivityName=".study.StudyListActivity"/>
         <activity android:name=".calendar.CalendarActivity"
