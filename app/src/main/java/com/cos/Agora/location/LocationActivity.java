@@ -180,12 +180,12 @@ public class LocationActivity extends AppCompatActivity {
 
     }
 
-//    public static double getLongitude(){
-//        return Clongitude;
-//    }
-//    public static double getLatitude(){
-//        return Clatitude;
-//    }
+    public static double getLongitude(){
+        return Clongitude;
+    }
+    public static double getLatitude(){
+       return Clatitude;
+    }
 }
 
 
