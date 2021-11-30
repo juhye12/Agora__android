@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1079058749089",
-    "project_id": "agorachat",
-    "storage_bucket": "agorachat.appspot.com"
+    "project_number": "883072214515",
+    "project_id": "agora-chat-da6ca",
+    "storage_bucket": "agora-chat-da6ca.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1079058749089:android:a6da6db5f19e4bc0ac02e0",
+        "mobilesdk_app_id": "1:883072214515:android:5d30756aac1a4c72c65e86",
         "android_client_info": {
           "package_name": "com.cos.Agora"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1079058749089-46kls4lk7g3ipego0si5ee4j7usa88r5.apps.googleusercontent.com",
+          "client_id": "883072214515-5tf7d26gc75etltg8bnjhfb821ljph3a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIkCzaFFlSfExivrRTHw8z4IGs96zR1Rc"
+          "current_key": "AIzaSyDbjdJrFgaj6mvR_nA83YQHZV4ukBszez8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1079058749089-46kls4lk7g3ipego0si5ee4j7usa88r5.apps.googleusercontent.com",
+              "client_id": "883072214515-5tf7d26gc75etltg8bnjhfb821ljph3a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
