@@ -29,7 +29,7 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/product_information_iv_back"
+                        android:id="@+id/invite_product_information_iv_back"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
@@ -44,12 +44,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginLeft="100dp"
                         android:layout_gravity="center"
-                        android:textAlignment="center"
                         android:textSize="20sp"
                         android:textColor="#FFBB86FC"
                         android:textStyle="bold"
-                        android:text="스터디 정보"/>
+                        android:text="내 스터디 정보"/>
 
                     <!--                    <ImageButton-->
                     <!--                        android:id="@+id/product_information_iv_more"-->
@@ -64,6 +64,7 @@
                 </LinearLayout>
 
             </FrameLayout>
+
 
 
             <!--            <FrameLayout-->
@@ -141,13 +142,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/detail_title"
+                    android:id="@+id/my_detail_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Android 뿌셔뿌셔!!"
                     android:textColor="@android:color/black"
                     android:textSize="22sp"
                     android:textStyle="bold" />
+
+
 
                 <!--                <TextView-->
                 <!--                    android:id="@+id/detail_tv_title"-->
@@ -164,7 +167,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/detail_categories"
+                        android:id="@+id/my_detail_categories"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="프로그래밍"
@@ -181,7 +184,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/detail_createDate"
+                        android:id="@+id/my_detail_createDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="만든 시간"
@@ -198,12 +201,12 @@
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/btn_study_join"
+                        android:id="@+id/btn_study_invite"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="100dp"
                         android:background="@drawable/button_background"
-                        android:text="가입 신청"
+                        android:text="초대하기"
                         android:textColor="@android:color/white"
                         android:textStyle="bold"
                         android:visibility="visible" />
@@ -231,7 +234,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/detail_calendar"
+                        android:id="@+id/my_detail_calendar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -242,7 +245,7 @@
 
 
                     <TextView
-                        android:id="@+id/detail_notice"
+                        android:id="@+id/my_detail_notice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -252,7 +255,7 @@
                         android:textStyle="bold"/>
 
                     <TextView
-                        android:id="@+id/detail_place"
+                        android:id="@+id/my_detail_place"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -272,7 +275,7 @@
 
 
                     <ImageButton
-                        android:id="@+id/iv_calendar"
+                        android:id="@+id/my_iv_calendar"
                         android:layout_width="47dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="30dp"
@@ -280,7 +283,7 @@
                         android:src="@drawable/ic_baseline_calendar_today_24" />
 
                     <ImageButton
-                        android:id="@+id/iv_notification"
+                        android:id="@+id/my_iv_notification"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="70dp"
@@ -289,7 +292,7 @@
                         />
 
                     <ImageButton
-                        android:id="@+id/iv_place"
+                        android:id="@+id/my_iv_place"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="70dp"
@@ -309,7 +312,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/detail_description"
+                    android:id="@+id/my_detail_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -323,7 +326,7 @@
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/detail_coming"
+                        android:id="@+id/my_detail_coming"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -332,7 +335,7 @@
                         android:textStyle="bold"/>
 
                     <TextView
-                        android:id="@+id/detail_current"
+                        android:id="@+id/my_detail_current"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -348,7 +351,7 @@
                         android:textStyle="bold"/>
 
                     <TextView
-                        android:id="@+id/detail_limit"
+                        android:id="@+id/my_detail_limit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -363,10 +366,9 @@
                         android:textColor="@android:color/black"
                         android:textStyle="bold"/>
 
+
+
                 </LinearLayout>
-
-
-
             </LinearLayout>
 
             <View
@@ -377,13 +379,33 @@
                 android:background="@color/colorGray" />
 
 
-<!--            그룹원들 리사이클러뷰로 보여짐 - detail_member_item에 그룹원 있음-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_study_detail"
+            <!--            그룹원들 리사이클러뷰로 보여짐 - detail_member_item에 그룹원 있음-->
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:ignore="MissingConstraints"/>
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_study_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="241dp"
+                    tools:ignore="MissingConstraints" />
+
+                //플로팅 버튼
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/chat_fab_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:src="@drawable/ic_baseline_chat_24"
+                    app:elevation="6dp"
+                    app:fabSize="normal"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+            </FrameLayout>
 
             <!--            <LinearLayout-->
             <!--                android:id="@+id/reportAndProduct"-->

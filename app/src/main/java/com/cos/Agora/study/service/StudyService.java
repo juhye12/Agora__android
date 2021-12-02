@@ -1,7 +1,10 @@
 package com.cos.Agora.study.service;
 
 import com.cos.Agora.CMRespDto;
+import com.cos.Agora.study.model.ApplicationReqDto;
+import com.cos.Agora.study.model.ApplicationRespDto;
 import com.cos.Agora.study.model.DetailRespDto;
+import com.cos.Agora.study.model.MyStudyListRespDto;
 import com.cos.Agora.study.model.StudyCreateReqDto;
 import com.cos.Agora.study.model.StudyCreateRespDto;
 import com.cos.Agora.study.model.StudyListRespDto;
@@ -35,8 +38,20 @@ public interface StudyService {
     @POST("study/create")
     Call<CMRespDto<StudyCreateRespDto>> createStudy(@Body StudyCreateReqDto studyCreateReqDto);
 
+    // 가입신청
+    @POST("study/application")
+    Call<CMRespDto<ApplicationRespDto>> postApplication(@Query("userId") int userId,
+                                                        @Query("studyId") int studyId);
+
+    // 스터디 리스트 디테일과 내스터디 리스트 디테일 같게 동작
     @GET("study/detail/")
     Call<CMRespDto<List<DetailRespDto>>> getStudyDetail(@Query("studyId") int studyId);
+
+    // 12.01 수정사항
+    @GET("study/mystudy")
+    Call<CMRespDto<List<MyStudyListRespDto>>> getMyStudyList(@Query("latitude") Double latitude,
+                                                               @Query("longitude") Double longitude,
+                                                             @Query("userId") int userId);
 
     @DELETE("study/list/{studyId}")
     Call <CMRespDto<List<StudyListRespDto>>> removePost(@Path("studyId") int studyId);

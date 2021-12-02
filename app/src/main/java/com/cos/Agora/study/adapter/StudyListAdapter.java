@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
     private Context mContext;
     private static double latitude; // 사용자 위도
     private static double longitude;
+
 
     public StudyListAdapter(List<StudyListRespDto> mItemsList, Context mContext, double latitude, double longitude) {
         this.mItemsList = mItemsList;
@@ -61,6 +63,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
         //private ImageView photo;
         private TextView interest,title,distance,createDate,limit,current;
         private LinearLayout studyItem;
+        private ImageView mood1, mood2, mood3, mood4, mood5;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -71,6 +74,11 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
             limit = itemView.findViewById(R.id.study_limit);
             current = itemView.findViewById(R.id.study_current);
             studyItem= itemView.findViewById(R.id.study_item);
+            mood1 =itemView.findViewById(R.id.study_mood_1); // fragment에서 겹치는 부분 일단 manner_1으로 써놓음.
+            mood2 =itemView.findViewById(R.id.study_mood_2); // fragment에서 겹치는 부분 일단 manner_2으로 써놓음.
+            mood3 =itemView.findViewById(R.id.study_mood_3); // fragment에서 겹치는 부분 일단 manner_3으로 써놓음.
+            mood4 =itemView.findViewById(R.id.study_mood_4); // fragment에서 겹치는 부분 일단 manner_4으로 써놓음.
+            mood5 =itemView.findViewById(R.id.study_mood_5);
 
         }
 
@@ -86,6 +94,42 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
                 createDate.setText(format.format(studyListRespDto.getCreateDate())+"");
                 limit.setText(studyListRespDto.getLimit()+"");
                 current.setText(studyListRespDto.getCurrent()+"");
+
+                // 분위기 점수 그림으로 표현
+                int moodScore = 0;
+                moodScore = studyListRespDto.getMood();
+                if(moodScore >= 0 && moodScore < 1){
+                    mood1.setVisibility(View.VISIBLE);
+                    mood2.setVisibility(View.INVISIBLE);
+                    mood3.setVisibility(View.INVISIBLE);
+                    mood4.setVisibility(View.INVISIBLE);
+                    mood5.setVisibility(View.INVISIBLE);
+                } else if(moodScore >= 1 && moodScore < 2){
+                    mood1.setVisibility(View.INVISIBLE);
+                    mood2.setVisibility(View.VISIBLE);
+                    mood3.setVisibility(View.INVISIBLE);
+                    mood4.setVisibility(View.INVISIBLE);
+                    mood5.setVisibility(View.INVISIBLE);
+                } else if(moodScore >= 2 && moodScore < 3){
+                    mood1.setVisibility(View.INVISIBLE);
+                    mood2.setVisibility(View.INVISIBLE);
+                    mood3.setVisibility(View.VISIBLE);
+                    mood4.setVisibility(View.INVISIBLE);
+                    mood5.setVisibility(View.INVISIBLE);
+                } else if(moodScore >= 3 && moodScore < 4){
+                    mood1.setVisibility(View.INVISIBLE);
+                    mood2.setVisibility(View.INVISIBLE);
+                    mood3.setVisibility(View.INVISIBLE);
+                    mood4.setVisibility(View.VISIBLE);
+                    mood5.setVisibility(View.INVISIBLE);
+                } else{
+                    mood1.setVisibility(View.INVISIBLE);
+                    mood2.setVisibility(View.INVISIBLE);
+                    mood3.setVisibility(View.INVISIBLE);
+                    mood4.setVisibility(View.INVISIBLE);
+                    mood5.setVisibility(View.VISIBLE);
+                }
+
                 studyItem.setOnClickListener(v -> {
                     Intent intent = new Intent(v.getContext(), DetailActivity.class);
                     intent.putExtra("studyId", studyListRespDto.getId());

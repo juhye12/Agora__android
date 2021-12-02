@@ -111,7 +111,6 @@ public class MoodEvalActivity extends AppCompatActivity {
                 Log.d(TAG, "평가 에러 발생");
             }
         });
-
     }
 
     //moodAvg계산하는 함수

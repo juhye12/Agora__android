@@ -30,8 +30,9 @@ public class JoinActivity extends AppCompatActivity {
     private EditText mAssociation;
     private EditText mAge;
     private EditText mSex;
-    private EditText mInterest;
     private Spinner sInterest;
+    private Spinner xInterest;
+    private String sex;
     private String interest;
     private Button mJoinButton;
     private String phoneNumber; // 이전 activity에서 작성된 phoneNumber를 가져옴
@@ -40,6 +41,7 @@ public class JoinActivity extends AppCompatActivity {
     private Double longitude;
 
     String[] interestList = {"전체","어학","프로그래밍","게임","취직","주식","운동","와인","여행"};
+    String[] sexList = {"남", "여"};
 
     private com.cos.Agora.retrofitURL retrofitURL;
     private JoinService joinService = retrofitURL.retrofit.create(JoinService .class);
@@ -69,6 +71,24 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+        // join부분 성별 필터링
+        ArrayAdapter<String> adapter_xinterest = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sexList);
+        adapter_xinterest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        xInterest.setAdapter(adapter_xinterest);
+        xInterest.setSelection(0);
+
+        xInterest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sex = xInterest.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         mJoinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,6 +102,7 @@ public class JoinActivity extends AppCompatActivity {
         mAge= findViewById(R.id.join_age);
         mSex = findViewById(R.id.join_sex);
         sInterest = findViewById(R.id.join_interest);
+        xInterest = findViewById(R.id.join_sex);
         mJoinButton = findViewById(R.id.join_button);
 
         // 밑은 글로벌 변수로 사용자의 핸드폰번호, 위도, 경도를 담고 있음
@@ -93,8 +114,7 @@ public class JoinActivity extends AppCompatActivity {
     //JoinActivity의 main method
     private void attemptJoin() { // 입력된 데이터를 저장하고 StudyListActivity로 넘겨야 함
         String association = mAssociation.getText().toString();
-        String age = mAge.getText().toString();
-        String sex = mSex.getText().toString();
+        int age = Integer.parseInt(mAge.getText().toString());
 
         startJoin(new JoinReqDto(phoneNumber,association,age,sex,interest,latitude,longitude));// Req객체 생성
         
@@ -120,7 +140,7 @@ public class JoinActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("phoneNumber",joinRespDto.getPhoneNumber());
                 editor.putString("association",joinRespDto.getAssociation());
-                editor.putString("age",joinRespDto.getAge());
+                editor.putInt("age",joinRespDto.getAge());
                 editor.putString("sex",joinRespDto.getSex());
                 editor.putString("interest",joinRespDto.getInterest());
                 editor.commit();

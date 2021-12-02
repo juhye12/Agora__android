@@ -169,7 +169,6 @@ public class StudyListActivity extends AppCompatActivity {
         Ulatitude = ((User)getApplication()).getLatitude();  // 사용자 위도
         Ulongitude = ((User)getApplication()).getLongitude();// 사용자 경도
 
-//        Call<CMRespDto<List<StudyListRespDto>>> call = studyListService.getStudyList(phoneNumber,interest,lineup);
         Call<CMRespDto<List<StudyListRespDto>>> call = studyListService.getStudyList(Ulatitude,Ulongitude,interest,lineup);
 
         call.enqueue(new Callback<CMRespDto<List<StudyListRespDto>>>() {
