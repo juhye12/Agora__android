@@ -23,6 +23,10 @@
             android:backgroundTint="@color/purple_200"
             android:scaleType="fitXY" />
 
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,15 +42,71 @@
                 android:textColor="@android:color/black"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/study_title"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Android 뿌셔뿌셔"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/study_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Android 뿌셔뿌셔"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+                <FrameLayout
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="100dp">
+
+                    <ImageView
+                        android:id="@+id/study_mood_1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_ionic_md_bulb_4"
+                        android:visibility="invisible"/>
+
+                    <ImageView
+                        android:id="@+id/study_mood_2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_ionic_md_bulb_3"
+                        android:visibility="invisible"/>
+
+                    <ImageView
+                        android:id="@+id/study_mood_3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_ionic_md_bulb_2"
+                        android:visibility="invisible"/>
+
+                    <ImageView
+                        android:id="@+id/study_mood_4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_ionic_md_bulb_1"
+                        android:visibility="invisible"/>
+
+                    <ImageView
+                        android:id="@+id/study_mood_5"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_ionic_md_bulb"
+                        android:visibility="invisible"/>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="25dp"

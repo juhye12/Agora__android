@@ -1,4 +1,4 @@
-package com.cos.Agora.study.studydetail;
+package com.cos.Agora.study.mystudy;
 
 
 import android.content.Context;
@@ -7,29 +7,32 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
-import com.cos.Agora.global.User;
+import com.cos.Agora.chat.ChatActivity;
 import com.cos.Agora.main.MainActivity;
 import com.cos.Agora.calendar.CalendarActivity;
 import com.cos.Agora.study.StudyApplicationActivity;
+import com.cos.Agora.study.StudyListActivity;
 import com.cos.Agora.study.adapter.DetailAdapter;
-import com.cos.Agora.study.model.ApplicationRespDto;
 import com.cos.Agora.study.model.DetailRespDto;
-import com.cos.Agora.study.model.EvalRespDto;
 import com.cos.Agora.study.model.StudyListRespDto;
 import com.cos.Agora.retrofitURL;
 import com.cos.Agora.study.service.StudyService;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,11 +41,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetailActivity extends AppCompatActivity {
+public class MyDetailActivity extends AppCompatActivity {
 
     private Context mContext;
 
-    private static final String TAG = "DetailActivity";
+    private static final String TAG = "MyDetailActivity";
 
     private ArrayList<String> mImageList;
     private RecyclerView studyDetail;
@@ -52,20 +55,20 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tvCurrent, tvLimit, tvCreateDate;
     private ImageButton ivCalendar, ivNotification, ivPlace;
     private int id; // studyId
-    private int userId;
     private MainActivity activity;
+    private FloatingActionButton chatFab;
 
     private ArrayList<StudyListRespDto> studyRespDtos = new ArrayList<>();
 
     private retrofitURL retrofitURL;
     private StudyService studyListService= retrofitURL.retrofit.create(StudyService .class);
 
-    private Button btn_study_join;
+    private Button btn_study_invite, btn_study_invite2, btn_study_noinvite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_mystudydetail);
 
         init(); // data를 server로 보냄
         initSetting(); // id = 2
@@ -73,50 +76,70 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public  void init(){
-        // 레이아웃에서 주석 처리한 코드들 DetailActivity에서 변수들 주석처리함 11.12
-        tvTitle = findViewById(R.id.detail_title); // 스터디 제목
-        tvCategori = findViewById(R.id.detail_categories); // 관심분야
-        tvCurrent = findViewById(R.id.detail_current);
-        tvLimit = findViewById(R.id.detail_limit);
-        tvCreateDate = findViewById(R.id.detail_createDate);
+        chatFab = findViewById(R.id.chat_fab_btn);
+        tvTitle = findViewById(R.id.my_detail_title); // 스터디 제목
+        tvCategori = findViewById(R.id.my_detail_categories); // 관심분야
+        tvCurrent = findViewById(R.id.my_detail_current);
+        tvLimit = findViewById(R.id.my_detail_limit);
+        tvCreateDate = findViewById(R.id.my_detail_createDate);
 
-        btn_study_join = findViewById(R.id.btn_study_join); // 가입신청
+        btn_study_invite = findViewById(R.id.btn_study_invite); // 초대하기
+        btn_study_invite2 = findViewById(R.id.btn_study_invite2);
+        btn_study_noinvite = findViewById(R.id.btn_study_noinvite);
 
 
-        ivCalendar = findViewById(R.id.iv_calendar); // 일정관리 -> 근데 해당 스터디 안의 일정을 알기가 과정이 쉽지 않을듯
-        ivNotification = findViewById(R.id.iv_notification); // 공지
-        ivPlace = findViewById(R.id.iv_place); // 장소
+        ivCalendar = findViewById(R.id.my_iv_calendar); // 일정관리 -> 근데 해당 스터디 안의 일정을 알기가 과정이 쉽지 않을듯
+        ivNotification = findViewById(R.id.my_iv_notification); // 공지
+        ivPlace = findViewById(R.id.my_iv_place); // 장소
 
-        tvDescrip = findViewById(R.id.detail_description); // 상세정보
+        tvDescrip = findViewById(R.id.my_detail_description); // 상세정보
 
         studyDetail = findViewById(R.id.rv_study_detail); // 사용자 리사이클러 뷰
-        tvCurrent = findViewById(R.id.detail_current);
-        tvLimit = findViewById(R.id.detail_limit);
-
         mBack = findViewById(R.id.product_information_iv_back);
 
-        // 가입 신청 버튼을 눌렀을 때 가입 신청 레이아웃으로 넘어간다.
+        // 채팅 플로팅 버튼을 눌렀을 때의 동작
+        chatFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 일단 채팅 액티비티를 안만들었으므로 studylist로 연결시켜 놓았다.
+                Intent intent = new Intent(MyDetailActivity.this, StudyListActivity.class);
+            }
+        });
 
-        btn_study_join.setOnClickListener(v -> {
-            Toast joinToast = Toast.makeText(this.getApplicationContext(), "그룹장에게 가입 신청 메세지를 보냈습니다.",
-                    Toast.LENGTH_SHORT);
-            joinToast.show();
-//            Intent intent1 = new Intent(DetailActivity.this, StudyApplicationActivity.class);
-//            startActivity(intent1);
-            userId = ((User)getApplication()).getUserId();
-            postapplication(userId, id); // studyId는 이전에 가져온 id를 가져와서 사용
+
+
+        btn_study_invite.setOnClickListener(v -> {
+            // 초대하기 버튼을 눌렀을 때 framelayout을 사용하여 사용자는 단순히 textview로 나타내고 '초대'버튼을 누르면
+            // 회색 빛으로 바뀌면서 토스트창 뜨는 것으로 만들 것
+            LinearLayout linearLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.activity_invite, null);
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            linearLayout.setBackgroundColor(Color.parseColor("#99000000"));
+
+            LinearLayout.LayoutParams parent = new LinearLayout.LayoutParams
+                    (LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.FILL_PARENT);
+            addContentView(linearLayout, parent);
+
+            btn_study_invite2.setOnClickListener(view -> {
+                Toast inviteToast = Toast.makeText(this.getApplicationContext(), "초대 메세지를 보냈습니다.",
+                        Toast.LENGTH_SHORT);
+                inviteToast.show();
+                btn_study_invite2.setVisibility(View.INVISIBLE);
+                btn_study_noinvite.setVisibility(View.VISIBLE);
+            });
         });
 
         // 일정 관리 이미지 버튼을 눌렀을 때 일정 관리 레이아웃으로 넘어간다.
-
         ivCalendar.setOnClickListener(v -> {
-            Intent intent2 = new Intent(DetailActivity.this, CalendarActivity.class);
+            Intent intent2 = new Intent(MyDetailActivity.this, CalendarActivity.class);
             startActivity(intent2);
         });
 
-        // 게시물을 클릭했을 때 해당 스터디 아이디를 서버로 보내서 그곳에 속해있는 유저 아이디 및 다른 정보들을
-        // 가져오게 해야 하는데 이게 맞나
-
+        chatFab.setOnClickListener(v -> {
+            Intent intent3 = new Intent(MyDetailActivity.this, ChatActivity.class);
+            String studyName = tvTitle.getText().toString();
+            intent3.putExtra("studyName",studyName);
+            startActivity(intent3);
+        });
     }
 
     public void initSetting(){
@@ -143,7 +166,7 @@ public class DetailActivity extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(activity, RecyclerView.VERTICAL, false);
         studyDetail.setLayoutManager(manager);
 
-        getStudyDetail(id);
+        getMyStudyDetail(id);
 
     }
 
@@ -158,25 +181,8 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    //가입신청을 위해서 studyId, userId를 보내는 함수
-    public void postapplication(int userId,int studyId){
-        Call<CMRespDto<ApplicationRespDto>> call = studyListService.postApplication(userId, studyId);
-        call.enqueue(new Callback<CMRespDto<ApplicationRespDto>>() {
-            @Override
-            public void onResponse(Call<CMRespDto<ApplicationRespDto>> call, Response<CMRespDto<ApplicationRespDto>> response) {
-                CMRespDto<ApplicationRespDto> cmRespDto = response.body();
-                ApplicationRespDto applicationRespDto = cmRespDto.getData();
-                Log.d(TAG, "onResponse: 가입신청 완료");
-            }
-            @Override
-            public void onFailure(Call<CMRespDto<ApplicationRespDto>> call, Throwable t) {
-                Log.d(TAG, "가입신청 에러 발생");
-            }
-        });
-    }
 
-
-    public void getStudyDetail(int Id){
+    public void getMyStudyDetail(int Id){
         Call<CMRespDto<List<DetailRespDto>>> call = studyListService.getStudyDetail(Id);
 
         call.enqueue(new Callback<CMRespDto<List<DetailRespDto>>>() {
@@ -184,9 +190,9 @@ public class DetailActivity extends AppCompatActivity {
             public void onResponse(Call<CMRespDto<List<DetailRespDto>>> call, Response<CMRespDto<List<DetailRespDto>>> response) {
                 try {
                     CMRespDto<List<DetailRespDto>> cmRespDto = response.body();
-                    List<DetailRespDto> details = cmRespDto.getData();
-                    Log.d(TAG, "details: " + details);
-                    detailAdapter = new DetailAdapter(details, activity);
+                    List<DetailRespDto> mydetails = cmRespDto.getData();
+                    Log.d(TAG, "mydetails: " + mydetails);
+                    detailAdapter = new DetailAdapter(mydetails, activity);
                     studyDetail.setAdapter(detailAdapter);
                 } catch (Exception e) {
                     Log.d(TAG, "null");

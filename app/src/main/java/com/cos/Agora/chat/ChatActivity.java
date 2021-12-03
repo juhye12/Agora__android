@@ -1,5 +1,6 @@
 package com.cos.Agora.chat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,12 +50,14 @@ ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String msg = EditText_chat.getText().toString(); //msg
+
                 //널이 아닐때만 값전송하게
                 if(msg != null){
                     ChatData chat = new ChatData();
                     chat.setNickname(nick);
                     chat.setMsg(msg);
-                    myRef.push().setValue(chat); //setValue(chat)에서 수정 push() 붙였음
+                    myRef.push().setValue(chat); //setValue(chat)에서 수정 push() 붙였음.
+                    //firebase에서 chat 아래 studyName아래에 chat내용 저장
                 }
 
             }
@@ -76,7 +79,10 @@ ChatActivity extends AppCompatActivity {
         //database 선언과 생성
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         //message를 참조(getReference)해서 가져옴.
-        myRef = database.getReference();
+
+        Intent intent = getIntent();
+        String studyName = intent.getStringExtra("studyName");
+        myRef = database.getReference().child("chat").child(studyName);
 
        // ChatData chat = new ChatData();
         //chat.setNickname(nick);

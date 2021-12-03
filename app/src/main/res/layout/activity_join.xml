@@ -64,19 +64,19 @@
             android:textColor="@android:color/black"
             android:textSize="20sp"></EditText>
 
-        <EditText
+        <Spinner
             android:id="@+id/join_sex"
-            android:layout_width="167dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
             android:layout_margin="20dp"
             android:background="@drawable/border_background"
-            android:hint="성별"
             android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:layout_marginRight="10dp"
-            android:singleLine="true"
             android:textColor="@android:color/black"
-            android:textSize="20sp"></EditText>
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:hint="성별" />
+
     </LinearLayout>
 
     <Spinner

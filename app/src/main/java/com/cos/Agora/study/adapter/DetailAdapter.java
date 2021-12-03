@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -53,13 +54,19 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView nickname, role, manner, association;
+        private ImageView manner1, manner2, manner3, manner4, manner5, m_role;
         private LinearLayout userProfile;
         public MyViewHolder(@NonNull View detailView) {
             super(detailView);
 
+            m_role =detailView.findViewById(R.id.detail_role_master);
             nickname =detailView.findViewById(R.id.detail_nickname);
-            role =detailView.findViewById(R.id.detail_role);
-            manner =detailView.findViewById(R.id.detail_manner);
+            manner1 =detailView.findViewById(R.id.detail_manner_1); // fragment에서 겹치는 부분 일단 manner_1으로 써놓음.
+            manner2 =detailView.findViewById(R.id.detail_manner_2); // fragment에서 겹치는 부분 일단 manner_2으로 써놓음.
+            manner3 =detailView.findViewById(R.id.detail_manner_3); // fragment에서 겹치는 부분 일단 manner_3으로 써놓음.
+            manner4 =detailView.findViewById(R.id.detail_manner_4); // fragment에서 겹치는 부분 일단 manner_4으로 써놓음.
+            manner5 =detailView.findViewById(R.id.detail_manner_5); // fragment에서 겹치는 부분 일단 manner_5으로 써놓음.
+
             association =detailView.findViewById(R.id.detail_association);
             userProfile = detailView.findViewById(R.id.layout_userprofile);
 
@@ -71,9 +78,51 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHold
 
         public void setItem(DetailRespDto detailRespDto){
             try {
+                int mannerScore = 0;
+                int roleScore = 0;
                 nickname.setText(detailRespDto.getNickName());
-                role.setText(detailRespDto.getRole()+"");
-                manner.setText(detailRespDto.getManner()+"");
+
+                // role 그림으로 나타냄
+                roleScore = detailRespDto.getRole();
+                if(roleScore == 1){
+                    m_role.setVisibility(View.VISIBLE);
+                } else{
+                    m_role.setVisibility(View.INVISIBLE);
+                }
+
+                mannerScore = detailRespDto.getManner();
+                if(mannerScore >= 0 && mannerScore < 1){
+                    manner1.setVisibility(View.VISIBLE);
+                    manner2.setVisibility(View.INVISIBLE);
+                    manner3.setVisibility(View.INVISIBLE);
+                    manner4.setVisibility(View.INVISIBLE);
+                    manner5.setVisibility(View.INVISIBLE);
+                } else if(mannerScore >= 1 && mannerScore < 2){
+                    manner1.setVisibility(View.INVISIBLE);
+                    manner2.setVisibility(View.VISIBLE);
+                    manner3.setVisibility(View.INVISIBLE);
+                    manner4.setVisibility(View.INVISIBLE);
+                    manner5.setVisibility(View.INVISIBLE);
+                } else if(mannerScore >= 2 && mannerScore < 3){
+                    manner1.setVisibility(View.INVISIBLE);
+                    manner2.setVisibility(View.INVISIBLE);
+                    manner3.setVisibility(View.VISIBLE);
+                    manner4.setVisibility(View.INVISIBLE);
+                    manner5.setVisibility(View.INVISIBLE);
+                } else if(mannerScore >= 3 && mannerScore < 4){
+                    manner1.setVisibility(View.INVISIBLE);
+                    manner2.setVisibility(View.INVISIBLE);
+                    manner3.setVisibility(View.INVISIBLE);
+                    manner4.setVisibility(View.VISIBLE);
+                    manner5.setVisibility(View.INVISIBLE);
+                } else{
+                    manner1.setVisibility(View.INVISIBLE);
+                    manner2.setVisibility(View.INVISIBLE);
+                    manner3.setVisibility(View.INVISIBLE);
+                    manner4.setVisibility(View.INVISIBLE);
+                    manner5.setVisibility(View.VISIBLE);
+                }
+
                 association.setText(detailRespDto.getAssociation());
 
                 // 사용자 클릭했을 때 뜨는 인텐트 -> 일단은 다시 detail 액티비티로 오도록 함

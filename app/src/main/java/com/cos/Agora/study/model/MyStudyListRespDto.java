@@ -5,8 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class StudyListRespDto {
-    // server로부터 받을 데이터
+public class MyStudyListRespDto {
 
     private int id;             // stduy id
     private int limit;          // 수용인원
@@ -15,5 +14,4 @@ public class StudyListRespDto {
     private int current;        // 현재인원
     private String title;       // 스터디제목
     private String interest;    // 관심분야
-    private int mood; // 새롭게 추가된 변수 -> 스터디별 분위기를 표현하기 위함
 }

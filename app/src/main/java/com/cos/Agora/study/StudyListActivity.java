@@ -23,6 +23,7 @@ import com.cos.Agora.study.adapter.StudyListAdapter;
 import com.cos.Agora.study.alarm.AlarmActivity;
 import com.cos.Agora.study.model.StudyListRespDto;
 import com.cos.Agora.retrofitURL;
+import com.cos.Agora.study.mystudy.MyStudyListActivity;
 import com.cos.Agora.study.profile.ProfileActivity;
 import com.cos.Agora.study.service.StudyService;
 import com.cos.Agora.study.studycreate.StudyCreateActivity;
@@ -136,6 +137,7 @@ public class StudyListActivity extends AppCompatActivity {
             startActivity(intent1);
         });
 
+        // 알람 레이아웃 연결시킬 것
         ibalarm.setOnClickListener(v -> {
             Intent intent1 = new Intent(StudyListActivity.this, AlarmActivity.class);
             startActivity(intent1);
@@ -143,7 +145,7 @@ public class StudyListActivity extends AppCompatActivity {
 
         // 내 스터디 리스트를 보여줄 수 있는 액티비티를 만들어야 한다.
         ibmystudy.setOnClickListener(v -> {
-            Intent intent1 = new Intent(StudyListActivity.this, AlarmActivity.class);
+            Intent intent1 = new Intent(StudyListActivity.this, MyStudyListActivity.class);
             startActivity(intent1);
         });
 
@@ -153,15 +155,11 @@ public class StudyListActivity extends AppCompatActivity {
             StudyListActivity.this.finish();
         });
 
+        // 프로필 레이아웃 연결시킬 것
         ibprofile.setOnClickListener(v -> {
             Intent intent1 = new Intent(StudyListActivity.this, ProfileActivity.class);
             startActivity(intent1);
         });
-
-        //이전 Activity에서 phoneNumber값 받아오기. 정렬에서 거리 계산을 위해 현재 사용자가 어떤 사용자인지 알아야해서!
-        //Intent intent = getIntent();
-//        phoneNumber = intent.getStringExtra("phoneNumber");
-//        locationReqDto = intent.getParcelableExtra("location");
 
         phoneNumber = ((User)getApplication()).getPhoneNumber();
     }
@@ -170,7 +168,6 @@ public class StudyListActivity extends AppCompatActivity {
         Ulatitude = ((User)getApplication()).getLatitude();  // 사용자 위도
         Ulongitude = ((User)getApplication()).getLongitude();// 사용자 경도
 
-//        Call<CMRespDto<List<StudyListRespDto>>> call = studyListService.getStudyList(phoneNumber,interest,lineup);
         Call<CMRespDto<List<StudyListRespDto>>> call = studyListService.getStudyList(Ulatitude,Ulongitude,interest,lineup);
 
         call.enqueue(new Callback<CMRespDto<List<StudyListRespDto>>>() {

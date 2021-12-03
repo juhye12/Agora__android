@@ -4,27 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:src="@drawable/agora_logo2"/>
 
         <TextView
-            android:layout_marginLeft="15dp"
-            android:layout_width="wrap_content"
+            android:id="@+id/mystudyTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="채팅"
-            android:textColor="@android:color/black"
-            android:textSize="23sp"
+            android:gravity="center"
+            android:text="내 스터디"
+            android:textColor="@color/purple_200"
+            android:textSize="20dp"
             android:textStyle="bold" />
-
-
-    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -32,7 +29,9 @@
         android:background="@color/colorGray" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_chatlist"
+        android:id="@+id/rv_mystudylist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="651dp"
+        tools:ignore="MissingConstraints" />
+
 </LinearLayout>
