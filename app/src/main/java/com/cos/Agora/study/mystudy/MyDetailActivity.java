@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
+import com.cos.Agora.chat.ChatActivity;
 import com.cos.Agora.main.MainActivity;
 import com.cos.Agora.calendar.CalendarActivity;
 import com.cos.Agora.study.StudyListActivity;
@@ -132,6 +133,13 @@ public class MyDetailActivity extends AppCompatActivity {
         ivCalendar.setOnClickListener(v -> {
             Intent intent2 = new Intent(MyDetailActivity.this, CalendarActivity.class);
             startActivity(intent2);
+        });
+
+        chatFab.setOnClickListener(v -> {
+            Intent intent3 = new Intent(MyDetailActivity.this, ChatActivity.class);
+            String studyName = tvTitle.getText().toString();
+            intent3.putExtra("studyName",studyName);
+            startActivity(intent3);
         });
     }
 

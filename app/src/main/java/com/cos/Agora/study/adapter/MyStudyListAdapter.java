@@ -24,12 +24,12 @@ import java.util.List;
 public class MyStudyListAdapter extends RecyclerView.Adapter<MyStudyListAdapter.MyViewHolder>{
 
     private static final String TAG = "MyStudyListAdapter";
-    private List<StudyListRespDto> mItemsList;
+    private List<MyStudyListRespDto> mItemsList;
     private Context mContext;
     private static double latitude; // 사용자 위도
     private static double longitude;
 
-    public MyStudyListAdapter(List<StudyListRespDto> mItemsList, Context mContext, double latitude, double longitude) {
+    public MyStudyListAdapter(List<MyStudyListRespDto> mItemsList, Context mContext, double latitude, double longitude) {
         this.mItemsList = mItemsList;
         this.mContext = mContext;
         this.latitude = latitude;
@@ -75,7 +75,7 @@ public class MyStudyListAdapter extends RecyclerView.Adapter<MyStudyListAdapter.
 
         }
 
-        public void setItem(StudyListRespDto mystudyListRespDto){
+        public void setItem(MyStudyListRespDto mystudyListRespDto){
             try {
                 interest.setText(mystudyListRespDto.getInterest());
                 title.setText(mystudyListRespDto.getTitle());

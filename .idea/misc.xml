@@ -6,7 +6,6 @@
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/drawable/ic_study_people.xml" value="0.22870370370370371" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_auth.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_chat.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_detail.xml" value="0.33" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_join.xml" value="0.33" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_location.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_login.xml" value="0.1" />
@@ -14,13 +13,12 @@
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_nickname.xml" value="0.25" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_splash.xml" value="0.33" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_studycreate.xml" value="0.33" />
-        <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_studylist.xml" value="0.33" />
-        <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/detail_member_item.xml" value="0.2046875" />
-        <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/fragment_chat.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/fragment_chat_room.xml" value="0.33" />
+        <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/activity_studylist.xml" value="0.5" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/fragment_home.xml" value="0.1890625" />
         <entry key="..\:/Users/MAREL/Desktop/Github/Agora__android/app/src/main/res/layout/study_item.xml" value="0.33" />
         <entry key="..\:/Users/lee/11.19_androidstudio/Agora__android/app/src/main/res/layout/activity_detail.xml" value="0.17916666666666667" />
+<<<<<<< HEAD
+=======
         <entry key="..\:/Users/lee/11.27_AndroidStudio/Agora__android/app/src/main/res/drawable-v24/ic_baseline_access_alarm_24.xml" value="0.1953125" />
         <entry key="..\:/Users/lee/11.27_AndroidStudio/Agora__android/app/src/main/res/layout/activity_join.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/lee/11.27_AndroidStudio/Agora__android/app/src/main/res/layout/activity_mannereval.xml" value="0.3333333333333333" />
@@ -46,24 +44,31 @@
         <entry key="..\:/Users/lee/12.01_AndroidStudio/Agora__android/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Users/lee/12.01_AndroidStudio/Agora__android/app/src/main/res/layout/study_item.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/lee/12.01_AndroidStudio/Agora__android/app/src/main/res/layout/studymember_item.xml" value="0.17916666666666667" />
+>>>>>>> eb58f23fc991e561acb2063161a7a46cd9ae103f
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_auth.xml" value="0.1634963768115942" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_chat.xml" value="0.12310030395136778" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_detail.xml" value="0.2" />
-        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_evallist.xml" value="0.4" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_evallist.xml" value="0.176" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_evaluatelist.xml" value="0.17083333333333334" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_login.xml" value="0.17346014492753623" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_mannereval.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_moodeval.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_mystudydetail.xml" value="0.2" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_nickname.xml" value="0.175" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_placeset.xml" value="0.1625" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_placeset2.xml" value="0.175" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_studycreate.xml" value="0.2" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_studycreate2.xml" value="0.152" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/activity_studylist.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/chat_item.xml" value="0.264" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/chatlist_item.xml" value="0.17083333333333334" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/detail_member_item.xml" value="0.1634963768115942" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/eval_item.xml" value="0.25" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/evaluate_item.xml" value="0.264" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/fragment_chat.xml" value="0.17083333333333334" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/gridview_item.xml" value="0.1634963768115942" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/location_item.xml" value="0.1634963768115942" />
+        <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/row_chat.xml" value="0.4" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/layout/study_item.xml" value="0.1634963768115942" />
         <entry key="..\:/Users/your/AndroidStudioProject/Agora/app/src/main/res/menu/hidemenu.xml" value="0.2490740740740741" />
         <entry key="..\:/Users/your/AndroidStudioProject/daangnapp-master/app/src/main/res/drawable/ic_study_people.xml" value="0.146875" />

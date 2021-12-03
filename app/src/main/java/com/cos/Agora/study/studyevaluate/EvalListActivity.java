@@ -34,10 +34,10 @@ public class EvalListActivity extends AppCompatActivity {
     private RecyclerView evalList;
     private EvalAdapter evalAdapter;
     private int userId;
-    private String evalType;
+//    private String evalType;
     private ImageButton backBtn;
 
-    private ArrayList<EvalRespDto> evaleRespDtos = new ArrayList<>();
+//    private ArrayList<EvalRespDto> evalRespDtos = new ArrayList<>();
 
     private EvalService evalService= retrofitURL.retrofit.create(EvalService.class);
 

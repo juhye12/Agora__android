@@ -10,6 +10,7 @@ public class User extends Application {
     // e.g. int id = ((User) getApplication() ).getId();
     private int userId;
     private String phoneNumber;
+    private String nickName;
     private double latitude;
     private double longitude;
 }
