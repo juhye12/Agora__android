@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class DetailReqDto {
-    private long userId;            // 사용자 id
+    private long userId;
 }

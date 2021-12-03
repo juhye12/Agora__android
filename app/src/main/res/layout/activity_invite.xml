@@ -1,210 +1,711 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="100dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
-    android:background="@drawable/ripple_effect"
-    android:id="@+id/layout_userprofile"
-    tools:visibility="visible">
+    >
 
-    <TextView
-        android:id="@+id/inviteList"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="초대 목록"
-        android:textColor="@color/purple_200"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:id="@+id/ssomeul"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp">
-
-        <ImageView
-            android:id="@+id/detail_iv_profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_agora_person_basic" />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#8C000000">
 
-            <TextView
-                android:id="@+id/detail_nickname"
-                android:layout_width="wrap_content"
+            <ScrollView
+                android:id="@+id/product_information_scrollview"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="쏘오믈리에"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/detail_role"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="와인, 안드로이드"
-                android:textColor="@android:color/black"
-                android:textSize="10sp"
-                android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="411dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:id="@+id/invite_product_information_iv_back"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="15dp"
+                                android:background="@null"
+                                android:contentDescription="@string/app_name"
+                                android:onClick="productInformationOnClick"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/home_as_up" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="100dp"
+                                android:layout_gravity="center"
+                                android:textSize="20sp"
+                                android:textColor="#FFBB86FC"
+                                android:textStyle="bold"
+                                android:text="내 스터디 정보"/>
+
+                            <!--                    <ImageButton-->
+                            <!--                        android:id="@+id/product_information_iv_more"-->
+                            <!--                        android:layout_width="40dp"-->
+                            <!--                        android:layout_height="40dp"-->
+                            <!--                        android:layout_gravity="center"-->
+                            <!--                        android:background="@null"-->
+                            <!--                        android:contentDescription="@string/app_name"-->
+                            <!--                        android:onClick="productInformationOnClick"-->
+                            <!--                        android:scaleType="fitXY"-->
+                            <!--                        android:src="@drawable/icon_ads_more" />-->
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+
+
+                    <!--            <FrameLayout-->
+                    <!--                android:layout_width="wrap_content"-->
+                    <!--                android:layout_height="wrap_content">-->
+
+                    <!--                <androidx.viewpager.widget.ViewPager-->
+                    <!--                    android:id="@+id/detail_viewPager"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="350dp" />-->
+
+                    <!--                <LinearLayout-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:orientation="horizontal">-->
+
+                    <!--                    <ImageButton-->
+                    <!--                        android:id="@+id/product_information_iv_back"-->
+                    <!--                        android:layout_width="20dp"-->
+                    <!--                        android:layout_height="20dp"-->
+                    <!--                        android:layout_gravity="center"-->
+                    <!--                        android:layout_margin="15dp"-->
+                    <!--                        android:background="@null"-->
+                    <!--                        android:contentDescription="@string/app_name"-->
+                    <!--                        android:onClick="productInformationOnClick"-->
+                    <!--                        android:scaleType="fitXY"-->
+                    <!--                        android:src="@drawable/home_as_up" />-->
+
+                    <!--                    <TextView-->
+                    <!--                        android:layout_width="0dp"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_weight="1" />-->
+
+                    <!--                                <ImageButton-->
+                    <!--                                    android:id="@+id/product_information_iv_share"-->
+                    <!--                                    android:layout_width="20dp"-->
+                    <!--                                    android:layout_height="20dp"-->
+                    <!--                                    android:layout_gravity="center"-->
+                    <!--                                    android:layout_margin="15dp"-->
+                    <!--                                    android:background="@null"-->
+                    <!--                                    android:contentDescription="@string/app_name"-->
+                    <!--                                    android:onClick="productInformationOnClick"-->
+                    <!--                                    android:scaleType="fitXY"-->
+                    <!--                                    android:src="@drawable/ic_share_outline_24" />-->
+
+                    <!--                    <ImageButton-->
+                    <!--                        android:id="@+id/product_information_iv_more"-->
+                    <!--                        android:layout_width="40dp"-->
+                    <!--                        android:layout_height="40dp"-->
+                    <!--                        android:layout_gravity="center"-->
+                    <!--                        android:background="@null"-->
+                    <!--                        android:contentDescription="@string/app_name"-->
+                    <!--                        android:onClick="productInformationOnClick"-->
+                    <!--                        android:scaleType="fitXY"-->
+                    <!--                        android:src="@drawable/icon_ads_more" />-->
+                    <!--                </LinearLayout>-->
+
+                    <!--                <me.relex.circleindicator.CircleIndicator-->
+                    <!--                    android:id="@+id/detail_indicator"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="48dp"-->
+                    <!--                    android:layout_gravity="bottom"-->
+                    <!--                    app:ci_drawable="@drawable/black_radius"-->
+                    <!--                    app:ci_height="7dp"-->
+                    <!--                    app:ci_margin="4dp"-->
+                    <!--                    app:ci_width="7dp" />-->
+                    <!--            </FrameLayout>-->
+
+                    <!--            &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;스터디 정보 표시 레이아웃-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/my_detail_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Android 뿌셔뿌셔!!"
+                            android:textColor="@android:color/black"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+
+
+                        <!--                <TextView-->
+                        <!--                    android:id="@+id/detail_tv_title"-->
+                        <!--                    android:layout_width="match_parent"-->
+                        <!--                    android:layout_height="wrap_content"-->
+                        <!--                    android:text="로딩중화면"-->
+                        <!--                    android:textColor="@android:color/black"-->
+                        <!--                    android:textSize="17sp"-->
+                        <!--                    android:textStyle="bold" />-->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/my_detail_categories"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="프로그래밍"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="["
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/my_detail_createDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="만든 시간"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="}"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/btn_study_invite"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="100dp"
+                                android:background="@drawable/button_background"
+                                android:text="초대하기"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:visibility="visible" />
+
+                            <!--                    <TextView-->
+                            <!--                        android:id="@+id/detail_tv_categories"-->
+                            <!--                        android:layout_width="wrap_content"-->
+                            <!--                        android:layout_height="wrap_content"-->
+                            <!--                        android:text="categories"-->
+                            <!--                        android:textSize="12sp" />-->
+
+                            <!--                    <TextView-->
+                            <!--                        android:id="@+id/detail_tv_time"-->
+                            <!--                        android:layout_width="wrap_content"-->
+                            <!--                        android:layout_height="wrap_content"-->
+                            <!--                        android:layout_marginLeft="10dp"-->
+                            <!--                        android:text=" reroll"-->
+                            <!--                        android:textSize="12sp" />-->
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/my_detail_calendar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="스터디 일정"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"/>
+
+
+
+                            <TextView
+                                android:id="@+id/my_detail_notice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="스터디 공지"
+                                android:layout_marginLeft="50dp"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/my_detail_place"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="스터디 장소"
+                                android:layout_marginLeft="50dp"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+
+                            <ImageButton
+                                android:id="@+id/my_iv_calendar"
+                                android:layout_width="47dp"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="30dp"
+                                android:onClick="show_Calendar"
+                                android:src="@drawable/ic_baseline_calendar_today_24" />
+
+                            <ImageButton
+                                android:id="@+id/my_iv_notification"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="70dp"
+                                android:src="@drawable/ic_baseline_access_alarm_24"
+                                android:onClick="show_Notification"
+                                />
+
+                            <ImageButton
+                                android:id="@+id/my_iv_place"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="70dp"
+                                android:src="@drawable/ic_baseline_place_24"
+                                android:onClick="show_Study_Place"
+                                />
+
+
+
+                            <!--                    <TextView-->
+                            <!--                        android:id="@+id/detail_tv_viewCount"-->
+                            <!--                        android:layout_width="wrap_content"-->
+                            <!--                        android:layout_height="wrap_content"-->
+                            <!--                        android:layout_marginLeft="2dp"-->
+                            <!--                        android:text="55"-->
+                            <!--                        android:textSize="12sp" />-->
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/my_detail_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="스터디 상세 정보"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/my_detail_coming"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="참여 인원("
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/my_detail_current"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="1"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="/"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/my_detail_limit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="5"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text=")"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"/>
+
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@color/colorGray" />
+
+
+
+                    <!--            그룹원들 리사이클러뷰로 보여짐 - detail_member_item에 그룹원 있음-->
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_study_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="241dp"
+                            tools:ignore="MissingConstraints" />
+
+                        //플로팅 버튼
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/chat_fab_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|bottom"
+                            android:layout_margin="16dp"
+                            android:backgroundTint="@color/purple_200"
+                            android:src="@drawable/ic_baseline_chat_24"
+                            app:elevation="6dp"
+                            app:fabSize="normal"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+                    </FrameLayout>
+
+                    <!--            <LinearLayout-->
+                    <!--                android:id="@+id/reportAndProduct"-->
+                    <!--                android:layout_width="match_parent"-->
+                    <!--                android:layout_height="match_parent"-->
+                    <!--                android:orientation="vertical">-->
+
+
+                    <!--                <TextView-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:layout_margin="20dp"-->
+                    <!--                    android:text="이 게시글 신고하기"-->
+                    <!--                    android:textColor="@android:color/black"-->
+                    <!--                    android:textSize="17sp"-->
+                    <!--                    android:textStyle="bold" />-->
+
+                    <!--                <View-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="1dp"-->
+                    <!--                    android:layout_marginLeft="15dp"-->
+                    <!--                    android:layout_marginRight="15dp"-->
+                    <!--                    android:background="@color/colorGray" />-->
+
+
+                    <!--                <View-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="1dp"-->
+                    <!--                    android:layout_marginLeft="15dp"-->
+                    <!--                    android:layout_marginRight="15dp"-->
+                    <!--                    android:background="@color/colorGray" />-->
+
+                    <!--                <LinearLayout-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:layout_margin="20dp"-->
+                    <!--                    android:orientation="horizontal">-->
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/detail_tv_nickname_another"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:text="Jerrry"-->
+                    <!--                        android:textColor="@android:color/black"-->
+                    <!--                        android:textSize="17sp"-->
+                    <!--                        android:textStyle="bold" />-->
+
+                    <!--                    <TextView-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:text="님의 판매 상품"-->
+                    <!--                        android:textColor="@android:color/black"-->
+                    <!--                        android:textSize="17sp"-->
+                    <!--                        android:textStyle="bold" />-->
+
+                    <!--                    <TextView-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_weight="1" />-->
+
+                    <!--                    <Button-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:text="모두보기"-->
+                    <!--                        android:textColor="@color/black"-->
+                    <!--                        android:backgroundTint="@color/colorGray"-->
+                    <!--                        />-->
+                    <!--                </LinearLayout>-->
+
+
+                    <!--                <androidx.recyclerview.widget.RecyclerView-->
+                    <!--                    android:id="@+id/rv_product"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="match_parent"-->
+                    <!--                    />-->
+                    <!--            </LinearLayout>-->
+
+                </LinearLayout>
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="100dp"
+                android:orientation="vertical"
+                android:background="@drawable/ripple_effect"
+                android:id="@+id/layout_userprofile"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/inviteList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="초대 목록"
+                    android:textColor="@color/purple_200"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/ssomeul"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/detail_iv_profile"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_agora_person_basic" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/detail_nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="쏘오믈리에"
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/detail_role"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="와인, 안드로이드"
+                            android:textColor="@android:color/black"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:id="@+id/btn_study_invite2"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="120dp"
+                            android:background="@drawable/button_background"
+                            android:text="초    대"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:visibility="visible" />
+
+                        <Button
+                            android:id="@+id/btn_study_noinvite"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="120dp"
+                            android:background="#514F4F"
+                            android:text="초    대"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:visibility="invisible" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/java"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/invite_iv_profile1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_agora_person_basic" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/invite_detail_nickname1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="자바를자방"
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/invite_detail_role1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="자바, 안드로이드"
+                            android:textColor="@android:color/black"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_study_invite3"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="120dp"
+                        android:background="@drawable/button_background"
+                        android:text="초    대"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/invite_iv_profile2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_agora_person_basic" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/invite_detail_nickname2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="안드정복자"
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/invite_detail_role2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Spring, 안드로이드"
+                            android:textColor="@android:color/black"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_study_invite4"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="110dp"
+                        android:background="@drawable/button_background"
+                        android:text="초    대"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
+                </LinearLayout>
+                <Button
+                    android:id="@+id/btn_study_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_background"
+                    android:text="나 가 기"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+            </LinearLayout>
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/btn_study_invite2"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
-                android:background="@drawable/button_background"
-                android:text="초    대"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:visibility="visible" />
-
-            <Button
-                android:id="@+id/btn_study_noinvite"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
-                android:background="#514F4F"
-                android:text="초    대"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:visibility="invisible" />
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/java"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp">
-
-        <ImageView
-            android:id="@+id/invite_iv_profile1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_agora_person_basic" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/invite_detail_nickname1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="자바를자방"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/invite_detail_role1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="자바, 안드로이드"
-                android:textColor="@android:color/black"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_study_invite3"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:background="@drawable/button_background"
-            android:text="초    대"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:visibility="visible" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/Android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp">
-
-        <ImageView
-            android:id="@+id/invite_iv_profile2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_agora_person_basic" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/invite_detail_nickname2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="안드정복자"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/invite_detail_role2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Spring, 안드로이드"
-                android:textColor="@android:color/black"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_study_invite4"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
-            android:background="@drawable/button_background"
-            android:text="초    대"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:visibility="visible" />
-    </LinearLayout>
-    <Button
-        android:id="@+id/btn_study_back"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:background="@drawable/button_background"
-        android:text="나 가 기"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:visibility="visible" />
-
+    </FrameLayout>
 </LinearLayout>

@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +23,6 @@ import com.cos.Agora.CMRespDto;
 import com.cos.Agora.R;
 import com.cos.Agora.main.MainActivity;
 import com.cos.Agora.calendar.CalendarActivity;
-import com.cos.Agora.study.StudyApplicationActivity;
 import com.cos.Agora.study.StudyListActivity;
 import com.cos.Agora.study.adapter.DetailAdapter;
 import com.cos.Agora.study.model.DetailRespDto;
@@ -101,7 +99,7 @@ public class MyDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // 일단 채팅 액티비티를 안만들었으므로 studylist로 연결시켜 놓았다.
-                Intent intent = new Intent(MyDetailActivity.this, StudyListActivity.class);
+                Intent intent = new Intent(MyDetailActivity.this, ChatActivity.class);
             }
         });
 
@@ -110,13 +108,16 @@ public class MyDetailActivity extends AppCompatActivity {
         btn_study_invite.setOnClickListener(v -> {
             // 초대하기 버튼을 눌렀을 때 framelayout을 사용하여 사용자는 단순히 textview로 나타내고 '초대'버튼을 누르면
             // 회색 빛으로 바뀌면서 토스트창 뜨는 것으로 만들 것
-            LinearLayout linearLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.activity_invite, null);
-            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            linearLayout.setBackgroundColor(Color.parseColor("#99000000"));
+//            LinearLayout linearLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.activity_invite1, null);
+//            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            linearLayout.setBackgroundColor(Color.parseColor("#99000000"));
+//
+//            LinearLayout.LayoutParams parent = new LinearLayout.LayoutParams
+//                    (LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.FILL_PARENT);
+//            addContentView(linearLayout, parent);
 
-            LinearLayout.LayoutParams parent = new LinearLayout.LayoutParams
-                    (LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.FILL_PARENT);
-            addContentView(linearLayout, parent);
+            Intent intent1 = new Intent(MyDetailActivity.this, InviteActivity.class);
+            startActivity(intent1);
 
             btn_study_invite2.setOnClickListener(view -> {
                 Toast inviteToast = Toast.makeText(this.getApplicationContext(), "초대 메세지를 보냈습니다.",

@@ -16,5 +16,7 @@ public class DetailRespDto {
     private int role;               // 사용자 역할 1:그룹장, 0:그룹원
     private int manner;             // 매너
     private String association;     // 소속
+    private double latitude;
+    private double longitude;
 
 }

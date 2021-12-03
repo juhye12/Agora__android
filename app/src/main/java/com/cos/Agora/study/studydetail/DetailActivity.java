@@ -29,6 +29,7 @@ import com.cos.Agora.study.model.DetailRespDto;
 import com.cos.Agora.study.model.EvalRespDto;
 import com.cos.Agora.study.model.StudyListRespDto;
 import com.cos.Agora.retrofitURL;
+import com.cos.Agora.study.mystudy.StudyPlaceActivity;
 import com.cos.Agora.study.service.StudyService;
 
 import java.util.ArrayList;
@@ -55,6 +56,8 @@ public class DetailActivity extends AppCompatActivity {
     private int userId;
     private MainActivity activity;
 
+    private DetailRespDto detailRespDto;
+//    private ArrayList<DetailRespDto> detailRespDto = new ArrayList<>();
     private ArrayList<StudyListRespDto> studyRespDtos = new ArrayList<>();
 
     private retrofitURL retrofitURL;
@@ -118,7 +121,12 @@ public class DetailActivity extends AppCompatActivity {
 
         // 장소를 눌렀을 때
         ivPlace.setOnClickListener(view -> {
+            Intent intent5 = new Intent(view.getContext(), StudyPlaceActivity.class);
+            intent5.putExtra("latitude", detailRespDto.getLatitude());
+            intent5.putExtra("longitude", detailRespDto.getLongitude());
 
+            Intent intent4 = new Intent(DetailActivity.this, StudyPlaceActivity.class);
+            startActivity(intent4);
         });
 
         // 게시물을 클릭했을 때 해당 스터디 아이디를 서버로 보내서 그곳에 속해있는 유저 아이디 및 다른 정보들을
@@ -135,6 +143,7 @@ public class DetailActivity extends AppCompatActivity {
 
         int Current = intent.getIntExtra("studyCurrent", 1);
         int Limit = intent.getIntExtra("studyLimit", 1);
+
 
         tvTitle.setText(Title);
         tvCategori.setText(Category);

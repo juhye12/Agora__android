@@ -21,6 +21,7 @@ import com.cos.Agora.study.adapter.EvalAdapter;
 import com.cos.Agora.study.adapter.MyStudyListAdapter;
 import com.cos.Agora.study.model.EvalRespDto;
 import com.cos.Agora.study.model.MyStudyListRespDto;
+import com.cos.Agora.study.model.StudyListRespDto;
 import com.cos.Agora.study.service.EvalService;
 import com.cos.Agora.study.service.StudyService;
 
@@ -40,7 +41,7 @@ public class MyStudyListActivity extends AppCompatActivity {
     private static double Ulatitude;
     private static double Ulongitude;
 
-    private ArrayList<MyStudyListRespDto> mystudyListRespDto = new ArrayList<>();
+    private ArrayList<StudyListRespDto> mystudyListRespDto = new ArrayList<>();
 
     private StudyService mystudyService= retrofitURL.retrofit.create(StudyService.class);
 
@@ -63,14 +64,14 @@ public class MyStudyListActivity extends AppCompatActivity {
         Ulatitude = ((User)getApplication()).getLatitude();  // 사용자 위도
         Ulongitude = ((User)getApplication()).getLongitude();// 사용자 경도
 
-        Call<CMRespDto<List<MyStudyListRespDto>>> call = mystudyService.getMyStudyList(Ulatitude,Ulongitude,userId);
+        Call<CMRespDto<List<StudyListRespDto>>> call = mystudyService.getMyStudyList(Ulatitude,Ulongitude,userId);
 
-        call.enqueue(new Callback<CMRespDto<List<MyStudyListRespDto>>>() {
+        call.enqueue(new Callback<CMRespDto<List<StudyListRespDto>>>() {
             @Override
-            public void onResponse(Call<CMRespDto<List<MyStudyListRespDto>>> call, Response<CMRespDto<List<MyStudyListRespDto>>> response) {
+            public void onResponse(Call<CMRespDto<List<StudyListRespDto>>> call, Response<CMRespDto<List<StudyListRespDto>>> response) {
                 try {
-                    CMRespDto<List<MyStudyListRespDto>> cmRespDto = response.body();
-                    List<MyStudyListRespDto> mystudies = cmRespDto.getData();
+                    CMRespDto<List<StudyListRespDto>> cmRespDto = response.body();
+                    List<StudyListRespDto> mystudies = cmRespDto.getData();
                     Log.d(TAG, "mystudies: "+ mystudies);
                     mystudylistAdapter = new MyStudyListAdapter(mystudies,activity,Ulatitude,Ulongitude);
                     mystudyList.setAdapter(mystudylistAdapter);
@@ -79,7 +80,7 @@ public class MyStudyListActivity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onFailure(Call<CMRespDto<List<MyStudyListRespDto>>> call, Throwable t) {
+            public void onFailure(Call<CMRespDto<List<StudyListRespDto>>> call, Throwable t) {
                 Log.d(TAG, "onFailure: 평가목록보기 실패 !!");
             }
         });
