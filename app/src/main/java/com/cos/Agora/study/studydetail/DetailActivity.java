@@ -96,22 +96,29 @@ public class DetailActivity extends AppCompatActivity {
         mBack = findViewById(R.id.product_information_iv_back);
 
         // 가입 신청 버튼을 눌렀을 때 가입 신청 레이아웃으로 넘어간다.
-
         btn_study_join.setOnClickListener(v -> {
             Toast joinToast = Toast.makeText(this.getApplicationContext(), "그룹장에게 가입 신청 메세지를 보냈습니다.",
                     Toast.LENGTH_SHORT);
             joinToast.show();
-//            Intent intent1 = new Intent(DetailActivity.this, StudyApplicationActivity.class);
-//            startActivity(intent1);
             userId = ((User)getApplication()).getUserId();
             postapplication(userId, id); // studyId는 이전에 가져온 id를 가져와서 사용
         });
 
         // 일정 관리 이미지 버튼을 눌렀을 때 일정 관리 레이아웃으로 넘어간다.
-
         ivCalendar.setOnClickListener(v -> {
             Intent intent2 = new Intent(DetailActivity.this, CalendarActivity.class);
             startActivity(intent2);
+        });
+
+        // 공지
+        ivNotification.setOnClickListener(view -> {
+            Intent intent3 = new Intent(DetailActivity.this, NotificationActivity.class);
+            startActivity(intent3);
+        });
+
+        // 장소를 눌렀을 때
+        ivPlace.setOnClickListener(view -> {
+
         });
 
         // 게시물을 클릭했을 때 해당 스터디 아이디를 서버로 보내서 그곳에 속해있는 유저 아이디 및 다른 정보들을
