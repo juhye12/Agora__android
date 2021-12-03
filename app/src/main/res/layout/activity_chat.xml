@@ -4,92 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/chat_iv_back"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:background="@null"
-            android:contentDescription="@string/app_name"
-            android:scaleType="fitXY"
-            android:src="@drawable/home_as_up" />
-
-        <TextView
-            android:id="@+id/chat_nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="유저닉네임"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:layout_width="23dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_margin="15dp"
-            android:background="@null"
-            android:contentDescription="@string/app_name"
-            android:scaleType="fitXY"
-            android:src="@drawable/action_icon_promise" />
-
-        <ImageButton
-            android:id="@+id/chat_iv_more"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:background="@null"
-            android:contentDescription="@string/app_name"
-            android:scaleType="fitXY"
-            android:src="@drawable/icon_ads_more" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorGray" />
-
+    android:orientation="vertical"
+    android:weightSum="1"
+    >
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_chat"
+        android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
-
+        android:layout_weight="1"
+        android:scrollbars="vertical"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_weight="0.1"
+        android:layout_height="80dp"
         android:orientation="horizontal"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp">
-
-
+        android:weightSum="1">
         <EditText
-            android:layout_marginBottom="20dp"
-            android:id="@+id/et_msg"
+            android:id="@+id/EditText_chat"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
-
-
         <Button
+            android:id="@+id/Button_send"
+            android:text="SEND"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"/>
 
-            android:id="@+id/btn_chat"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:text="전송"
-            android:background="@drawable/button_background"/>
-</LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

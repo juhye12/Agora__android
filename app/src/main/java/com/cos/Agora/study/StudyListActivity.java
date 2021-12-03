@@ -28,6 +28,7 @@ import com.cos.Agora.study.service.StudyService;
 import com.cos.Agora.study.studycreate.StudyCreateActivity;
 import com.cos.Agora.study.studydetail.DetailActivity;
 import com.cos.Agora.study.studyevaluate.EvalListActivity;
+import com.cos.Agora.study.studyevaluate.MannerEvalActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class StudyListActivity extends AppCompatActivity {
     private String interest;        // 관심분야
     private String lineup;          // 정렬방법
     private String phoneNumber;     // 사용자 핸드폰
-    private ArrayList<StudyListRespDto> studyRespDtos = new ArrayList<>();
+//    private ArrayList<StudyListRespDto> studyRespDtos = new ArrayList<>();
 
     private static double Ulatitude;
     private static double Ulongitude;
@@ -149,6 +150,7 @@ public class StudyListActivity extends AppCompatActivity {
         ibassess.setOnClickListener(v -> {
             Intent intent1 = new Intent(StudyListActivity.this, EvalListActivity.class);
             startActivity(intent1);
+            StudyListActivity.this.finish();
         });
 
         ibprofile.setOnClickListener(v -> {

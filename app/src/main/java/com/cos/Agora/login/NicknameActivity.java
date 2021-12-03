@@ -48,6 +48,8 @@ public class NicknameActivity extends AppCompatActivity {
         etNickName= findViewById(R.id.nickname_et_nickname);
         btnStart = findViewById(R.id.nickname_btn_start);
 
+        ((User)getApplication()).setNickName(etNickName.toString());//global nickName 값 설정하기
+
 //        Intent intent = getIntent();
 
 //        latitude = intent.getDoubleExtra("latitude",0);
