@@ -100,7 +100,6 @@ public class JoinActivity extends AppCompatActivity {
     public void init(){
         mAssociation = findViewById(R.id.join_association);
         mAge= findViewById(R.id.join_age);
-        mSex = findViewById(R.id.join_sex);
         sInterest = findViewById(R.id.join_interest);
         xInterest = findViewById(R.id.join_sex);
         mJoinButton = findViewById(R.id.join_button);

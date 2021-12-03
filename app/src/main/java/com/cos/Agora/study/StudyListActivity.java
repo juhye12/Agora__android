@@ -23,6 +23,7 @@ import com.cos.Agora.study.adapter.StudyListAdapter;
 import com.cos.Agora.study.alarm.AlarmActivity;
 import com.cos.Agora.study.model.StudyListRespDto;
 import com.cos.Agora.retrofitURL;
+import com.cos.Agora.study.mystudy.MyStudyListActivity;
 import com.cos.Agora.study.profile.ProfileActivity;
 import com.cos.Agora.study.service.StudyService;
 import com.cos.Agora.study.studycreate.StudyCreateActivity;
@@ -135,6 +136,7 @@ public class StudyListActivity extends AppCompatActivity {
             startActivity(intent1);
         });
 
+        // 알람 레이아웃 연결시킬 것
         ibalarm.setOnClickListener(v -> {
             Intent intent1 = new Intent(StudyListActivity.this, AlarmActivity.class);
             startActivity(intent1);
@@ -142,7 +144,7 @@ public class StudyListActivity extends AppCompatActivity {
 
         // 내 스터디 리스트를 보여줄 수 있는 액티비티를 만들어야 한다.
         ibmystudy.setOnClickListener(v -> {
-            Intent intent1 = new Intent(StudyListActivity.this, AlarmActivity.class);
+            Intent intent1 = new Intent(StudyListActivity.this, MyStudyListActivity.class);
             startActivity(intent1);
         });
 
@@ -152,6 +154,7 @@ public class StudyListActivity extends AppCompatActivity {
             StudyListActivity.this.finish();//11-28 추가한 항목
         });
 
+        // 프로필 레이아웃 연결시킬 것
         ibprofile.setOnClickListener(v -> {
             Intent intent1 = new Intent(StudyListActivity.this, ProfileActivity.class);
             startActivity(intent1);

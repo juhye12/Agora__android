@@ -81,7 +81,7 @@
                         android:id="@+id/profile_tv_nickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="자바를 자바"
+                        android:text="안린이"
                         android:textColor="@android:color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -94,8 +94,8 @@
                             android:id="@+id/profile_tv_location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="도봉구 쌍문동"
-                            android:layout_marginTop="10dp" />
+                            android:text="서울시 도봉구"
+                            android:layout_marginTop="10dp"/>
 
                     </LinearLayout>
 

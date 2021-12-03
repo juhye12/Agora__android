@@ -54,18 +54,20 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView nickname, role, manner, association;
-        private ImageView manner1, manner2, manner3, manner4, manner5;
+        private ImageView manner1, manner2, manner3, manner4, manner5, m_role;
         private LinearLayout userProfile;
         public MyViewHolder(@NonNull View detailView) {
             super(detailView);
 
+            m_role =detailView.findViewById(R.id.detail_role_master);
             nickname =detailView.findViewById(R.id.detail_nickname);
-            role =detailView.findViewById(R.id.detail_role);
             manner1 =detailView.findViewById(R.id.detail_manner_1); // fragment에서 겹치는 부분 일단 manner_1으로 써놓음.
             manner2 =detailView.findViewById(R.id.detail_manner_2); // fragment에서 겹치는 부분 일단 manner_2으로 써놓음.
             manner3 =detailView.findViewById(R.id.detail_manner_3); // fragment에서 겹치는 부분 일단 manner_3으로 써놓음.
             manner4 =detailView.findViewById(R.id.detail_manner_4); // fragment에서 겹치는 부분 일단 manner_4으로 써놓음.
-            manner5 =detailView.findViewById(R.id.detail_manner_5); // fragment에서 겹치는 부분 일단 manner_5으로 써놓음.            association =detailView.findViewById(R.id.detail_association);
+            manner5 =detailView.findViewById(R.id.detail_manner_5); // fragment에서 겹치는 부분 일단 manner_5으로 써놓음.
+
+            association =detailView.findViewById(R.id.detail_association);
             userProfile = detailView.findViewById(R.id.layout_userprofile);
 
 //            createDate = itemView.findViewById(R.id.study_create_date);
@@ -77,8 +79,15 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHold
         public void setItem(DetailRespDto detailRespDto){
             try {
                 int mannerScore = 0;
+                int roleScore = 0;
                 nickname.setText(detailRespDto.getNickName());
-                role.setText(detailRespDto.getRole()+"");
+
+                roleScore = detailRespDto.getRole();
+                if(roleScore == 1){
+                    m_role.setVisibility(View.VISIBLE);
+                } else{
+                    m_role.setVisibility(View.INVISIBLE);
+                }
 
                 mannerScore = detailRespDto.getManner();
                 if(mannerScore >= 0 && mannerScore < 1){
