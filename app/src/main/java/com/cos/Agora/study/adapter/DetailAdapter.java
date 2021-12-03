@@ -82,6 +82,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHold
                 int roleScore = 0;
                 nickname.setText(detailRespDto.getNickName());
 
+                // role 그림으로 나타냄
                 roleScore = detailRespDto.getRole();
                 if(roleScore == 1){
                     m_role.setVisibility(View.VISIBLE);
