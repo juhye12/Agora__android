@@ -52,7 +52,7 @@
         <activity android:name=".study.studyevaluate.EvalListActivity" />
         <activity android:name=".study.studyevaluate.MannerEvalActivity" />
         <activity android:name=".study.studyevaluate.MoodEvalActivity" />
-        <activity android:name=".study.mystudy.MyDetailActivity" />
+        <activity android:name=".study.mystudy.MyDetailActivity"/>
         <activity android:name=".study.mystudy.MyStudyListActivity" />
         <activity android:name=".study.StudyApplicationActivity"
             android:parentActivityName=".study.StudyListActivity"/>
@@ -60,7 +60,7 @@
             android:parentActivityName=".study.StudyListActivity"/>
         <activity android:name=".study.studydetail.DetailActivity"
             android:parentActivityName=".study.StudyListActivity"/>
-        />
+
 
         <activity android:name=".splash.SplashActivity" >
             <intent-filter>
