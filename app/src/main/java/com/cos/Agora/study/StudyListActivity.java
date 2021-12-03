@@ -160,11 +160,6 @@ public class StudyListActivity extends AppCompatActivity {
             startActivity(intent1);
         });
 
-        //이전 Activity에서 phoneNumber값 받아오기. 정렬에서 거리 계산을 위해 현재 사용자가 어떤 사용자인지 알아야해서!
-        //Intent intent = getIntent();
-//        phoneNumber = intent.getStringExtra("phoneNumber");
-//        locationReqDto = intent.getParcelableExtra("location");
-
         phoneNumber = ((User)getApplication()).getPhoneNumber();
     }
 
