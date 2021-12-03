@@ -15,5 +15,11 @@ public class StudyListRespDto {
     private int current;        // 현재인원
     private String title;       // 스터디제목
     private String interest;    // 관심분야
-    private int mood; // 새롭게 추가된 변수 -> 스터디별 분위기를 표현하기 위함
+    private int mood;     // 새롭게 추가된 변수 -> 스터디별 분위기를 표현하기 위함
+
+
+    private double latitude;
+    private double longitude;
+
+
 }

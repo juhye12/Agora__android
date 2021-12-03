@@ -140,6 +140,10 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.MyVi
                     intent.putExtra("studyLimit", studyListRespDto.getLimit());
                     intent.putExtra("studyCurrent", studyListRespDto.getCurrent());
                     intent.putExtra("studyDistance", studyListRespDto.getDistance());
+
+
+                    intent.putExtra("studylatitude", studyListRespDto.getLatitude());
+                    intent.putExtra("studylongitude", studyListRespDto.getLongitude());
                     // 여기까지가 추가된 코드
 
                     v.getContext().startActivity(intent);

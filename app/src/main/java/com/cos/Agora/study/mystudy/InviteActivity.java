@@ -39,10 +39,22 @@ import retrofit2.Response;
 
 public class InviteActivity extends AppCompatActivity{
     private static final String TAG = "InviteActivity";
+    private Button btn_study_invite2, btn_study_noinvite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invite);
+
+        btn_study_invite2 = findViewById(R.id.btn_study_invite2);
+        btn_study_noinvite = findViewById(R.id.btn_study_noinvite);
+
+        btn_study_invite2.setOnClickListener(view -> {
+            Toast inviteToast = Toast.makeText(this.getApplicationContext(), "초대 메세지를 보냈습니다.",
+                    Toast.LENGTH_SHORT);
+            inviteToast.show();
+            btn_study_invite2.setVisibility(View.INVISIBLE);
+            btn_study_noinvite.setVisibility(View.VISIBLE);
+        });
     }
 }

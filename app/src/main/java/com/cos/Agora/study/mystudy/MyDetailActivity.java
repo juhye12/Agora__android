@@ -61,7 +61,7 @@ public class MyDetailActivity extends AppCompatActivity {
     private retrofitURL retrofitURL;
     private StudyService studyListService= retrofitURL.retrofit.create(StudyService .class);
 
-    private Button btn_study_invite, btn_study_invite2, btn_study_noinvite;
+    private Button btn_study_invite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +82,7 @@ public class MyDetailActivity extends AppCompatActivity {
         tvCreateDate = findViewById(R.id.my_detail_createDate);
 
         btn_study_invite = findViewById(R.id.btn_study_invite); // 초대하기
-        btn_study_invite2 = findViewById(R.id.btn_study_invite2);
-        btn_study_noinvite = findViewById(R.id.btn_study_noinvite);
+
 
 
         ivCalendar = findViewById(R.id.my_iv_calendar); // 일정관리 -> 근데 해당 스터디 안의 일정을 알기가 과정이 쉽지 않을듯
@@ -119,14 +118,6 @@ public class MyDetailActivity extends AppCompatActivity {
 
             Intent intent1 = new Intent(MyDetailActivity.this, InviteActivity.class);
             startActivity(intent1);
-
-            btn_study_invite2.setOnClickListener(view -> {
-                Toast inviteToast = Toast.makeText(this.getApplicationContext(), "초대 메세지를 보냈습니다.",
-                        Toast.LENGTH_SHORT);
-                inviteToast.show();
-                btn_study_invite2.setVisibility(View.INVISIBLE);
-                btn_study_noinvite.setVisibility(View.VISIBLE);
-            });
         });
 
         // 일정 관리 이미지 버튼을 눌렀을 때 일정 관리 레이아웃으로 넘어간다.

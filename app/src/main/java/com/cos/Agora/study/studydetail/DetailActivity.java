@@ -23,6 +23,7 @@ import com.cos.Agora.global.User;
 import com.cos.Agora.main.MainActivity;
 import com.cos.Agora.calendar.CalendarActivity;
 import com.cos.Agora.study.StudyApplicationActivity;
+import com.cos.Agora.study.StudyListActivity;
 import com.cos.Agora.study.adapter.DetailAdapter;
 import com.cos.Agora.study.model.ApplicationRespDto;
 import com.cos.Agora.study.model.DetailRespDto;
@@ -111,6 +112,7 @@ public class DetailActivity extends AppCompatActivity {
         ivCalendar.setOnClickListener(v -> {
             Intent intent2 = new Intent(DetailActivity.this, CalendarActivity.class);
             startActivity(intent2);
+            DetailActivity.this.finish();
         });
 
         // 공지
@@ -119,15 +121,7 @@ public class DetailActivity extends AppCompatActivity {
             startActivity(intent3);
         });
 
-        // 장소를 눌렀을 때
-        ivPlace.setOnClickListener(view -> {
-            Intent intent5 = new Intent(view.getContext(), StudyPlaceActivity.class);
-            intent5.putExtra("latitude", detailRespDto.getLatitude());
-            intent5.putExtra("longitude", detailRespDto.getLongitude());
 
-            Intent intent4 = new Intent(DetailActivity.this, StudyPlaceActivity.class);
-            startActivity(intent4);
-        });
 
         // 게시물을 클릭했을 때 해당 스터디 아이디를 서버로 보내서 그곳에 속해있는 유저 아이디 및 다른 정보들을
         // 가져오게 해야 하는데 이게 맞나
@@ -143,6 +137,12 @@ public class DetailActivity extends AppCompatActivity {
 
         int Current = intent.getIntExtra("studyCurrent", 1);
         int Limit = intent.getIntExtra("studyLimit", 1);
+
+        double Dlatitude = intent.getDoubleExtra("studylatitude", 2.0);
+        double Dlongitude = intent.getDoubleExtra("studylongitude", 2.0);
+
+
+
 
 
         tvTitle.setText(Title);
@@ -160,6 +160,16 @@ public class DetailActivity extends AppCompatActivity {
         studyDetail.setLayoutManager(manager);
 
         getStudyDetail(id);
+
+        // 장소를 눌렀을 때
+        ivPlace.setOnClickListener(view -> {
+            Intent intent5 = new Intent(view.getContext(), StudyPlaceActivity.class);
+            intent5.putExtra("latitude", Dlatitude);
+            intent5.putExtra("longitude", Dlongitude);
+
+            Intent intent4 = new Intent(DetailActivity.this, StudyPlaceActivity.class);
+            startActivity(intent4);
+        });
 
     }
 

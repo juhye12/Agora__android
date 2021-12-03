@@ -68,7 +68,6 @@ public class StudyPlaceActivity extends FragmentActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
 
-
         Intent intent = getIntent();
         double latitude = intent.getDoubleExtra("latitude", 2.0);
         double longitude = intent.getDoubleExtra("longitude", 2.0);
@@ -78,7 +77,7 @@ public class StudyPlaceActivity extends FragmentActivity implements OnMapReadyCa
         //LatLng latlng = new LatLng(37.557667, 126.926546);
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(15));
-        MarkerOptions markerOptions = new MarkerOptions().position(latlng).title("현재 내 위치");
+        MarkerOptions markerOptions = new MarkerOptions().position(latlng).title("스터디 장소");
         googleMap.addMarker(markerOptions);
     }
 
